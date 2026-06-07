@@ -1,0 +1,14 @@
+{
+  "statuses": [
+    "idea",
+    "researching",
+    "scripting",
+    "storyboarding",
+    "producing",
+    "draft",
+    "scheduled",
+    "published",
+    "reviewing",
+    "archived"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "id": "vanhien-ai-walkthrough",
+  "title": "Văn Hiến AI Walkthrough",
+  "preset": "education",
+  "status": "draft-review",
+  "platforms": ["tiktok", "reels", "shorts"],
+  "durationTarget": "60-65 giây",
+  "owner": "TBD",
+  "sourceOfTruth": {
+    "brief": "brief.md",
+    "coverageMap": "coverage-map.md",
+    "captureMap": "capture-map.md",
+    "assetVerification": "assets.md",
+    "storyboard": "storyboard.md",
+    "motionLock": "motion.md",
+    "qaChecklist": "qa.md",
+    "script": "script.md",
+    "publish": "publish.md",
+    "handoff": "handoff.md"
+  },
+  "intake": {
+    "productType": "web app Ngữ văn AI",
+    "domain": "giáo dục",
+    "audience": "thầy cô, buyer EdTech, người làm giáo dục",
+    "buyer": "giáo viên, tổ bộ môn, nhà trường",
+    "videoGoal": "bán sản phẩm cho thầy cô và proof năng lực làm EdTech",
+    "heroFeature": "AI nhập vai nhân vật, đa vũ trụ tác phẩm",
+    "heroProof": "giao bài, làm bài, theo dõi kết quả trong cùng hệ thống",
+    "misframingBan": "không đóng khung sản phẩm thành chatbot hoặc landing page AI",
+    "sensitiveDataConstraints": "không lộ URL, tên người dùng thật, dữ liệu cá nhân"
+  },
+  "direction": {
+    "storySpine": "Role flow: overview -> giáo viên -> học sinh -> hero feature -> proof -> outcome",
+    "layoutPalette": "screen-first editorial",
+    "motionFamily": "editorial website walkthrough",
+    "aestheticPack": "editorial proof",
+    "proofStyle": "role proof + control proof + creativity proof",
+    "pacingProfile": "steady, 5s minimum per scene"
+  },
+  "qualityGates": {
+    "intakeLocked": true,
+    "coverageLocked": true,
+    "storyLocked": true,
+    "captureReady": true,
+    "motionLocked": true,
+    "publishReady": false
+  }
+}

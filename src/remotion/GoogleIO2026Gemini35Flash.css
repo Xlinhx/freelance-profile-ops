@@ -1,0 +1,655 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --gio-bg-dark: #070a13;
+  --gio-glass-bg: rgba(10, 16, 30, 0.65);
+  --gio-glass-border: rgba(255, 255, 255, 0.08);
+  --gio-neon-blue: #4285F4;
+  --gio-neon-cyan: #00f2fe;
+  --gio-neon-purple: #a6c0fe;
+  --gio-neon-green: #10b981;
+  --gio-neon-red: #ef4444;
+  --gio-neon-orange: #f59e0b;
+}
+
+.gio-root {
+  font-family: 'Outfit', sans-serif;
+  color: white;
+  overflow: hidden;
+  background: var(--gio-bg-dark);
+}
+
+.gio-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--gio-bg-dark);
+}
+
+/* Background grid */
+.gio-dot-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Moving gradient mesh in background */
+.gio-gradient-mesh {
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  background: radial-gradient(circle at 30% 30%, rgba(66, 133, 244, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 70% 60%, rgba(0, 242, 254, 0.12) 0%, transparent 50%),
+              radial-gradient(circle at 40% 80%, rgba(166, 192, 254, 0.1) 0%, transparent 60%);
+  z-index: 2;
+  filter: blur(80px);
+}
+
+/* Noise overlay */
+.gio-noise {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.02;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Background Image styling */
+.gio-bg-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.gio-bg-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.22) saturate(0.8);
+}
+
+.gio-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(7, 10, 19, 0.85) 0%, rgba(7, 10, 19, 0.35) 50%, rgba(7, 10, 19, 0.95) 100%);
+  z-index: 1;
+}
+
+/* Header */
+.gio-header {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  right: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+}
+
+.gio-brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.gio-brand-dot {
+  width: 12px;
+  height: 12px;
+  background: var(--gio-neon-blue);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--gio-neon-cyan);
+}
+
+.gio-wordmark {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: #fff;
+  opacity: 0.9;
+}
+
+.gio-scene-info {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+/* Content Container */
+.gio-content-grid {
+  position: absolute;
+  top: 170px;
+  bottom: 120px;
+  left: 60px;
+  right: 60px;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+
+/* Copy Block */
+.gio-copy-block {
+  margin-bottom: 25px;
+}
+
+.gio-eyebrow {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent-color, var(--gio-neon-blue));
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gio-eyebrow::after {
+  content: '';
+  width: 30px;
+  height: 2px;
+  background: var(--accent-color, var(--gio-neon-blue));
+}
+
+.gio-title {
+  font-size: 78px;
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -3px;
+  text-transform: uppercase;
+  margin: 0;
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.8) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.75));
+}
+
+.gio-subtitle {
+  font-size: 23px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: 18px;
+  line-height: 1.45;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.9);
+}
+
+/* Premium Neon Glow Animation */
+@keyframes gio-neon-pulse {
+  0%, 100% {
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 15px rgba(66, 133, 244, 0.02);
+  }
+  50% {
+    border-color: var(--accent-color, rgba(66, 133, 244, 0.35));
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.6), 0 0 25px var(--accent-color, rgba(66, 133, 244, 0.15));
+  }
+}
+
+/* Glass Card */
+.gio-glass-card {
+  background: var(--gio-glass-bg);
+  border: 1px solid var(--gio-glass-border);
+  border-radius: 28px;
+  padding: 30px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  animation: gio-neon-pulse 5s infinite ease-in-out;
+}
+
+/* Scene 3: Benchmarks visual cards */
+.gio-benchmarks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: auto;
+  margin-bottom: 40px;
+}
+
+.gio-benchmark-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  padding: 24px 30px;
+}
+
+.gio-benchmark-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--accent-color, var(--gio-neon-green));
+}
+
+.gio-benchmark-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gio-benchmark-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.gio-benchmark-label {
+  font-size: 18px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.gio-benchmark-desc {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* Benchmark Progress Bar styling */
+.gio-benchmark-bar-bg {
+  width: 280px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.gio-benchmark-bar {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--accent-color, var(--gio-neon-green)) 0%, var(--gio-neon-cyan) 100%);
+  box-shadow: 0 0 8px var(--accent-color, var(--gio-neon-green));
+}
+
+.gio-benchmark-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--accent-color, var(--gio-neon-green));
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+}
+
+/* Scene 4: Speed comparison split screen */
+.gio-speed-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: auto;
+  margin-bottom: 40px;
+  flex: 1;
+  max-height: 52%;
+}
+
+.gio-speed-column {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 24px;
+}
+
+.gio-speed-column.model-flash {
+  --col-accent: var(--gio-neon-cyan);
+}
+
+.gio-speed-column.model-pro {
+  --col-accent: var(--gio-neon-purple);
+}
+
+.gio-speed-header {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--col-accent);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.gio-speed-body {
+  flex: 1;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  color: #fff;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+/* Speed Latency UI */
+.gio-speed-timer-ui {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 8px 14px;
+  justify-content: center;
+}
+
+.gio-timer-icon {
+  font-size: 14px;
+}
+
+.gio-timer-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.gio-timer-status {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--col-accent);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.gio-speed-overlay-tag {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.gio-speed-tag-flash {
+  color: var(--gio-neon-cyan);
+  border-color: var(--gio-neon-cyan);
+  background: rgba(0, 242, 254, 0.1);
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.15);
+}
+
+.gio-speed-tag-pro {
+  color: rgba(255,255,255,0.4);
+  border-color: rgba(255,255,255,0.15);
+}
+
+/* Scene 5: Community notifications / Chat Bubbles */
+.gio-community-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: auto;
+  margin-bottom: 40px;
+}
+
+.gio-chat-bubble {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  border-radius: 24px;
+  padding: 22px 26px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+/* Chat bubble styling with tail concept */
+.gio-chat-bubble.bubble-positive {
+  border-left: 4px solid var(--gio-neon-green);
+}
+
+.gio-chat-bubble.bubble-negative {
+  border-left: 4px solid var(--gio-neon-red);
+}
+
+.gio-chat-bubble.bubble-neutral {
+  border-left: 4px solid var(--gio-neon-orange);
+}
+
+.gio-comm-avatar-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.gio-comm-avatar {
+  font-size: 24px;
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gio-sentiment-indicator {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  font-size: 10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.gio-sentiment-indicator.positive {
+  background: var(--gio-neon-green);
+}
+
+.gio-sentiment-indicator.negative {
+  background: var(--gio-neon-red);
+}
+
+.gio-sentiment-indicator.neutral {
+  background: var(--gio-neon-orange);
+}
+
+.gio-comm-main {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.gio-comm-user-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gio-comm-user {
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.gio-sentiment-badge {
+  font-size: 9px;
+  font-weight: 900;
+  padding: 1px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.gio-sentiment-badge.tag-pro {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--gio-neon-green);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.gio-sentiment-badge.tag-con {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--gio-neon-red);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+.gio-sentiment-badge.tag-neutral {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--gio-neon-orange);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.gio-comm-source {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.gio-source-reddit {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ff4500;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.gio-source-hackernews {
+  background: rgba(249, 115, 22, 0.15);
+  color: #ff6600;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+}
+
+.gio-comm-content {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.45;
+  font-style: italic;
+}
+
+/* News Ticker */
+.gio-ticker-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: rgba(7, 10, 19, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  z-index: 200;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.gio-ticker-tag {
+  background: var(--gio-neon-blue);
+  color: white;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 0 25px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  letter-spacing: 2px;
+  flex-shrink: 0;
+  box-shadow: 10px 0 20px rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+.gio-ticker-track {
+  flex: 1;
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Scene 2 Code / Studio simulation */
+.gio-glass-card.gio-studio-card {
+  margin-top: auto;
+  margin-bottom: 40px;
+  height: 45%;
+  display: flex;
+  flex-direction: column;
+  padding: 0; /* Override padding to keep header tight */
+  overflow: hidden;
+}
+
+.gio-studio-header {
+  height: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 8px;
+}
+
+.gio-studio-body {
+  flex: 1;
+  padding: 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #a6c0fe;
+}
+
+.gio-cursor-sim {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background: var(--gio-neon-cyan);
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+/* Outro / CTA custom style */
+.gio-cta-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: 60px;
+  gap: 20px;
+}
+
+.gio-button {
+  background: linear-gradient(135deg, var(--gio-neon-blue) 0%, var(--gio-neon-cyan) 100%);
+  color: white;
+  font-weight: 800;
+  font-size: 18px;
+  padding: 18px 45px;
+  border-radius: 50px;
+  box-shadow: 0 10px 25px rgba(66, 133, 244, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Animations */
+.gio-fade-in {
+  animation: gioFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes gioFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 540px) {
+  .gio-content-grid { left: 40px; right: 40px; }
+  .gio-title { font-size: 58px; }
+  .gio-benchmark-value { font-size: 32px; }
+  .gio-subtitle { font-size: 19px; }
+  .gio-benchmark-bar-bg { width: 180px; }
+}

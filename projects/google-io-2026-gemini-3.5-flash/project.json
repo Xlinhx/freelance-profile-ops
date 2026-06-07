@@ -1,0 +1,48 @@
+{
+  "id": "google-io-2026-gemini-3.5-flash",
+  "title": "Google I/O 2026 & Gemini 3.5 Flash: Kỷ Nguyên Agentic AI",
+  "preset": "vertical-webapp-proof",
+  "status": "in_progress",
+  "platforms": ["tiktok", "reels", "shorts"],
+  "durationTarget": "30-35s",
+  "owner": "creator",
+  "sourceOfTruth": {
+    "brief": "brief.md",
+    "coverageMap": "coverage-map.md",
+    "captureMap": "capture-map.md",
+    "assetVerification": "assets.md",
+    "storyboard": "storyboard.md",
+    "motionLock": "motion.md",
+    "qaChecklist": "qa.md",
+    "script": "script.md",
+    "publish": "publish.md",
+    "handoff": "handoff.md"
+  },
+  "intake": {
+    "productType": "Frontier AI model & Development Platform",
+    "domain": "Artificial Intelligence / Developer Tools",
+    "audience": "lập trình viên, kỹ sư phần mềm, người đam mê công nghệ, cộng đồng AI",
+    "buyer": "lập trình viên hoặc doanh nghiệp tích hợp AI Agent",
+    "videoGoal": "giới thiệu model Gemini 3.5 Flash mới ra mắt tại Google I/O 2026, nhấn mạnh hiệu năng vượt trội cho coding/agentic, số liệu benchmark và phản ứng của cộng đồng",
+    "heroFeature": "tốc độ xử lý nhanh gấp 4 lần, tối ưu cho tác vụ tự hành (agentic workflows) và lập trình",
+    "heroProof": "Terminal-Bench 2.1 đạt 76.2%, MCP Atlas đạt 83.6%, so sánh tốc độ xử lý trực quan, ý kiến trái chiều từ Reddit/Hacker News",
+    "misframingBan": "không coi Gemini 3.5 Flash chỉ là bản cập nhật nhỏ; đây là bước đi chiến lược chuyển giao sang kỷ nguyên Agentic AI của Google",
+    "sensitiveDataConstraints": "chỉ sử dụng dữ liệu benchmark công khai và trích dẫn ý kiến cộng đồng không mang thông tin nhạy cảm cá nhân"
+  },
+  "direction": {
+    "storySpine": "Google I/O Announcement -> Model Specs -> Benchmarks -> Speed Comparison -> Community Sentiment -> CTA",
+    "layoutPalette": "Fullscreen Cover, Device Showcase, Floating Cards, Split Screen, Glassmorphism Notification",
+    "motionFamily": "tech neon energy, fast-paced, grid-aligned, high impact",
+    "aestheticPack": "Google Dark Mode, Neon Glow Accent, Modern Developer Grid",
+    "proofStyle": "Official data benchmarks first, community quotes, code execution simulation",
+    "pacingProfile": "dynamic and visual-rich, hook nhanh, proof giữ đủ lâu để đọc"
+  },
+  "qualityGates": {
+    "intakeLocked": true,
+    "coverageLocked": true,
+    "storyLocked": true,
+    "captureReady": true,
+    "motionLocked": true,
+    "publishReady": false
+  }
+}

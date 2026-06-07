@@ -1,0 +1,48 @@
+{
+  "id": "engpath-ai-walkthrough",
+  "title": "EngPath AI - video walkthrough làm lại",
+  "preset": "vertical-webapp-proof",
+  "status": "draft_rendered_reviewed",
+  "platforms": ["tiktok", "reels", "shorts"],
+  "durationTarget": "45-55s",
+  "owner": "creator",
+  "sourceOfTruth": {
+    "brief": "brief.md",
+    "coverageMap": "coverage-map.md",
+    "captureMap": "capture-map.md",
+    "assetVerification": "assets.md",
+    "storyboard": "storyboard.md",
+    "motionLock": "motion.md",
+    "qaChecklist": "qa.md",
+    "script": "script.md",
+    "publish": "publish.md",
+    "handoff": "handoff.md"
+  },
+  "intake": {
+    "productType": "web app học tiếng Anh tích hợp AI",
+    "domain": "education / EdTech",
+    "audience": "giáo viên tiếng Anh, chủ trung tâm ngoại ngữ, trường học, người cần thấy năng lực build web app AI",
+    "buyer": "trung tâm ngoại ngữ, giáo viên hoặc đơn vị giáo dục cần hệ thống học tập riêng",
+    "videoGoal": "chứng minh creator có thể build một hệ thống giáo dục nhiều role, chạy thật, có quản lý lớp, học tập và AI feedback",
+    "heroFeature": "luồng học sinh làm bài viết rồi nhận AI feedback có rubric rõ",
+    "heroProof": "màn Writing -> AI result -> AI chat đọc được trên mobile",
+    "misframingBan": "không mô tả EngPath như một chatbot; đây là web app học tập nhiều role",
+    "sensitiveDataConstraints": "không lộ URL nếu không cần; không lộ tài khoản thật; chỉ dùng seed/demo data"
+  },
+  "direction": {
+    "storySpine": "Role handoff -> student learning flow -> AI feedback -> system outcome",
+    "layoutPalette": "Native web proof, editorial split, dock/undock, reply lift, proof cascade",
+    "motionFamily": "calm operational EdTech, frame-based, object-anchored",
+    "aestheticPack": "clean learning operating system",
+    "proofStyle": "real screen first, one proof per scene, no fake decorative UI",
+    "pacingProfile": "hybrid: hook nhanh, proof giữ đủ lâu để đọc"
+  },
+  "qualityGates": {
+    "intakeLocked": true,
+    "coverageLocked": true,
+    "storyLocked": true,
+    "captureReady": true,
+    "motionLocked": true,
+    "publishReady": false
+  }
+}

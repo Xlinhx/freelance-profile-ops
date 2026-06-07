@@ -1,0 +1,12 @@
+﻿{
+    "generatedAt":  "2026-04-27T06:22:42+07:00",
+    "sources":  [
+                    "data/content-index.json",
+                    "data/platforms.json"
+                ],
+    "outputs":  [
+                    "context/generated/project-catalog.json",
+                    "context/generated/platform-snapshot.json",
+                    "context/generated/work-queue.md"
+                ]
+}

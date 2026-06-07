@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "auditedAt": "2026-04-19T06:45:00+07:00",
+  "approvedDecisions": {
+    "tiktokDisplayName": "Giữ nguyên Chủ Nô AI",
+    "publicZalo": true,
+    "zaloPhone": "0932433459",
+    "youtubeUnlistedVideos": "giữ unlisted, chưa public",
+    "github": "không chỉnh ở giai đoạn này",
+    "readmeDocs": "xử lý sau",
+    "projectScreenshots": "nhiều project còn thiếu, chỉ dùng proof đã có hoặc đã che dữ liệu"
+    ,
+    "upworkRate": "$16/hr",
+    "youtubeNoUpworkCvLinks": true,
+    "tiktokNoCvLink": true,
+    "cvNoUpworkOrIrrelevantSocialLinks": true
+  },
+  "platforms": [
+    {
+      "id": "upwork",
+      "name": "Upwork",
+      "url": "https://www.upwork.com/freelancers/~01f2f36da79d84f6df",
+      "handle": "~01f2f36da79d84f6df",
+      "publicName": "Linh N.",
+      "role": "kênh kiếm khách hàng quốc tế trực tiếp",
+      "currentPublicState": "Đã chỉnh public profile: vẫn Unverified, rate $16/hr, title Full-Stack Web App Developer | Next.js, NestJS, AI Automation, overview đã tập trung web apps/dashboards/AI automation, avatar chưa tối ưu.",
+      "syncFields": ["verification", "avatar", "title", "hourlyRate", "overview", "skills", "portfolioItems", "specializedProfiles", "projectCatalog"],
+      "automationFeasibility": "thấp-trung bình",
+      "preferredAutomation": "generate draft/checklist local; chỉnh thủ công trong Upwork UI sau khi duyệt",
+      "notes": "Không đưa email/Zalo/social contact vào Upwork overview. Rate đã chốt $16/hr. Ưu tiên verification, avatar, title, overview, portfolio."
+    },
+    {
+      "id": "cv",
+      "name": "CV Portfolio",
+      "url": "https://initforge-cv.pages.dev/",
+      "handle": "initforge-cv",
+      "publicName": "Nguyễn Xuân Lĩnh",
+      "role": "trang proof cho khách hàng và link đích trên profile",
+      "currentPublicState": "Giữ layout CV cũ. Đã thêm switch VI/EN, lưu lựa chọn bằng cookie/localStorage, và Cloudflare Pages Worker tự detect IP/country để chọn lang mặc định.",
+      "syncFields": ["latestCv", "projectBullets", "techStack", "profileLinks", "caseStudyLinks", "contentProofLinks", "contactCta"],
+      "automationFeasibility": "cao",
+      "preferredAutomation": "cập nhật static site/source CV sau khi có approval",
+      "notes": "CV/portfolio chỉ giữ proof và contact liên quan trực tiếp. Được phép thêm YouTube walkthrough khi hỗ trợ project, GitHub khi tăng chiều sâu proof kỹ thuật, và Zalo/contact khi cần. Không thêm Upwork hoặc social không liên quan. Không xử lý README/docs project lúc này."
+    },
+    {
+      "id": "linkedin",
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/linhnx-dev/",
+      "handle": "linhnx-dev",
+      "publicName": "Lĩnh Nguyễn Xuân",
+      "role": "tạo niềm tin nghề nghiệp và phân phối case study",
+      "currentPublicState": "Đã chỉnh headline và About theo hướng production-ready web apps, dashboards và AI automation. Featured hiện có GitHub, chưa thêm CV portfolio, chưa có bài đăng case study.",
+      "syncFields": ["headline", "about", "featuredLinks", "experience", "projectPosts", "profileAnalytics"],
+      "automationFeasibility": "thấp-trung bình",
+      "preferredAutomation": "generate draft trước; chỉnh thủ công hoặc API sau khi confirm permission",
+      "notes": "Nên thêm CV portfolio vào Featured và đăng case study đầu tiên. Zalo có thể đi qua CV, chưa ưu tiên public trực tiếp trên LinkedIn."
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube",
+      "url": "https://www.youtube.com/@Linhnx.Developer",
+      "handle": "@Linhnx.Developer",
+      "publicName": "InitForge",
+      "role": "video dài giải thích sản phẩm, tính năng và kiến trúc",
+      "currentPublicState": "Studio cho thấy 3 video dài: 1 public, 2 unlisted. Đã cập nhật channel description có Zalo/email/GitHub/LinkedIn và đã bỏ link Upwork/CV khỏi description lẫn channel links.",
+      "syncFields": ["channelDescription", "links", "contactInfo", "videoTitles", "descriptions", "chapters", "thumbnails", "playlists", "videoMetrics"],
+      "automationFeasibility": "trung bình",
+      "preferredAutomation": "YouTube Data API sau khi OAuth/app setup ổn; giai đoạn đầu chỉnh thủ công",
+      "notes": "Được phép thêm Zalo/contact. Không dùng link Upwork/CV trên YouTube. Giữ video unlisted ở trạng thái unlisted, chưa public thêm."
+    },
+    {
+      "id": "tiktok",
+      "name": "TikTok",
+      "url": "https://www.tiktok.com/@linhnx.developer",
+      "handle": "@linhnx.developer",
+      "publicName": "Chủ Nô AI",
+      "role": "kênh discovery đầu phễu bằng video ngắn",
+      "currentPublicState": "Đã cập nhật bio: Build web app, AI tools & automation chạy thật. Zalo: 0932433459. Không thêm CV/link CV. Giữ tên Chủ Nô AI.",
+      "syncFields": ["bio", "link", "captions", "hashtags", "seriesLabels", "videoMetrics"],
+      "automationFeasibility": "trung bình",
+      "preferredAutomation": "TikTok Content Posting API hoặc upload-to-draft; giai đoạn đầu chỉnh thủ công",
+      "notes": "Giữ tên Chủ Nô AI. Được phép thêm Zalo vào bio. Không thêm CV vào TikTok theo quyết định mới."
+    },
+    {
+      "id": "facebook",
+      "name": "Facebook",
+      "url": "https://www.facebook.com/profile.php?id=61552279437194",
+      "handle": "profile-id-61552279437194",
+      "publicName": "Xuân Lĩnh",
+      "role": "niềm tin local và phân phối qua network quen",
+      "currentPublicState": "Đã cập nhật bio public: Full-stack developer. Web app, dashboard & AI automation cho business. Zalo: 0932433459. Profile có 113 bạn bè, chưa có bài viết giới thiệu dịch vụ.",
+      "syncFields": ["bio", "featuredLinks", "posts", "reels", "contactInfo"],
+      "automationFeasibility": "thấp với personal profile; trung bình nếu dùng Page",
+      "preferredAutomation": "đăng thủ công hoặc dùng Meta Graph API nếu có Page",
+      "notes": "Được phép Việt hóa bio và thêm Zalo. Nên có intro post local trust."
+    },
+    {
+      "id": "zalo",
+      "name": "Zalo",
+      "url": "",
+      "handle": "0932433459",
+      "publicName": "Nguyễn Xuân Lĩnh",
+      "role": "contact conversion cho khách Việt",
+      "currentPublicState": "Số Zalo/phone do creator cung cấp và đã duyệt public: 0932433459.",
+      "syncFields": ["phone", "ctaPlacement", "profileLinks"],
+      "automationFeasibility": "thấp",
+      "preferredAutomation": "đưa vào bio/description/CV ở các kênh phù hợp",
+      "notes": "Dùng trên YouTube, TikTok, Facebook, CV. Không dùng trên Upwork."
+    },
+    {
+      "id": "github",
+      "name": "GitHub",
+      "url": "https://github.com/initforge",
+      "handle": "initforge",
+      "publicName": "Xuan Linh",
+      "role": "bằng chứng kỹ thuật và nơi chuẩn hóa tài liệu project",
+      "currentPublicState": "Profile tập trung vào production, có public repos, live project proof và các mini project được pin.",
+      "syncFields": ["bio", "pinnedRepositories", "profileReadme", "projectReadmes", "caseStudyLinks"],
+      "automationFeasibility": "cao",
+      "preferredAutomation": "không chỉnh ở giai đoạn này",
+      "notes": "Theo yêu cầu hiện tại, không đụng GitHub/README/docs project. Chỉ đọc như proof/context."
+    }
+  ]
+}
