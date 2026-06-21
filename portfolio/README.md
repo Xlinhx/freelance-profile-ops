@@ -1,12 +1,11 @@
-# Portfolio
+# Portfolio & CV
 
-Source code các website portfolio.
+Mã nguồn các website Portfolio và CV.
 
 ## Hiện có
 
-- `portfolio-spatial/` — portfolio 3D (production, có `.git/` riêng)
-- `portfolio-v1/` — portfolio v1
-- `portfolio-v2/` — portfolio v2
+- `portfolio-spatial/` — portfolio 3D chính thức (production, hosted at portfolio-spatial.pages.dev)
+- `cv/` — CV chính thức (crawled từ initforge-cv.pages.dev)
 
 ## Quy ước
 

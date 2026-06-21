@@ -2,65 +2,26 @@
 
 ## Trước Khi Làm Việc
 
-- đọc `context/README.md`
-- đọc `context/context-map.md`
-- nếu task liên quan video, đọc `docs/videos/pipeline.md`
-- nếu task liên quan dựng, sửa, render hoặc review video, đọc `docs/videos/qa-checklist.md` và `docs/videos/never-again.md`
-- nếu task đang làm video EngPath, đọc `projects/engpath-ai-walkthrough/notes/review-2026-04-30.md`
-- nếu là case mới hoặc domain lạ, đọc thêm `docs/videos/reference/case-mapping-framework.md`
-- nếu task liên quan profile/nền tảng, đọc `docs/profile/README.md`
-- nếu task liên quan CV/portfolio/website public, đọc `docs/website/README.md`
-- nếu task liên quan automation/VPS/data/tooling, đọc file liên quan trong `docs/operations/`
+- Đọc `AGENTS.md` ở thư mục gốc.
+- Đọc `docs/agent/context-map.md`.
+- Nếu làm việc với thông tin cá nhân hoặc Upwork, đọc `docs/profile/creator-context.md`.
+- Nếu làm việc với CV hoặc Portfolio public, đọc `docs/web/cv-update-rules.md`.
 
 ## Cách Hiểu Repo
 
-- `context/` là entry point ngắn, không phải nơi chứa workflow dài.
-- `docs/videos/` là nơi chứa pipeline video, checklist, lỗi cấm lặp lại và reference motion.
-- `docs/profile/` là nơi chứa context profile, platform role, audit và checklist cập nhật.
-- `docs/website/` là nơi chứa CV, portfolio, product-site và website public.
-- `docs/content/` là nơi chứa chiến lược nội dung tổng thể.
-- `docs/operations/` là nơi chứa automation, VPS, data và vận hành hệ thống.
-- `projects/` là source of truth theo từng video.
-- `src/` là nơi chứa Remotion code, scripts và automation.
+- `docs/agent/` là nơi chứa luật vận hành và tiêu điểm ngắn hạn.
+- `docs/profile/` là nơi lưu trữ bối cảnh năng lực thật, định vị và đánh giá hồ sơ Upwork.
+- `docs/web/` là nơi lưu trữ quy tắc cập nhật CV, portfolio và đánh giá sản phẩm làm proof.
+- `portfolio/` chứa mã nguồn các website tĩnh làm portfolio.
 
 ## Điều Agent Không Được Tự Giả Định
 
-- không tự đổi bản chất sản phẩm
-- không tự đổi audience hoặc buyer lens
-- không tự dùng CTA bán dịch vụ nếu clip đang bán sản phẩm cho end-user
-- không tự lộ URL, dữ liệu thật, tên khách hoặc KPI nhạy cảm
-- không tự tạo fake social proof hoặc fake buyer-intent
-- không bỏ qua lỗi review đã ghi trong `docs/videos/never-again.md`
+- Không tự ý thêm các dự án không có thật hoặc thiếu minh chứng (proof, screenshot, case note).
+- Không tự ý liên kết hoặc nhúng các tài khoản mạng xã hội cá nhân không liên quan vào CV/Portfolio.
+- Không tự ý thay đổi báo giá giờ làm việc (hourly rate) trên Upwork mà không có sự đồng ý của creator.
 
 ## Điều Agent Nên Làm Mặc Định
 
-- khóa `story spine`, `layout palette`, `motion family`, `aesthetic pack`, `proof style` trước khi dựng
-- nếu gặp case chưa có preset, map nó theo `domain / buyer lens / hero proof / interaction type / visual pressure` trước
-- kiểm tra project đã có đủ `brief.md`, `coverage-map.md`, `capture-map.md`, `assets.md`, `storyboard.md`, `motion.md`, `qa.md`, `script.md`, `publish.md`, `handoff.md` chưa
-- nếu thiếu file source of truth thì tạo từ template trước
-- luôn chạy still review ở hook, scene giữa, scene phức tạp nhất, scene kết
-- luôn review full video sau render, xem từng scene và đoạn cuối của từng scene
-- luôn chạy pass `never again` dựa trên `docs/videos/never-again.md` và `docs/videos/red-flags.md`
-- với video dọc, luôn kiểm tra caption TikTok/Reels/Shorts có thể che hook hoặc CTA không
-
-## Quy Tắc Handoff Giữa Nhiều Agent
-
-Mỗi agent khi bàn giao phải ghi trong `handoff.md`:
-
-- đã khóa gì
-- đang nghi ngờ gì
-- cần agent sau làm gì
-- file nào là source of truth
-- scene nào rủi ro nhất
-
-## Quy Tắc Hỏi User
-
-Chỉ hỏi khi thiếu:
-
-- buyer
-- pain business
-- feature hero
-- legal/privacy constraints
-- aesthetic hard constraint
-
-Các lựa chọn vi mô như easing, glow, shadow, layout con trong cùng palette thì agent tự quyết.
+- Đảm bảo tính nhất quán của thông tin năng lực cốt lõi giữa hồ sơ Upwork và CV Portfolio.
+- Khi cập nhật CV hoặc Portfolio, chỉ đưa vào các thông tin trực tiếp giúp tăng uy tín kỹ thuật và chốt khách freelance.
+- Đảm bảo các đường dẫn của website portfolio tĩnh trỏ chính xác đến các tài nguyên ảnh/chứng cứ trong `assets/`.

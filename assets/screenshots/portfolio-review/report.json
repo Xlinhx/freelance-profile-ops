@@ -1,8 +1,0 @@
-{
-  "ts": "2026-05-15T10:38:29.078Z",
-  "issues": [
-    "[ERROR] globe object: false",
-    "[WARN] H1 gradient: fill=rgba(0, 0, 0, 0)",
-    "[WARN] Label float top when filled: 18px"
-  ]
-}

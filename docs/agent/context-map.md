@@ -2,26 +2,11 @@
 
 Routing theo task.
 
-## Video
-- `docs/video/pipeline.md`
-- `docs/video/qa-checklist.md`
-- `docs/video/never-again.md`
-- Reference sâu: `docs/video/reference.md`
-- Project: `projects/<id>/`
-
-## Profile
-- `docs/profile/README.md`
+## Profile & Upwork
 - `docs/profile/creator-context.md`
-- `docs/profile/platform-role-map.md`
+- `docs/profile/upwork-profile-audit.md`
+- `docs/profile/approved-decisions.md`
 
 ## Website/CV
-- `docs/web/README.md`
-
-## Content Strategy
-- `docs/strategy.md`
-
-## Operations
-- `docs/ops/`
-
-## Case mới
-Map qua `docs/video/reference/case-mapping-framework.md`
+- `docs/web/cv-update-rules.md`
+- `docs/web/initforge-product-audit.md`

@@ -1,6 +1,6 @@
 # Bối Cảnh Creator
 
-File này giữ cho assistant hiểu đúng năng lực thật, offer, bằng chứng, kênh social và nhóm khách hàng mục tiêu của creator.
+File này giữ cho assistant hiểu đúng năng lực thật, offer, bằng chứng và mục tiêu của creator.
 
 ## Định Vị
 
@@ -8,7 +8,6 @@ File này giữ cho assistant hiểu đúng năng lực thật, offer, bằng ch
 - Thị trường chính: dịch vụ công nghệ cho doanh nghiệp nhỏ, freelancer, giáo dục, ecommerce và đội vận hành nội bộ
 - Mục tiêu chính: thu hút khách hàng freelance thông qua demo dự án thực tế và profile đáng tin
 - Ngôn ngữ nội dung: tiếng Việt mặc định; tiếng Anh dùng cho Upwork, LinkedIn quốc tế, CV/GitHub khi cần
-- Ràng buộc sản xuất: ưu tiên mode vận hành VPS-first cho app/runner/asset, tận dụng free tier khi hợp lý, và chỉ dùng dịch vụ trả phí khi nó giảm rõ bottleneck runtime hoặc deploy
 - Ghi chú hiện tại: không chỉnh GitHub ở giai đoạn này; chỉ đọc như nguồn proof/context
 
 ## Năng Lực
@@ -39,38 +38,27 @@ File này giữ cho assistant hiểu đúng năng lực thật, offer, bằng ch
 - CV portfolio: https://initforge-cv.pages.dev/
 - Upwork: https://www.upwork.com/freelancers/~01f2f36da79d84f6df
 - LinkedIn: https://www.linkedin.com/in/linhnx-dev/
-- YouTube: https://www.youtube.com/@Linhnx.Developer
-- TikTok: https://www.tiktok.com/@linhnx.developer
-- Facebook: https://www.facebook.com/profile.php?id=61552279437194
-- Product audit: `docs/website/initforge-product-audit.md`
+- Product audit: `docs/web/initforge-product-audit.md`
 - Upwork audit: `docs/profile/upwork-profile-audit.md`
-- Profile optimization audit: `docs/profile/optimization-audit.md`
 
-## Link Cần Đồng Bộ Trên Profile
+## Các Kênh Cần Đồng Bộ
 
 - Portfolio: https://initforge-cv.pages.dev/
 - Upwork: https://www.upwork.com/freelancers/~01f2f36da79d84f6df
 - GitHub: https://github.com/initforge
 - LinkedIn: https://www.linkedin.com/in/linhnx-dev/
-- TikTok: https://www.tiktok.com/@linhnx.developer
-- YouTube/Reels: https://www.youtube.com/@Linhnx.Developer
 - Zalo/Phone cho khách Việt: 0932433459
 - Public demo: https://hienchina.com, https://conhonannhonbinhdinh.vn
 - Email: linhnx.developer@gmail.com
 
-## Vai Trò Nền Tảng
+## Vai Trò Các Kênh
 
-- Upwork: nhận job trực tiếp từ client quốc tế; không đưa contact ngoài vào overview.
-- LinkedIn: tăng trust, đăng case study, outbound/inbound.
-- YouTube: show tính năng sản phẩm và walkthrough dài để khách hiểu trước khi nhắn.
-- TikTok: kéo reach đầu phễu, đưa người xem về proof/contact.
-- Facebook: local trust và network quen.
-- Zalo: conversion/contact cho khách Việt.
-- CV portfolio: landing proof gọn, gom link và CTA.
-- GitHub: proof kỹ thuật, chưa chỉnh ở giai đoạn này.
+- Upwork: Nhận job trực tiếp từ khách hàng quốc tế; giữ uy tín cao, giá giờ ổn định.
+- LinkedIn: Tăng trust thương hiệu cá nhân, đăng case study kỹ thuật, kết nối doanh nghiệp.
+- CV portfolio: Trang đáp (landing page) chứa chứng cứ năng lực (proof) gọn gàng, gom link và CTA.
+- GitHub: Chứng cứ kỹ thuật (technical proof).
 
 ## Nguyên Tắc Nội Dung
 
-- Không bán "code"; bán kết quả: tiết kiệm thời gian, trả lời nhanh hơn, ít nhập liệu thủ công hơn, quản lý rõ hơn, báo cáo nhanh hơn, hệ thống chạy ổn định hơn.
-- Mỗi video/profile proof nên gắn với một project, một pain point và một bằng chứng cụ thể.
-- Profile phải phục vụ mục tiêu: người xem hiểu bạn giải quyết vấn đề gì, đã làm thật chưa, và liên hệ bằng đường nào.
+- Không bán "code"; bán kết quả: tiết kiệm thời gian, tự động hóa quy trình, hệ thống chạy ổn định và báo cáo nhanh chóng.
+- Mỗi dự án đưa lên CV/Portfolio phải đi kèm với vấn đề (pain point) được giải quyết và bằng chứng thực tế rõ ràng.

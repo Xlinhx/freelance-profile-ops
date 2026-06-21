@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Nguyễn Xuân Lĩnh | Fullstack Developer</title>
+    <meta name="description" content="Fullstack Developer — React/Next.js, NestJS, PostgreSQL, Docker. Production systems, real users, real payments.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="cv-2026-03-style.css?v=20260622">
+    <script src="cvData.js?v=20260622"></script>
+    <style>
+        .control-panel {
+            position: fixed;
+            right: 18px;
+            top: 18px;
+            z-index: 50;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .language-switch {
+            display: flex;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.95);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .language-switch a {
+            padding: 8px 12px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            color: #2d4a6f;
+            cursor: pointer;
+        }
+        .language-switch a.active {
+            color: #fff;
+            background: #1e3a5f;
+        }
+        .pdf-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #1e3a5f;
+            color: #fff;
+            border: 1px solid #1e3a5f;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(30, 58, 95, 0.2);
+            transition: all 0.2s ease;
+        }
+        .pdf-btn:hover {
+            background: #2d4a6f;
+            box-shadow: 0 6px 16px rgba(30, 58, 95, 0.3);
+            transform: translateY(-1px);
+        }
+        .pdf-btn svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+        }
+        @media print {
+            .control-panel { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="control-panel">
+        <nav class="language-switch" aria-label="Language switch">
+            <a data-lang="vi">VI</a>
+            <a data-lang="en">EN</a>
+        </nav>
+        <button id="preview-mode-toggle" class="pdf-btn" style="background:#4b5563;border-color:#4b5563;">
+            <span class="preview-text">Xem trước in</span>
+        </button>
+        <button id="pdf-export-btn" class="pdf-btn" onclick="window.print()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            <span class="btn-text">Xuất PDF</span>
+        </button>
+    </div>
+
+    <!-- Web View Container -->
+    <div id="cv-web-view"></div>
+
+    <!-- PDF Template Container -->
+    <div id="cv-pdf-template"></div>
+
+    <script>
+        (function () {
+            // SVGS
+            const SVGS = {
+                phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>',
+                email: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>',
+                location: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>',
+                github: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>',
+                linkedin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>',
+                intro: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>',
+                production: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>',
+                other: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>'
+            };
+
+            var params = new URLSearchParams(window.location.search);
+            var lang = params.get("lang") || localStorage.getItem("cv_lang") || "vi";
+            if (lang !== "vi" && lang !== "en") lang = "vi";
+            localStorage.setItem("cv_lang", lang);
+            document.documentElement.lang = lang;
+
+            // Apply preview class to body if preview param is set
+            var isPreview = params.get("pdf-preview") === "true" || params.get("printPreview") === "true";
+            if (isPreview) {
+                document.body.classList.add("pdf-preview-mode");
+            }
+
+            function updatePreviewButtonText(langCode) {
+                const toggleBtn = document.getElementById("preview-mode-toggle");
+                if (!toggleBtn) return;
+                const isCurrentlyPreview = document.body.classList.contains("pdf-preview-mode");
+                if (langCode === 'vi') {
+                    toggleBtn.querySelector(".preview-text").textContent = isCurrentlyPreview ? "Xem bản Web" : "Xem trước in";
+                } else {
+                    toggleBtn.querySelector(".preview-text").textContent = isCurrentlyPreview ? "Web View" : "Print Preview";
+                }
+            }
+
+            function renderCV(langCode) {
+                const data = cvData[langCode];
+                if (!data) return;
+
+                // Update tab title and document language attributes
+                document.title = langCode === 'vi' ? 'CV - Nguyễn Xuân Lĩnh | Fullstack Developer' : 'CV - Nguyen Xuan Linh | Fullstack Developer';
+                document.getElementById('pdf-export-btn').querySelector('.btn-text').textContent = data.labels.exportPdf;
+                updatePreviewButtonText(langCode);
+
+                // Render Web View
+                const nameParts = data.personal.name.split(' ');
+                const firstName = nameParts.slice(0, 2).join(' ');
+                const lastName = nameParts.slice(2).join(' ');
+                
+                const webViewHtml = `
+                    <div class="cv-wrapper">
+                        <aside class="sidebar">
+                            <div class="sidebar-inner">
+                                <div class="identity">
+                                    <div class="avatar-ring">
+                                        <div class="avatar-initials">${data.personal.avatarInitials}</div>
+                                    </div>
+                                    <h1>${firstName}<br>${lastName}</h1>
+                                    <p class="role">${data.personal.title}</p>
+                                </div>
+                                <div class="sidebar-section">
+                                    <h3 class="sidebar-label">${data.labels.contact}</h3>
+                                    <ul class="contact-list">
+                                        <li>${SVGS.phone}<span>${data.personal.contact.phone}</span></li>
+                                        <li>${SVGS.email}<a href="mailto:${data.personal.contact.email}">${data.personal.contact.email}</a></li>
+                                        <li>${SVGS.location}<span>${data.personal.contact.location}</span></li>
+                                        <li>${SVGS.github}<a href="${data.personal.contact.github.url}" target="_blank">${data.personal.contact.github.label}</a></li>
+                                        <li>${SVGS.linkedin}<a href="${data.personal.contact.linkedin.url}" target="_blank">${data.personal.contact.linkedin.label}</a></li>
+                                    </ul>
+                                </div>
+                                <div class="sidebar-section">
+                                    <h3 class="sidebar-label">${data.labels.techStack}</h3>
+                                    ${data.skills.map(group => `
+                                        <div class="skill-group">
+                                            <h4>${group.category}</h4>
+                                            <div class="skill-pills">
+                                                ${group.items.map(skill => `<span>${skill}</span>`).join('')}
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </aside>
+                        <main class="content">
+                            <section class="section reveal visible">
+                                <h2 class="section-heading">
+                                    <span class="heading-icon">${SVGS.intro}</span>
+                                    ${data.labels.introduction}
+                                </h2>
+                                <p class="intro-text">${data.intro}</p>
+                            </section>
+                            <section class="section reveal visible">
+                                <h2 class="section-heading">
+                                    <span class="heading-icon">${SVGS.production}</span>
+                                    ${data.labels.productionProjects}
+                                </h2>
+                                ${data.productionProjects.map(proj => `
+                                    <article class="project-feature">
+                                        <div class="project-top">
+                                            <div>
+                                                <h3>${proj.title}</h3>
+                                                <p class="project-sub">${proj.subtitle}</p>
+                                            </div>
+                                            <span class="project-year">${proj.period}</span>
+                                        </div>
+                                        <a href="${proj.link}" target="_blank" class="project-url">${proj.url} ↗</a>
+                                        <ul class="project-bullets">
+                                            ${proj.bullets.map(b => `<li>${b}</li>`).join('')}
+                                        </ul>
+                                        <div class="project-stack">
+                                            ${proj.stack.map(s => `<span>${s}</span>`).join('')}
+                                        </div>
+                                    </article>
+                                `).join('')}
+                            </section>
+                            <section class="section reveal visible">
+                                <h2 class="section-heading">
+                                    <span class="heading-icon">${SVGS.other}</span>
+                                    ${data.labels.otherProjects}
+                                </h2>
+                                <div class="projects-grid">
+                                    ${data.otherProjects.map(proj => `
+                                        <div class="project-mini">
+                                            <div class="mini-badge">${proj.badge}</div>
+                                            <h4>${proj.title}</h4>
+                                            <p>${proj.description}</p>
+                                            <a href="${proj.link}" target="_blank">${data.labels.viewGithub}</a>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </section>
+                            <footer class="cv-footer">
+                                <p>${data.labels.updated} · <a href="${data.personal.contact.github.url}">${data.personal.contact.github.label}</a></p>
+                            </footer>
+                        </main>
+                    </div>
+                `;
+                document.getElementById('cv-web-view').innerHTML = webViewHtml;
+
+                // Render PDF Print-first Layout (Page 1 and Page 2 — Web-Style)
+                const prodContHeader = langCode === 'vi' ? 'DỰ ÁN PRODUCTION (tiếp)' : 'PRODUCTION PROJECTS (Cont.)';
+                
+                const pdfTemplateHtml = `
+                    <div class="pdf-page">
+                        <aside class="pdf-sidebar">
+                            <div class="pdf-sidebar-inner">
+                                <div class="pdf-identity">
+                                    <div class="pdf-avatar-ring">
+                                        <div class="pdf-avatar-initials">${data.personal.avatarInitials}</div>
+                                    </div>
+                                    <h2>${data.personal.name}</h2>
+                                    <p class="pdf-role">${data.personal.title}</p>
+                                </div>
+                                <div class="pdf-sidebar-section">
+                                    <h3 class="pdf-sidebar-label">${data.labels.contact}</h3>
+                                    <ul class="pdf-contact-list">
+                                        <li>${SVGS.phone}<span>${data.personal.contact.phone}</span></li>
+                                        <li>${SVGS.email}<span>${data.personal.contact.email}</span></li>
+                                        <li>${SVGS.location}<span>${data.personal.contact.location}</span></li>
+                                        <li>${SVGS.github}<span>${data.personal.contact.github.label}</span></li>
+                                        <li>${SVGS.linkedin}<span>${data.personal.contact.linkedin.label}</span></li>
+                                    </ul>
+                                </div>
+                                <div class="pdf-sidebar-section">
+                                    <h3 class="pdf-sidebar-label">${data.labels.techStack}</h3>
+                                    ${data.skills.map(group => `
+                                        <div class="pdf-skill-group">
+                                            <h4>${group.category}</h4>
+                                            <div class="pdf-skill-bar-grid">
+                                                ${group.items.map(skill => `<span class="pdf-skill-bar-item">${skill}</span>`).join('')}
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </aside>
+                        <main class="pdf-content">
+                            <section class="pdf-section">
+                                <h2 class="pdf-section-heading">
+                                    <span class="pdf-heading-icon">${SVGS.intro}</span>
+                                    ${data.labels.introduction}
+                                </h2>
+                                <p class="pdf-intro-text">${data.intro}</p>
+                            </section>
+                            <section class="pdf-section">
+                                <h2 class="pdf-section-heading">
+                                    <span class="pdf-heading-icon">${SVGS.production}</span>
+                                    ${data.labels.productionProjects}
+                                </h2>
+                                ${data.productionProjects.map(proj => `
+                                    <article class="pdf-project-feature">
+                                        <div class="pdf-project-header">
+                                            <span class="pdf-project-title">${proj.title}</span>
+                                            <span class="pdf-project-year">${proj.period}</span>
+                                        </div>
+                                        <p class="pdf-project-sub">${proj.subtitle}</p>
+                                        <div class="pdf-project-url-row">
+                                            <a href="${proj.link}" target="_blank" class="pdf-project-url-btn">${proj.url} ↗</a>
+                                        </div>
+                                        <ul class="pdf-project-bullets">
+                                            ${proj.bullets.map(b => `<li>${b}</li>`).join('')}
+                                        </ul>
+                                        <div class="pdf-project-stack-pills">
+                                            ${proj.stack.map(s => `<span class="pdf-project-stack-pill">${s}</span>`).join('')}
+                                        </div>
+                                    </article>
+                                `).join('')}
+                            </section>
+                            <section class="pdf-section">
+                                <h2 class="pdf-section-heading">
+                                    <span class="pdf-heading-icon">${SVGS.other}</span>
+                                    ${data.labels.otherProjects}
+                                </h2>
+                                <div class="pdf-other-project-grid">
+                                    ${data.otherProjects.map(proj => `
+                                        <div class="pdf-project-mini">
+                                            <span class="pdf-mini-badge">${proj.badge}</span>
+                                            <h4>${proj.title}</h4>
+                                            <p>${proj.description}</p>
+                                            <a href="${proj.link}" target="_blank" class="pdf-mini-url">${data.labels.viewGithub}</a>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </section>
+                            <footer class="pdf-footer">
+                                <p>${data.labels.updated} · <a href="${data.personal.contact.github.url}" target="_blank" style="color: inherit; text-decoration: none;">${data.personal.contact.github.label}</a></p>
+                            </footer>
+                        </main>
+                    </div>
+                `;
+                document.getElementById('cv-pdf-template').innerHTML = pdfTemplateHtml;
+
+                // Bind reveal animations for web view
+                const obs = new IntersectionObserver((entries) => {
+                    entries.forEach(e => {
+                        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+                    });
+                }, { threshold: 0.05 });
+                document.querySelectorAll('#cv-web-view .reveal').forEach(el => obs.observe(el));
+            }
+
+            // Setup language switcher UI
+            document.querySelectorAll(".language-switch a").forEach(function (link) {
+                const targetLang = link.getAttribute("data-lang");
+                link.classList.toggle("active", targetLang === lang);
+                
+                link.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    if (link.classList.contains("active")) return;
+                    
+                    lang = targetLang;
+                    localStorage.setItem("cv_lang", lang);
+                    document.cookie = "cv_lang=" + lang + "; Path=/; Max-Age=31536000; SameSite=Lax; Secure";
+                    document.documentElement.lang = lang;
+                    
+                    document.querySelectorAll(".language-switch a").forEach(l => {
+                        l.classList.toggle("active", l.getAttribute("data-lang") === lang);
+                    });
+                    
+                    // Update URL silently preserving preview state
+                    const previewQuery = document.body.classList.contains("pdf-preview-mode") ? "&pdf-preview=true" : "";
+                    const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?lang=' + lang + previewQuery;
+                    window.history.pushState({ path: newUrl }, '', newUrl);
+
+                    renderCV(lang);
+                });
+            });
+
+            // Setup Interactive Print Preview Mode toggle
+            const toggleBtn = document.getElementById("preview-mode-toggle");
+            if (toggleBtn) {
+                toggleBtn.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const isCurrentlyPreview = document.body.classList.contains("pdf-preview-mode");
+                    if (isCurrentlyPreview) {
+                        document.body.classList.remove("pdf-preview-mode");
+                        // Update URL silently
+                        const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?lang=' + lang;
+                        window.history.pushState({ path: newUrl }, '', newUrl);
+                    } else {
+                        document.body.classList.add("pdf-preview-mode");
+                        // Update URL silently
+                        const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?lang=' + lang + '&pdf-preview=true';
+                        window.history.pushState({ path: newUrl }, '', newUrl);
+                    }
+                    updatePreviewButtonText(lang);
+                });
+            }
+
+            // Initial Render
+            renderCV(lang);
+        })();
+    </script>
+</body>
+</html>

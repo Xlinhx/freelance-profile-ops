@@ -4,26 +4,20 @@ Ngắn hạn, hệ thống đang ưu tiên các việc sau:
 
 ## P0
 
-- chốt avatar Facebook từ `assets/review-facebook/`
-- hoàn thiện context layer để agent đọc một chỗ là đủ
-- chốt mode vận hành `VPS-first` cho app, runner và asset working folder
+- Hoàn thiện context layer để agent đọc một chỗ là đủ.
+- Đồng bộ thông tin, năng lực cốt lõi lên CV Portfolio và hồ sơ Upwork.
 
 ## P1
 
-- thiết kế web control panel chạy trên VPS
-- thiết kế worker/job flow cho Playwright, ffmpeg, Remotion
-- Upwork: verification, portfolio items, proposal opening
-- LinkedIn: Featured và case study đầu tiên
-- YouTube: repurpose video dài thành short clips
+- Tối ưu hóa hồ sơ Upwork (portfolio items, proposal templates).
+- Thu thập và chuẩn bị tài liệu chứng minh dự án thực tế (proof, screenshots, case study) để đưa vào CV/Portfolio.
 
 ## P2
 
-- quyết định `demo-001` có trở thành video đầu tiên cho short-form hay không
-- gom project nào đủ proof để đưa vào portfolio và content package
+- Tinh chỉnh các phiên bản website portfolio (`portfolio-spatial`, `portfolio-v1`, `portfolio-v2`) để tối ưu hóa trải nghiệm khách hàng.
 
 ## Không Làm Trong Pha Này
 
-- không build social scheduler đầy đủ
-- không phụ thuộc vào Facebook personal profile API
-- không productize thành SaaS trước khi workflow nội bộ chạy mượt
-- không bắt Cloudflare Worker gánh job nặng như Playwright hoặc Remotion render
+- Không xây dựng, tối ưu hóa các kênh mạng xã hội giải trí (TikTok, Facebook cá nhân, YouTube...).
+- Không lập kế hoạch sản xuất video ngắn/dài.
+- Không phát triển các tính năng tự động hóa hoặc web control panel trên VPS phục vụ render video.

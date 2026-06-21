@@ -1,28 +1,17 @@
 # Repository Guidelines
 
-Content production workspace cho TikTok/Reels/Shorts thu hút khách freelance.
+Workspace phát triển CV, Portfolio công nghệ và chuẩn bị hồ sơ tuyển dụng tự do (Upwork) để thu hút khách hàng freelance.
 
 ## Cấu Trúc
 
 ```
 docs/           # Tất cả tài liệu
-├── agent/      # Agent rules, routing, generated/
-├── video/      # Pipeline, QA, reference
-├── profile/    # Creator, platform, audits
-├── web/        # CV, portfolio docs
-├── ops/        # Automation, VPS
-├── ideas/      # Backlog
-├── research/   # Notes
-├── reusable/   # Mock comments
-└── strategy.md
+├── agent/      # Agent rules, routing, current focus
+├── profile/    # Bối cảnh creator, quyết định, upwork audit
+└── web/        # CV, portfolio update rules, product audits
 
-data/           # JSON tracking
-projects/       # Video projects (1 folder/video)
-src/            # Remotion code + tools
-assets/         # Shared media (profile/, screenshots/)
-public/media/   # Remotion runtime assets
-renders/        # Output (drafts/, finals/)
-portfolio/      # Website source code
+assets/         # Hình ảnh và ảnh đại diện chuyên nghiệp (profile/, screenshots/)
+portfolio/      # Mã nguồn các website portfolio tĩnh
 ```
 
 ## Entry
@@ -32,22 +21,17 @@ portfolio/      # Website source code
 
 ## Task Routing
 
-- Video: `docs/video/pipeline.md`
-- Profile: `docs/profile/creator-context.md`
-- Website: `docs/web/`
-- Ops: `docs/ops/`
+- Profile & Upwork: `docs/profile/creator-context.md`
+- Website/CV: `docs/web/cv-update-rules.md`
 
 ## Source of Truth
 
-- Video project: `projects/<id>/`
-- Creator/platform: `docs/profile/`
-- Remotion media: `public/media/<id>/`
+- Creator/Upwork: `docs/profile/`
 - Shared assets: `assets/`
-- Renders: `renders/`
 - Portfolio code: `portfolio/`
 
 ## Rules
 
 - Viết tiếng Việt, giữ English cho tech terms
 - Không commit secrets
-- Follow `docs/video/pipeline.md` + `qa-checklist.md` + `never-again.md`
+- Không nhúng liên kết mạng xã hội không liên quan (TikTok, YouTube giải trí, Facebook cá nhân) vào CV/Portfolio
