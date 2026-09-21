@@ -551,25 +551,25 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    padding-top: calc(var(--header-height) + 12px);
+    padding-top: calc(var(--header-height) + 8px);
     padding-bottom: 24px;
     background-color: #F3EFE9;
     overflow-x: hidden;
   }
 
   .hero-art-plate {
-    top: auto;
+    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     width: 100%;
     height: 100%;
     background-image: url('../../assets/scenes/s01_thuy_mac_art_mobile.webp');
-    background-size: contain;
-    background-position: center bottom;
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%);
-    mask-image: linear-gradient(to bottom, transparent 0%, black 20%);
-    transform-origin: center bottom;
+    background-size: cover;
+    background-position: center top;
+    -webkit-mask-image: none;
+    mask-image: none;
+    transform-origin: center top;
   }
 
   .hero-dappled-light {

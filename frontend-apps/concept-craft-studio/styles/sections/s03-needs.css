@@ -278,13 +278,16 @@
 
 @media (max-width: 768px) {
   .s03-fullscreen-stage {
-    min-height: 100vh;
-    min-height: 100svh;
+    min-height: auto;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     padding: 0;
+    padding-bottom: 28px;
     background: #F8F5EE;
+    position: relative;
+    overflow: hidden;
   }
 
   /* Vô hiệu hóa WebGL canvas nặng nề trên mobile để giữ máy mát & tiết kiệm 100% pin */
@@ -322,14 +325,14 @@
     opacity: 0.85;
   }
 
-  /* Container chữ: Đặt phía dưới đường lượn sóng của bàn gốm, chuẩn xác 1:1 bản vẽ */
+  /* Container chữ: Đặt phía dưới đường lượn sóng của bàn gốm, khoảng cách gọn gàng */
   .s03-container {
     position: relative;
     z-index: 5;
     padding: 0 28px;
     width: 100%;
-    margin-top: calc(42vh + 12px);
-    padding-bottom: max(32px, env(safe-area-inset-bottom));
+    margin-top: clamp(260px, 74vw, 310px);
+    padding-bottom: 0;
   }
 
   /* Không gian chữ thanh thoát, thi vị trên nền ấm tự nhiên */
@@ -362,7 +365,7 @@
     font-size: clamp(0.98rem, 3.8vw, 1.12rem);
     font-weight: 500;
     line-height: 1.5;
-    margin-top: 14px;
+    margin-top: 12px;
     color: #4D6E64;
     letter-spacing: -0.01em;
   }
@@ -372,7 +375,8 @@
   }
 
   .s03-edge-blend-bottom {
-    height: 60px;
+    height: 48px;
+    background: linear-gradient(to bottom, transparent, #F8F5EE);
   }
 }
 

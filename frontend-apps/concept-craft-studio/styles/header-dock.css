@@ -44,6 +44,19 @@
   text-decoration: none;
 }
 
+.brand-logo-img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header-brand:hover .brand-logo-img {
+  transform: scale(1.08) rotate(3deg);
+}
+
 .brand-text {
   font-size: 24px;
   font-weight: 700;
@@ -151,11 +164,13 @@
 
 @media (max-width: 860px) {
   .brand-logo-img {
-    display: none;
+    display: block;
+    width: 26px;
+    height: 26px;
   }
 
   .brand-text {
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 700;
     letter-spacing: -0.03em;
     color: #0B2822;
