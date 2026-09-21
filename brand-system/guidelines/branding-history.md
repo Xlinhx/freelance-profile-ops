@@ -1,0 +1,44 @@
+# Xlinhx — logo exploration và cập nhật section lợi ích
+
+Dùng image_gen built-in. Logo là concept raster để lựa chọn, chưa phải SVG/master logo, chưa áp dụng vào website. Bảng cuối: xlinhx-logo-directions.png.
+
+- A: nếp gấp giao nhau, gợi chữ X và dải sứ của portfolio.
+- B: monogram mở, hướng chữ XL trừu tượng.
+- C: nhiều luồng hợp lại, silhouette ngang.
+- D: hai nét móc liên kết, hình khối cô đọng.
+
+Ảnh phần trên đã thay trực tiếp tại ../concepts/01-xlinhx-upper.png theo yêu cầu. Section 2 chuyển từ ứng dụng cụ thể sang lợi ích chung. Brief và tài liệu review đã đồng bộ. Chữ nhỏ do AI gen chỉ là minh họa, không chép lỗi chữ sang implementation.
+
+## Prompt sửa section 2
+
+Edit supplied Xlinhx upper-half website mockup. Preserve hero and entire bottom project gallery exactly, including all typography and images there. ONLY REPLACE THE MIDDLE SECTION between hero and gallery. Same image dimensions, same seven? no, same THREE sections, no additional sections. Preserve exquisite milk-white sunlit studio, porcelain curved floor transitions, clear glass, satin silver, seafoam enamel, deep petrol typography. Never change overall concept or turn scenery into rounded photo cards.
+
+The old middle section was wrong because a booking calendar, furniture shop and chatbot are too specific for clients who don't yet know what software they need. Replace those three application demonstrations with three GENERAL BUSINESS BENEFIT VISUALS. No calendars, chairs, product price, ecommerce store, chat bubbles or AI bot. A prospective small business client should immediately understand the value without technical knowledge. Artistic but plainly meaningful, not abstract machinery, chips, cubes or orb sculptures.
+
+Middle heading EXACT "Công việc nhẹ hơn. Mọi thứ rõ hơn."
+Subtitle EXACT "Bắt đầu từ những điều đang khiến bạn mất thời gian."
+Three delightful distinct bespoke small spatial scenes on the SAME gently curved white porcelain stage, softly staggered, generous space, no card borders:
+LEFT "Bớt làm tay": an elegant clear glass document tray containing three repeated work slips, a single fine seafoam connecting path feeds them through a minimal translucent flow gate, emerging as one neatly completed slim checklist with THREE small green checks. The operation visibly continues along one route rather than repeated manual actions. One tiny supporting caption "Việc lặp lại được tự động xử lý." Soft white and celadon stationery + believable clear-glass UI hybrid. Not a scanning machine, robot or factory.
+CENTER "Thông tin liền mạch": three overlapping translucent record sheets at different heights (document page, tiny contact record, small file tab) converge into ONE beautifully organized open central workspace sheet. Use matching small symbols/data fragments to make the connection visible. ONE continuous subtle flowing seafoam connector, not tangled wires. Caption "Bớt tìm kiếm, bớt nhập lại." This centerpiece slightly wider than others, upright sheets are not dashboards: no sidebar, charts, KPI tiles.
+RIGHT "Dễ theo dõi": a quietly sculptural clear status board, three simple visible rows with status markers and text "Cần làm", "Đang làm", "Hoàn tất", one slim cell selected softly seafoam, one check. A short subtle progression of markers makes work status obvious. Caption "Biết việc nào cần chú ý." Not analytics, bar charts, fake metrics or percentages.
+Visuals feel like a crafted illustration of software benefits, not ordinary stock feature icons or dense infographics. Strong simple silhouettes, enough detail to understand what is happening. Light and shadows extend to the surrounding page without image borders. The same warm-white daylight from original and porcelain stage contours must harmonize naturally. No excessive English words or technical labels.
+
+Under scenes preserve closed "Xem công nghệ +" line. Enough space for short labels/captions, don't increase text density. Restore curved porcelain highlighted transition above and below this section. Hero still reads "Ý tưởng thành hình." and Xlinhx, gallery below unchanged five placeholder cards. Do not change gallery content in this image edit; data restoration is separately planned for implementation. Output complete edited upper-half page, not a cropped section.
+
+## Prompt tạo bảng logo
+
+Use case logo-brand. Create ONE extremely high-resolution professional logo exploration comparison sheet for the independent software maker brand "Xlinhx". Four DIFFERENT logo directions arranged in a spacious 2x2 layout on pure milk-white background. This is a logo DESIGN sheet, not website design and not mockup photography. User wants creative ABSTRACT distinctive marks, very clear sharp strong silhouettes, no enclosure restriction. Brand personality: thoughtful software craftsmanship, luminous contemporary studio, white porcelain, seafoam accents and deep petrol. Translate that sensibility into excellent FLAT one-color logos, not literal lamps, computers, porcelain objects or 3D renders.
+
+Every quadrant shows one LARGE bespoke abstract symbol above its beautiful matching wordmark "Xlinhx", and one tiny identical symbol beneath to demonstrate favicon readability. Keep EXACT spelling Xlinhx, capital X followed by lowercase l i n h x. Label quadrants small "A", "B", "C", "D" in order top left, top right, bottom left, bottom right. No explanatory paragraphs, no invented slogans. Ample white margins, no card borders, no circles, no rounded-square badges, no bounding shapes. All marks solid dark petrol #174747, white negative spaces. Absolutely crisp vector-like edges, bold even optical weight, no blur, no shadows, no gradients, no outlined hairline marks. Design for reproduction at 24px. Each symbol is a separate deliberate typographic/abstract idea, not four variations of an X.
+
+A: "Fold / crossover". Two broad OFFSET folded strokes cross in a beautifully asymmetric X-inspired silhouette, with one clean white diagonal cut articulating the over-under fold. Subtle softened inner corner and sharply cut terminals. Evoke the flowing folded porcelain ribbon in the portfolio while remaining a simple flat logo. Avoid standard symmetric generic X, four-point sparkle, bowtie or infinity loop.
+B: "Open architecture". A custom XL-derived abstract glyph built from TWO interlocking bent strokes with one long upright and one rising diagonal, sculptural open outline silhouette and a precise wedge of negative space. Monogram is suggested rather than literally spelling XL. Upright compact bold architectural proportion, no square enclosure, no code brackets. Must be recognizably different from A.
+C: "Confluence". THREE short purposeful solid tapered paths approach from the left at different heights, gracefully converge into ONE rising forward-facing stroke on the right. A minimal abstract mark about making fragmented work coherent. Strong unique silhouette with beautiful rhythm and two clear white channels, not a wifi icon, feather, leaf, speed-lines logo or swoosh. Moderately wide horizontal symbol, high craft.
+D: "Continuity". A compact asymmetric angular interlock composed of two offset open hook-shaped strokes with an intelligent central negative-space notch, suggesting a continuous handoff and a hidden lowercase x without drawing a literal X. Smooth shallow inner bends, clean flat outer cuts. Think exceptional independent maker's stamp, not chain-link/infinity, corporate star, polygon badge, arrows or generic knot.
+
+Wordmarks complement each mark using refined custom humanist sans typography, correct spelling and careful kerning; small bespoke touch to x or terminal is welcome, but readable. Equal visual prominence for all four; no winner marked. Board is for user selection, not final vector production. Highest possible design quality, tasteful and highly distinctive negative-space construction, no circular framing anywhere.
+
+## Prompt hoàn thiện bảng trình bày
+
+Edit the supplied 4-option Xlinhx logo comparison sheet. Preserve the EXACT four symbol designs, A/B/C/D arrangement, Xlinhx wordmarks and small icon proofs. Only fix presentation and rendering: put ALL the content on a FULLY OPAQUE SOLID WHITE (#FFFFFF) rectangular background. No transparent background anywhere. No black background. White margins fully fill entire canvas. Render all symbols and wordmarks as a SINGLE FLAT SOLID DEEP PETROL (#174747), no gradients, 3D shading, bevels, glints, highlights, texture or noisy outlines. Perfect crisp clean vector-like boundaries and strong contrast with WHITE. All four labels A B C D in dark petrol, clearly readable. Spacious equal 2x2 layout, no enclosing circles or boxes around marks, complete wordmarks and tiny icon proofs fully contained. This is a PRINTED WHITE LOGO PRESENTATION SHEET, not a background-removed icon asset. Do NOT extract the marks onto alpha. Highest resolution possible. Do not change or invent extra designs.
+

@@ -1,122 +1,85 @@
-# Workspace Sản Xuất Nội Dung Công Nghệ
+# Freelance Profile Operations Hub
 
-Workspace để lập kế hoạch, sản xuất, render và tracking nội dung công nghệ phục vụ mục tiêu thu hút khách hàng freelance.
+Hệ thống phát triển và vận hành **Portfolio** và **Curriculum Vitae (CV)** của **Nguyễn Xuân Lĩnh (Xlinhx)**.
 
-## Cấu Trúc Chính
+---
 
-- `context/`: lớp context rút gọn, chỉ dùng để định tuyến agent vào đúng tài liệu.
-- `docs/videos/`: pipeline làm video, checklist QA, lỗi cấm lặp lại, thư viện hiệu ứng và reference chuyên sâu.
-- `docs/profile/`: context các profile/nền tảng, audit, quyết định đã chốt và checklist cập nhật.
-- `docs/website/`: CV, portfolio, product-site, landing page và tài liệu website public.
-- `docs/content/`: chiến lược nội dung, pillar, angle và hướng phát triển topic.
-- `docs/operations/`: automation, VPS, data, tooling và vận hành hệ thống.
-- `projects/`: source of truth theo từng video hoặc từng tập trong series.
-- `assets/`: shared screenshots, ảnh tạo mới, profile assets, raw footage, voice-over, music và font.
-- `public/media/`: media theo từng project được đưa trực tiếp vào Remotion qua `staticFile()`.
-- `renders/drafts/`: draft video/still review.
-- `renders/finals/`: bản publish-ready.
-- `data/`: dữ liệu có cấu trúc cho content database.
-- `src/remotion/`: code video Remotion.
-- `src/tools/`: script scaffold, sync context và automation hỗ trợ.
-- `sites/`: source code website/app độc lập nếu thực sự tồn tại.
+## 🏛️ Kiến Trúc Hệ Thống (Zero Bloat Architecture)
 
-## Quy Tắc Tổ Chức
+Workspace được thiết kế tinh gọn theo đúng 2 sản phẩm cốt lõi (Portfolio & CV) và tầng metadata tương đối kết nối GitHub:
 
-- `projects/<project-id>/` là nguồn sự thật chính cho một video: `brief`, `script`, `storyboard`, `motion`, `qa`, `assets`, `publish`, `handoff`.
-- `content/` chỉ dành cho planning cấp hệ thống và reusable material dùng chung nhiều project.
-- `renders/` là output sinh ra, không phải nơi giữ quyết định hay tài liệu quy trình.
-- `public/media/<project-id>/` là input runtime của Remotion.
-- `assets/` là shared/archive asset, không phải mặc định cho media runtime theo project.
-- Chỉ tạo `sites/<site-id>/` khi có source code thật. Không để folder chỉ chứa dependency cache.
-
-## Luồng Đọc Nhanh
-
-1. Mở `context/README.md` để hiểu cách định tuyến.
-2. Nếu làm video, mở `docs/videos/pipeline.md`.
-3. Nếu cần reference sâu khi làm video, mở `docs/videos/reference.md`.
-4. Nếu làm profile, mở `docs/profile/README.md`.
-5. Nếu làm CV/portfolio/website, mở `docs/website/README.md`.
-6. Nếu làm automation hoặc hệ thống, mở file tương ứng trong `docs/operations/`.
-
-## Flow Làm Video
-
-1. Thêm hoặc chọn ý tưởng trong `data/content-index.json`.
-2. Tạo project mới bằng scaffold:
-
-```powershell
-npm.cmd run project:new -- --id=demo-002-education-ai --preset=education --title="Web app giáo dục AI"
+```
+p:\freelance-profile-ops/
+│
+├── 📁 docs/                          [Metadata tương đối & Con trỏ GitHub Repos]
+│   ├── projects-metadata.md          # Sổ bộ metadata tương đối của 12 dự án + lệnh gh CLI
+│   └── creator-profile.md            # Thông tin tác giả, rate Upwork $16/hr, links chính thức
+│
+├── 📁 brand-system/                  [Tài sản nhận diện phục vụ hiển thị Web]
+│   ├── guidelines/                   # Quy chuẩn mỹ thuật, bảng màu, triết lý thủ công số (Xlinhx)
+│   ├── marks/                        # Logo chính thức (XL Scene, transparent, wordmark)
+│   └── references/                   # Mockup chuẩn 1:1 từ Designer (Ground Truth visual)
+│
+├── 📁 frontend-apps/                 [Showcases hiển thị: Portfolio & CV]
+│   │
+│   ├── 📁 shared/                    # TẦNG DÙNG CHUNG DUY NHẤT (Single Source of Truth)
+│   │   ├── data/projects-catalog.js  # 100% dữ liệu hiển thị case studies cho các concept
+│   │   ├── icons/                    # 100% SVG icons công nghệ (React, Node, Python, AWS...)
+│   │   ├── identity/                 # Favicon, avatar hồ sơ dùng chung
+│   │   └── projects-media/           # Ảnh giao diện thực tế của các dự án (Conhon, Lumi...)
+│   │
+│   ├── 📁 concept-craft-studio/      # PORTFOLIO CHÍNH: Daylight Studio (Xlinhx)
+│   │   ├── assets/scenes/            # 3 Master Stage sạch: act1, act2, act3
+│   │   ├── assets/mockups/           # Ảnh mockups thật dùng trong các case study
+│   │   ├── modules/                  # 11 Micro-modules độc lập theo Section (30-80 dòng/file)
+│   │   ├── styles/                   # 12 CSS modules theo chức năng (tokens, base, stages, s01-s10)
+│   │   ├── index.html                # Entry point
+│   │   ├── styles.css                # CSS Manifest (chỉ 16 dòng nạp @import)
+│   │   ├── main.js                   # Orchestrator gọn nhẹ (20 dòng khởi chạy modules)
+│   │   └── project-showcase.js       # Modal case studies kết nối ProjectsCatalog
+│   │
+│   └── 📁 concept-curriculum-vitae/  # CV SHOWCASE: Hồ sơ CV bản in A4 / PDF / Web
+│       ├── current-march-2026/       # Bản CV chuẩn mới nhất
+│       ├── archive-jan-2026/         # Bản lưu trữ lịch sử
+│       └── index.html                # CV Gateway
+│
+├── 📁 tooling/                       [Công cụ phát triển & Build Cloudflare]
+│   ├── build.mjs                     # Đóng gói xuất bản Cloudflare Pages (dist/)
+│   └── serve.mjs                     # Local Dev Server (Port 3000)
+│
+├── package.json                      # Scripts: dev, build, preview
+├── AGENTS.md                         # Hiến pháp vận hành của AI (Bắt buộc đọc trước)
+├── CLAUDE.md                         # Hướng dẫn nhanh CLI
+└── README.md                         # Bản đồ tổng quan toàn bộ repository
 ```
 
-3. Điền bộ source of truth trong `projects/<project-id>/`:
-   - `project.json`
-   - `brief.md`
-   - `coverage-map.md`
-   - `capture-map.md`
-   - `assets.md`
-   - `storyboard.md`
-   - `motion.md`
-   - `qa.md`
-   - `script.md`
-   - `publish.md`
-   - `handoff.md`
-   - `notes/`
-4. Gom asset vào folder project hoặc `assets/`.
-5. Render still review vào `renders/drafts/<project-id>/stills/`.
-6. Render draft video vào `renders/drafts/<project-id>/video/`.
-7. Review từng scene theo `docs/videos/qa-checklist.md` và `docs/videos/never-again.md`.
-8. Render final vào `renders/finals/<project-id>/video/`.
-9. Ghi link publish và metrics vào `data/content-index.json`.
-10. Chạy sync context:
+---
 
-```powershell
-powershell -ExecutionPolicy Bypass -File src/tools/sync-context.ps1
-```
+## ⚡ Khởi Chạy Nhanh (Quick Start)
 
-## Hard QA Video
+1. **Kiểm tra kết nối GitHub CLI:**
+   ```bash
+   gh auth status
+   ```
+2. **Khởi chạy Dev Server (Port 3000):**
+   ```bash
+   npm run dev      # hoặc: node tooling/serve.mjs
+   ```
+3. **Đóng gói xuất bản Cloudflare Pages (`dist/`):**
+   ```bash
+   npm run build    # hoặc: node tooling/build.mjs
+   ```
+4. **Danh mục URLs cục bộ:**
+   - **Craft Studio (Trang chính):** `http://localhost:3000/` (hoặc `/studio/`)
+   - **Curriculum Vitae:** `http://localhost:3000/cv/`
+   - **Tài nguyên Shared:** `http://localhost:3000/shared/icons/react.svg`
 
-Trước khi xem một draft là đạt, luôn rà:
+---
 
-- [docs/videos/pipeline.md](/P:/contentsocial/docs/videos/pipeline.md)
-- [docs/videos/qa-checklist.md](/P:/contentsocial/docs/videos/qa-checklist.md)
-- [docs/videos/never-again.md](/P:/contentsocial/docs/videos/never-again.md)
-- [docs/videos/red-flags.md](/P:/contentsocial/docs/videos/red-flags.md)
-- [docs/videos/reference/canvas-readability-hard-rules.md](/P:/contentsocial/docs/videos/reference/canvas-readability-hard-rules.md)
+## 🔒 Nguyên Tắc Cốt Lõi (Non-Negotiables)
 
-## Scaffold Project
-
-- Template gốc: `projects/_template/`
-- Preset domain: `projects/_presets/`
-- Script bootstrap: `src/tools/new-video-project.mjs`
-
-Preset hiện có:
-
-- `education`
-- `ecommerce-scale`
-- `fnb-ops`
-
-`project.json` là source of truth machine-readable tối thiểu cho agent và tool.
-
-## Lệnh Remotion
-
-- `npm.cmd install` cài dependencies.
-- `npm.cmd run project:new -- --id=<project-id> --preset=<preset>` tạo project mới từ scaffold.
-- `npm.cmd run dev` mở Remotion Studio.
-- `npm.cmd run still:<project>` render frame preview của project tương ứng vào `renders/drafts/<project-id>/stills/` nếu script đã được khai báo.
-- `npm.cmd run render:<project>` render draft video của project tương ứng vào `renders/drafts/<project-id>/video/`.
-- `npm.cmd test` chạy TypeScript check.
-
-Composition hiện tại gồm `VanhienWalkthrough`, `EngpathResetWalkthrough`, và `AICodingComparison2026`. Dữ liệu từng video nằm trong `src/remotion/data/`; hiệu ứng và layout nằm trong `src/remotion/videos/` và các file CSS tương ứng.
-
-## Tài Liệu Quan Trọng
-
-- `AGENTS.md`: rule làm việc cho agent/contributor.
-- `context/README.md`: điểm vào nhanh cho agent và creator.
-- `docs/videos/pipeline.md`: pipeline bắt buộc khi làm video mới.
-- `docs/videos/reference.md`: bản đồ tham chiếu khi cần xử lý case khó.
-- `docs/profile/README.md`: bản đồ tài liệu profile/nền tảng.
-- `docs/website/README.md`: bản đồ tài liệu CV/portfolio/website.
-- `docs/content/strategy.md`: trụ cột nội dung và cấu trúc video mặc định.
-- `docs/operations/content-management.md`: tracking và kế hoạch web app.
-- `docs/operations/automation-roadmap.md`: lộ trình tự động hóa và tích hợp MCP/API.
-- `docs/operations/social-system-architecture.md`: kiến trúc web, OAuth, connector, agent layer và hướng SaaS.
-- `docs/operations/vps-operating-mode.md`: mode vận hành VPS-first cho app, runner và asset working folder.
+1. **Chỉ phục vụ Portfolio & CV:** Mọi tài liệu phi giao diện chỉ lưu trữ metadata tương đối và con trỏ GitHub.
+2. **Nguồn sự thật mã nguồn nằm trên GitHub (`Xlinhx/<repo>`):** Không sao chép hay lưu trữ code/tài liệu trùng lặp trong repo này.
+3. **Tầng dùng chung `frontend-apps/shared/`:** Dữ liệu dự án hiển thị web quy tụ 100% tại `shared/data/projects-catalog.js`.
+4. **Anti-God File:** CSS và JS phải module hoá theo vai trò và chức năng (dưới 100 dòng/file).
+5. **Zero Ghosting & Zero Emoji:** 100% typography vector và SVG vector trên bối cảnh studio sạch sẽ.

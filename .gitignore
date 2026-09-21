@@ -1,21 +1,26 @@
+# Environment and Secrets
 .env
 .env.*
 !.env.example
-.playwright-mcp/
-.wrangler/
+
+# Dependencies & Build
 node_modules/
 dist/
 .cache/
-.remotion/
+.vite/
+.wrangler/
+
+# Temporary and Testing
+.playwright-mcp/
+test-results/
+*.bak
+*.tmp
 *.log
-/outputs/
-/*.png
-renders/**/*.mp4
-renders/**/*.mov
-renders/**/*.png
-renders/**/*.jpg
-renders/**/*.jpeg
-renders/**/*.wav
-renders/**/*.mp3
-assets/audio/**/*.wav
-assets/audio/**/*.mp3
+scratch/
+temp_analysis/
+
+# OS and IDE Files
+.DS_Store
+Thumbs.db
+*.suo
+*.user

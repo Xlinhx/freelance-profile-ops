@@ -1,0 +1,378 @@
+/**
+ * S03: PHILOSOPHY / KEY VISUAL STYLES — XLINHX JADE BOOK JOURNEY
+ * "Mở ra cách làm nhẹ hơn. Rõ việc cần làm. Có chỗ để tiến xa."
+ *
+ * Tiêu chuẩn:
+ * 1. Desktop: Full màn hình (100vh), WebGL Mesh sống động, ánh sáng tự nhiên.
+ * 2. Narrow Mobile (iPhone 10-11-12): Giao diện dọc công thái học (Ergonomics),
+ *    tư duy hoàn toàn khác, motion CSS GPU siêu nhẹ không nóng máy,
+ *    nút xúc giác mở iOS Bottom Sheet (`#s03-philosophy-sheet`).
+ */
+
+.s03-fullscreen-stage {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  padding: 0;
+  margin: 0;
+}
+
+/* ==========================================================================
+   1. KHÔNG GIAN BỐI CẢNH (BACKDROP STAGE) — FULL BLEED
+   ========================================================================== */
+
+.s03-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.s03-backdrop-picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.s03-backdrop-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  display: block;
+  transform: scale(1.01);
+  transform-origin: center right;
+}
+
+/* 2. WebGL Living Canvas: Dao động các cánh lá dựng đứng trên Desktop */
+.s03-living-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.s03-living-canvas.is-ready {
+  opacity: 1;
+}
+
+/* 3. Lớp bóng đổ cành cây dao động hữu cơ trên tường và bàn gốm */
+.s03-tree-shadow-sway {
+  position: absolute;
+  top: -8%;
+  right: -6%;
+  width: 114%;
+  height: 114%;
+  background-image: url('../../assets/decor/leaf-shadow-overlay.jpg');
+  background-size: cover;
+  background-position: 55% 35%;
+  mix-blend-mode: multiply;
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 2;
+  transform-origin: 40% 25%;
+  animation: s03TreeShadowDrift 14s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
+}
+
+@keyframes s03TreeShadowDrift {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0.14;
+  }
+  40% {
+    transform: translate(14px, 9px) scale(1.03) rotate(0.9deg);
+    opacity: 0.22;
+  }
+  75% {
+    transform: translate(-10px, 12px) scale(0.98) rotate(-0.7deg);
+    opacity: 0.17;
+  }
+  100% {
+    transform: translate(6px, -5px) scale(1.01) rotate(0.4deg);
+    opacity: 0.20;
+  }
+}
+
+/* 4. Vệt sáng loang lổ tự nhiên (Dappled Komorebi Caustics) lung linh trên nền gốm */
+.s03-dappled-caustics {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 340px 190px at 74% 75%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 240, 0.45) 45%, transparent 70%),
+    radial-gradient(ellipse 240px 150px at 56% 86%, rgba(255, 255, 255, 0.8) 0%, transparent 60%),
+    radial-gradient(ellipse 190px 110px at 89% 60%, rgba(255, 255, 255, 0.75) 0%, transparent 55%),
+    radial-gradient(ellipse 420px 240px at 42% 64%, rgba(255, 255, 250, 0.55) 0%, transparent 70%),
+    radial-gradient(circle 95px at 67% 69%, rgba(255, 255, 255, 0.9) 0%, transparent 55%);
+  mix-blend-mode: soft-light;
+  animation: s03CausticsPulse 7.5s ease-in-out infinite alternate;
+  z-index: 2;
+}
+
+@keyframes s03CausticsPulse {
+  0% {
+    opacity: 0.65;
+    transform: translateY(0) scale(0.98);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.04);
+  }
+  100% {
+    opacity: 0.75;
+    transform: translateY(6px) scale(0.99);
+  }
+}
+
+/* 5. Luồng sáng xiên tự nhiên chuyển động nhịp nhàng từ góc trên trái */
+.s03-sunlight-beam {
+  position: absolute;
+  top: -15%;
+  left: -10%;
+  width: 85%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 235, 0.25) 40%, transparent 70%);
+  pointer-events: none;
+  z-index: 2;
+  animation: s03SunbeamShift 14s ease-in-out infinite alternate;
+}
+
+@keyframes s03SunbeamShift {
+  0% {
+    opacity: 0.7;
+    transform: rotate(0deg) translate(0, 0);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(1.8deg) translate(16px, 12px);
+  }
+  100% {
+    opacity: 0.65;
+    transform: rotate(-1.2deg) translate(-12px, 6px);
+  }
+}
+
+/* 6. Cành lá tự nhiên góc trên bên phải đung đưa rõ nét theo làn gió */
+.s03-foliage-branch {
+  position: absolute;
+  top: -2%;
+  right: -2%;
+  width: clamp(300px, 32vw, 540px);
+  height: auto;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.92;
+  filter: drop-shadow(0 18px 36px rgba(16, 59, 50, 0.12));
+  animation: s03BranchBreeze 11s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
+  transform-origin: 92% 8%;
+}
+
+@keyframes s03BranchBreeze {
+  0% {
+    transform: rotate(0deg) translate(0, 0) scale(1);
+  }
+  30% {
+    transform: rotate(2.4deg) translate(12px, 7px) scale(1.02);
+  }
+  65% {
+    transform: rotate(-1.8deg) translate(-9px, 5px) scale(0.985);
+  }
+  100% {
+    transform: rotate(1.4deg) translate(7px, -4px) scale(1.01);
+  }
+}
+
+/* ==========================================================================
+   7. KẾT NỐI LIỀN MẠCH VỚI CÁC SECTION KHÁC (SEAMLESS EDGE BLENDS)
+   ========================================================================== */
+
+.s03-edge-blend-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: clamp(70px, 12vh, 130px);
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.85) 30%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.s03-edge-blend-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: clamp(70px, 12vh, 130px);
+  background: linear-gradient(0deg, #FFFFFF 0%, rgba(255, 255, 255, 0.85) 30%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* ==========================================================================
+   8. NỘI DUNG CHỮ THOÁNG ĐÃNG TRÊN DESKTOP (BE VIETNAM PRO)
+   ========================================================================== */
+
+.s03-container {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 clamp(24px, 5vw, 60px);
+}
+
+.s03-editorial {
+  max-width: min(440px, 38vw);
+  text-align: left;
+}
+
+.s03-title {
+  font-family: var(--font-sans);
+  font-size: clamp(2rem, 3.4vw, 3.125rem);
+  font-weight: 700;
+  color: #103B32;
+  letter-spacing: -0.035em;
+  line-height: 1.18;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.s03-title-line {
+  display: block;
+}
+
+.s03-subline {
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 1.15vw, 1.125rem);
+  font-weight: 500;
+  color: #48685F;
+  line-height: 1.5;
+  margin: 14px 0 0 0;
+  letter-spacing: -0.015em;
+}
+
+/* Nút Trigger di động: Ẩn tuyệt đối trên Desktop & Tablet */
+.s03-mobile-sheet-trigger {
+  display: none;
+}
+
+/* ==========================================================================
+   9. NARROW MOBILE ERGONOMICS (IPHONE 10, 11, 12: <= 768px)
+   Khớp 1:1 theo ảnh tham chiếu nghệ thuật của tác giả (media_1789878797046.jpg):
+   - Nửa trên: Tác phẩm điêu khắc quạt ngọc, bóng đổ nắng sớm & đường lượn sóng
+   - Nửa dưới: Không gian chữ thoáng đãng Be Vietnam Pro trên nền giấy ấm
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .s03-fullscreen-stage {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0;
+    background: #F8F5EE;
+  }
+
+  /* Vô hiệu hóa WebGL canvas nặng nề trên mobile để giữ máy mát & tiết kiệm 100% pin */
+  .s03-living-canvas {
+    display: none !important;
+  }
+
+  /* Ảnh bối cảnh chân dung dọc (9:19.5): Khớp 1:1 tác phẩm nghệ thuật chuẩn mực */
+  .s03-backdrop-img {
+    object-position: center top;
+    /* Chuyển động thở CSS GPU siêu nhẹ 60fps */
+    animation: s03MobileLeafBreeze 12s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
+  @keyframes s03MobileLeafBreeze {
+    0% {
+      transform: scale(1) translate3d(0, 0, 0);
+    }
+    100% {
+      transform: scale(1.018) translate3d(0, -2px, 0);
+    }
+  }
+
+  /* Nhẹ hóa luồng sáng & bóng đổ cho mobile */
+  .s03-tree-shadow-sway {
+    opacity: 0.1;
+    animation-duration: 16s;
+  }
+
+  .s03-foliage-branch {
+    width: 160px;
+    top: -5px;
+    right: -5px;
+    opacity: 0.85;
+  }
+
+  /* Container chữ: Đặt phía dưới đường lượn sóng của bàn gốm, chuẩn xác 1:1 bản vẽ */
+  .s03-container {
+    position: relative;
+    z-index: 5;
+    padding: 0 28px;
+    width: 100%;
+    margin-top: calc(42vh + 12px);
+    padding-bottom: max(32px, env(safe-area-inset-bottom));
+  }
+
+  /* Không gian chữ thanh thoát, thi vị trên nền ấm tự nhiên */
+  .s03-editorial {
+    max-width: 100%;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding: 0;
+    text-align: left;
+  }
+
+  .s03-title {
+    font-family: var(--font-sans);
+    font-size: clamp(2rem, 7.8vw, 2.45rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.035em;
+    color: #0C382E;
+  }
+
+  .s03-title-line {
+    display: block;
+  }
+
+  .s03-subline {
+    font-family: var(--font-sans);
+    font-size: clamp(0.98rem, 3.8vw, 1.12rem);
+    font-weight: 500;
+    line-height: 1.5;
+    margin-top: 14px;
+    color: #4D6E64;
+    letter-spacing: -0.01em;
+  }
+
+  .s03-edge-blend-top {
+    height: 40px;
+  }
+
+  .s03-edge-blend-bottom {
+    height: 60px;
+  }
+}
+

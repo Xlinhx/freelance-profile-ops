@@ -1,0 +1,50 @@
+/**
+ * DESIGN TOKENS — XLINHX JADE BOOK JOURNEY
+ * Bảng màu ngọc bích, ánh sáng tự nhiên, typography và elevations chuẩn mực
+ */
+
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-primary: #FAFCFB;
+  --bg-surface: #FFFFFF;
+  --bg-panel: #FFFFFF;
+  --bg-jade-wash: #EAF5EE;
+  --bg-jade-subtle: #F3FAF5;
+
+  /* Typography Colors */
+  --text-primary: #103B32;
+  --text-muted: #526B64;
+  --text-subtle: #789088;
+
+  /* Accents */
+  --accent-emerald: #00634E;
+  --accent-emerald-hover: #004F3E;
+  --accent-emerald-active: #003D30;
+  --accent-emerald-light: rgba(0, 99, 78, 0.08);
+
+  /* Borders & Dividers */
+  --border-jade: #D5E6DD;
+  --border-light: rgba(213, 230, 221, 0.6);
+  --border-glass: rgba(255, 255, 255, 0.85);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(16, 59, 50, 0.04), 0 1px 2px rgba(16, 59, 50, 0.02);
+  --shadow-md: 0 4px 12px rgba(16, 59, 50, 0.06), 0 2px 4px rgba(16, 59, 50, 0.03);
+  --shadow-lg: 0 12px 32px rgba(16, 59, 50, 0.08), 0 4px 8px rgba(16, 59, 50, 0.04);
+  --shadow-card: 0 6px 20px rgba(16, 59, 50, 0.05);
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-button: 12px;
+  --radius-card: 16px;
+  --radius-panel: 20px;
+  --radius-pill: 9999px;
+
+  /* Typography Families */
+  --font-sans: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Layout Constants */
+  --container-max: 1280px;
+  --header-height: 72px;
+}

@@ -1,0 +1,858 @@
+/**
+ * S04: SCOPE SECTION STYLES — CONCEPT CRAFT STUDIO
+ * "Bắt đầu từ điều cần nhất. Chọn ưu tiên. Cùng chốt phần nên làm trước."
+ *
+ * 1. DESKTOP:
+ *    - Full-viewport immersive daylight stage (100vh).
+ *    - Khóa cứng tỷ lệ 1264 / 848 (width: min(100%, calc((100vh - 60px) * 1.49))) -> Không zoom/crop, chữ và line 100% nằm gọn bên trong trang sách.
+ *    - Bỏ hiệu ứng lật trang 3D theo lệnh tác giả (nội dung hiển thị sẵn sàng, trực quan).
+ *    - Tuyết rơi liên tục (infinite loop) từ cửa sổ nguyệt môn.
+ * 2. MOBILE (iPhone 10-11-12, Width <= 900px) — THEO ĐÚNG MOCKUP media_1789878857272.jpg:
+ *    - Tư duy độc lập: Cuộn trang giấy mộc (parchment scroll) dọc.
+ *    - Viền gáy sách da ngọc bích chỉ vàng ở mép trái.
+ *    - Tranh thủy mặc đồi núi chùa chiền ở mép chân trang.
+ *    - Thẻ lựa chọn dạng pill cards thanh thoát, gọn gàng, 1 dòng (bỏ bớt mô tả rườm rà).
+ *    - Hạng mục bàn giao dạng pill cards tương ứng.
+ *    - Nút CTA "Trao đổi lựa chọn này →".
+ */
+
+.section-scope {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: max(100vh, 760px);
+  min-height: 100svh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #edece5;
+  scroll-margin-top: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   1. LỚP CHUYỂN TIẾP VIỀN TRÊN & DƯỚI (SEAMLESS EDGE BLENDS)
+   ========================================================================== */
+.s04-edge-blend-top,
+.s04-edge-blend-bottom {
+  display: none !important;
+}
+
+/* Sân khấu nền 1:1 bao phủ 100% toàn màn hình — Full Screen Edge-to-Edge */
+.s04-backdrop-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.s04-backdrop-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+
+/* ==========================================================================
+   2. KHUNG SÂN KHẤU TOÀN CẢNH (DESKTOP PANORAMIC STAGE)
+   Full màn hình 100% viewport width và height không bị co cụm viền trắng
+   ========================================================================== */
+.s04-panoramic-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Header: Hiển thị thanh thoát trên khoảng tường studio phía trên cuốn sách */
+.s04-header {
+  display: block !important;
+  position: absolute;
+  top: 7.5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 800px;
+  text-align: center;
+  z-index: 3;
+  pointer-events: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.s04-heading {
+  font-family: var(--font-display, 'Be Vietnam Pro', sans-serif);
+  font-size: clamp(22px, 2.5cqw, 34px);
+  font-weight: 700;
+  color: #11281e;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.s04-subheading {
+  font-family: var(--font-body, 'Be Vietnam Pro', sans-serif);
+  font-size: clamp(12px, 1.1cqw, 15px);
+  font-weight: 500;
+  color: #4a5e52;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  margin: 5px 0 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   3. WINDOW WIND & CONTINUOUS DRIFTING SNOW CANVAS
+   ========================================================================== */
+.s04-snow-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   4. PAPER OVERLAY (DISABLED TO ELIMINATE RECTANGULAR EDGES)
+   ========================================================================== */
+.s04-noise-overlay {
+  display: none !important;
+}
+
+/* ==========================================================================
+   5. CUỐN SÁCH MỞ 2 TRANG (OPEN BOOK SPREAD — DESKTOP)
+   Khóa chặt 1:1 theo tỷ lệ chuẩn 1376 / 768 đồng bộ hoàn hảo với ảnh nền cover
+   ========================================================================== */
+.s04-book-spread {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+  perspective: 1400px;
+  container-type: size;
+  container-name: s04book;
+}
+
+/* Individual Book Page Spread — CĂN GIỮA ĐẸP MẮT TRONG TRANG GIẤY, HOÀN TOÀN KHÔNG DÍNH HỌA TIẾT CHÂN SÁCH */
+.s04-page {
+  pointer-events: auto;
+  position: absolute;
+  top: 26.5%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Left Page: Sitting completely inside the left parchment safe zone (22.5% - 46.5%) */
+.s04-page-left {
+  left: 22.5%;
+  width: 24.0%;
+  transform: none;
+}
+
+/* Right Page: Sitting completely inside the right parchment safe zone (51.5% - 77.5%) */
+.s04-page-right {
+  left: 51.5%;
+  width: 26.0%;
+  transform: none;
+}
+
+/* Page Inner (pure seamless blend, zero square shadows) */
+.s04-page-inner {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 0;
+  box-shadow: none;
+}
+
+.s04-page-left .s04-page-inner {
+  padding: 0;
+}
+
+.s04-page-right .s04-page-inner {
+  padding: 0;
+}
+
+/* Page Titles (Matching baseline across the open spread) */
+.s04-page-title {
+  font-family: var(--font-display, 'Be Vietnam Pro', sans-serif);
+  font-size: clamp(16px, 1.45cqw, 20px);
+  font-weight: 700;
+  color: #11281e;
+  letter-spacing: -0.02em;
+  margin: 0 0 clamp(8px, 1.1cqh, 12px);
+  line-height: 1.2;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   6. TRANG TRÁI: DANH SÁCH LỰA CHỌN (TỰ NHIÊN NHƯ CHỮ IN TRÊN GIẤY)
+   ========================================================================== */
+.s04-options-group {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6px, 0.85cqh, 9px);
+  margin-bottom: 0;
+}
+
+.s04-option-card {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 0.9cqw, 13px);
+  padding: clamp(7px, 0.95cqh, 10px) clamp(12px, 1.0cqw, 14px);
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid #dfded8;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s ease,
+              transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: none;
+  box-sizing: border-box;
+}
+
+.s04-option-card:hover {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: #b0c2b5;
+  transform: translateY(-1px);
+}
+
+.s04-option-card.is-active {
+  background: #e1ece4;
+  border: 1.2px solid #a2b8ab;
+  box-shadow: none;
+}
+
+.s04-option-card:focus-visible {
+  outline: 2px solid #143827;
+  outline-offset: 2px;
+}
+
+/* Radio Circle & Dot — Chuẩn 1:1 theo Mockup */
+.s04-radio-circle {
+  width: clamp(20px, 1.6cqw, 22px);
+  height: clamp(20px, 1.6cqw, 22px);
+  border-radius: 50%;
+  border: 1.5px solid #8b9e92;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color 0.2s ease, border-width 0.2s ease, background-color 0.2s ease;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.s04-option-card.is-active .s04-radio-circle {
+  border-color: #11281e;
+  border-width: 2px;
+  background: #ffffff;
+}
+
+.s04-radio-dot {
+  width: clamp(8px, 0.65cqw, 9px);
+  height: clamp(8px, 0.65cqw, 9px);
+  border-radius: 50%;
+  background: #11281e;
+  transform: scale(0);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.s04-option-card.is-active .s04-radio-dot {
+  transform: scale(1);
+}
+
+/* Option Typography */
+.s04-option-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.s04-option-title {
+  font-family: var(--font-display, 'Be Vietnam Pro', sans-serif);
+  font-size: clamp(12.5px, 1.02cqw, 14px);
+  font-weight: 700;
+  color: #11281e;
+  margin: 0;
+  line-height: 1.25;
+  -webkit-font-smoothing: antialiased;
+}
+
+.s04-option-desc {
+  font-family: var(--font-body, 'Be Vietnam Pro', sans-serif);
+  font-size: clamp(10px, 0.8cqw, 11.5px);
+  font-weight: 400;
+  color: #55695d;
+  margin: 2px 0 0;
+  line-height: 1.35;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Left Page Bottom Inquiry Link — Nằm tự nhiên phía trên tranh đồi núi */
+.s04-page-bottom-link {
+  margin-top: clamp(8px, 1.0cqh, 11px);
+  padding-left: 2px;
+  transform: none;
+}
+
+.s04-open-inquiry-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body, 'Be Vietnam Pro', sans-serif);
+  font-size: clamp(11.5px, 0.9cqw, 13px);
+  font-weight: 600;
+  color: #11281e;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+.s04-open-inquiry-link span {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: #11281e;
+  text-decoration-thickness: 1.5px;
+}
+
+.s04-open-inquiry-link:hover {
+  color: #061a11;
+}
+
+.s04-open-inquiry-link svg {
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.s04-open-inquiry-link:hover svg {
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   7. TRANG PHẢI: HẠNG MỤC BÀN GIAO & CTA (DELIVERABLES)
+   ========================================================================== */
+.s04-deliverables-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.s04-deliverables-list.is-updating {
+  opacity: 0.3;
+  transform: translateY(2px);
+}
+
+.s04-deliverable-item {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 0.9cqw, 13px);
+  padding: clamp(5px, 0.72cqh, 7px) 0;
+  border-bottom: 1px solid #dfded8;
+}
+
+.s04-deliverable-icon-box {
+  width: clamp(30px, 2.4cqw, 34px);
+  height: clamp(30px, 2.4cqw, 34px);
+  border-radius: 8px;
+  background: #e1ece4;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #11281e;
+}
+
+.s04-deliverable-icon-box svg {
+  width: clamp(15px, 1.2cqw, 17px);
+  height: clamp(15px, 1.2cqw, 17px);
+}
+
+.s04-deliverable-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.s04-deliverable-title {
+  font-family: var(--font-display, 'Be Vietnam Pro', sans-serif);
+  font-size: clamp(12.5px, 1.05cqw, 14px);
+  font-weight: 700;
+  color: #11281e;
+  margin: 0;
+  line-height: 1.25;
+  -webkit-font-smoothing: antialiased;
+}
+
+.s04-deliverable-desc {
+  font-family: var(--font-body, 'Be Vietnam Pro', sans-serif);
+  font-size: clamp(10.5px, 0.82cqw, 11.5px);
+  font-weight: 400;
+  color: #5c6f63;
+  margin: 2px 0 0;
+  line-height: 1.35;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Accordion: Có thể bổ sung sau */
+.s04-addon-accordion {
+  border-bottom: 1px solid #dfded8;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.s04-accordion-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 0.9cqw, 13px);
+  padding: clamp(5px, 0.72cqh, 7px) 0;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+  transition: opacity 0.2s ease;
+}
+
+.s04-accordion-header:hover {
+  opacity: 0.85;
+}
+
+.s04-addon-icon-circle {
+  width: clamp(26px, 2.1cqw, 28px);
+  height: clamp(26px, 2.1cqw, 28px);
+  border-radius: 50%;
+  border: 1.5px solid #8b9e92;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #11281e;
+  background: transparent;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.s04-accordion-header[aria-expanded="true"] .s04-addon-icon-circle {
+  background: #11281e;
+  color: #ffffff;
+  border-color: #11281e;
+}
+
+.s04-addon-title-wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.s04-addon-main-title {
+  font-family: var(--font-display, 'Be Vietnam Pro', sans-serif);
+  font-size: clamp(12.5px, 1.02cqw, 14px);
+  font-weight: 700;
+  color: #11281e;
+  line-height: 1.25;
+  -webkit-font-smoothing: antialiased;
+}
+
+.s04-addon-subtitle {
+  font-family: var(--font-body, 'Be Vietnam Pro', sans-serif);
+  font-size: clamp(9.5px, 0.78cqw, 11px);
+  font-weight: 400;
+  color: #55695d;
+  margin-top: 2px;
+  line-height: 1.3;
+  -webkit-font-smoothing: antialiased;
+}
+
+.s04-addon-chevron {
+  color: #55695d;
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+.s04-accordion-header[aria-expanded="true"] .s04-addon-chevron {
+  transform: rotate(180deg);
+}
+
+/* Accordion Drawer & Chips */
+.s04-addon-drawer {
+  padding: 3px 0 6px clamp(36px, 3.0cqw, 44px);
+  animation: s04FadeIn 0.22s ease;
+}
+
+@keyframes s04FadeIn {
+  from { opacity: 0; transform: translateY(-3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.s04-addon-chips-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.s04-addon-chip {
+  display: inline-block;
+  font-family: var(--font-body, 'Be Vietnam Pro', sans-serif);
+  font-size: clamp(8.5px, 0.72cqw, 10px);
+  font-weight: 500;
+  color: #11281e;
+  background: #dbe4dc;
+  border: 1px solid rgba(150, 180, 165, 0.45);
+  border-radius: 5px;
+  padding: 1px 6px;
+  line-height: 1.3;
+}
+
+/* Right Page CTA Button & Disclaimer */
+.s04-cta-area {
+  margin-top: clamp(8px, 1.1cqh, 12px);
+}
+
+.s04-stage-cta-btn {
+  width: 100%;
+  height: clamp(38px, 4.5cqh, 42px);
+  background: #0f3729;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-family: var(--font-display, 'Be Vietnam Pro', sans-serif);
+  font-size: clamp(12px, 1.02cqw, 13.8px);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(15, 55, 41, 0.25);
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+.s04-stage-cta-btn:hover {
+  background: #09261c;
+  box-shadow: 0 6px 18px rgba(9, 38, 28, 0.35);
+  transform: translateY(-1px);
+}
+
+.s04-stage-cta-btn:active {
+  transform: scale(0.985);
+}
+
+.s04-stage-cta-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.s04-stage-cta-btn:hover svg {
+  transform: translateX(4px);
+}
+
+.s04-cta-disclaimer {
+  font-family: var(--font-body, 'Be Vietnam Pro', sans-serif);
+  font-size: clamp(9.5px, 0.78cqw, 10.5px);
+  font-weight: 400;
+  color: #627568;
+  text-align: center;
+  margin: 6px 0 0;
+  line-height: 1.3;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   8. DEDICATED MOBILE RESPONSIVE (IPHONE 10-11-12 & NARROW SCREENS <= 900px)
+   Chuẩn mực theo visual tham chiếu media_1789878857272.jpg:
+   - Cuộn trang giấy mộc (parchment scroll) dọc 100% tự nhiên
+   - Viền gáy sách da ngọc bích chỉ vàng ở mép trái
+   - Tranh thủy mặc đồi núi chùa chiền ở chân trang
+   - Thẻ lựa chọn & hạng mục dạng pill cards 1 dòng tinh gọn
+   - Nút CTA "Trao đổi lựa chọn này →"
+   - Không transform 3D nặng, chạm mượt mà 60fps
+   ========================================================================== */
+@media (max-width: 900px) {
+  .section-scope {
+    height: auto;
+    min-height: auto;
+    display: block;
+    padding: calc(var(--header-height, 72px) + 20px) 14px 44px;
+    background-color: #edece5;
+    scroll-margin-top: var(--header-height, 72px);
+  }
+
+  .s04-edge-blend-top,
+  .s04-edge-blend-bottom,
+  .s04-backdrop-stage,
+  .s04-noise-overlay {
+    display: none !important;
+  }
+
+  /* Khung thẻ giấy cuộn dọc trên Mobile với viền da ngọc bích chỉ vàng */
+  .s04-panoramic-stage {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    max-height: none;
+    aspect-ratio: auto;
+    margin: 0 auto;
+    background: #faf8f2;
+    border-left: 14px solid #163d30;
+    box-shadow: inset 1.5px 0 0 rgba(212, 175, 55, 0.75),
+                0 10px 36px rgba(18, 44, 32, 0.1);
+    border-radius: 4px 18px 18px 4px;
+    padding: 24px 16px 120px 18px;
+    box-sizing: border-box;
+    /* Tranh đồi núi thủy mặc ở chân trang */
+    background-image: url('../../assets/decor/s04-mobile-landscape-art.webp');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100% auto;
+    overflow: hidden;
+  }
+
+  /* Header trên mobile */
+  .s04-header {
+    display: block !important;
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none !important;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    text-align: left;
+    margin-bottom: 18px;
+  }
+
+  .s04-heading {
+    font-size: clamp(2rem, 7.8vw, 2.35rem);
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+    color: #11281e;
+    text-align: left;
+  }
+
+  .s04-subheading {
+    font-size: 14.5px;
+    color: #4a5f53;
+    line-height: 1.4;
+    margin: 6px 0 0;
+    text-align: left;
+  }
+
+  /* Cuộn dọc 2 phần trên mobile */
+  .s04-book-spread {
+    position: relative;
+    inset: auto;
+    top: auto;
+    left: auto;
+    transform: none !important;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    perspective: none;
+    container-type: normal !important;
+  }
+
+  .s04-page,
+  .s04-page-left,
+  .s04-page-right {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    height: auto;
+    transform: none !important;
+  }
+
+  .s04-page-inner {
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .s04-page-title {
+    display: none; /* Tiêu đề trang trái ẩn đi vì đã có s04-header làm chủ */
+  }
+
+  .s04-page-right .s04-page-title {
+    display: block;
+    font-size: clamp(1.55rem, 6vw, 1.85rem);
+    font-weight: 700;
+    color: #11281e;
+    letter-spacing: -0.03em;
+    margin: 22px 0 12px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(185, 195, 188, 0.55);
+  }
+
+  /* Phần 1: Options dạng Pill Cards 1 dòng */
+  .s04-options-group {
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .s04-option-card {
+    height: 48px;
+    padding: 0 14px;
+    border-radius: 12px;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(195, 205, 198, 0.65);
+    box-shadow: none;
+  }
+
+  .s04-option-card.is-active {
+    background: rgba(220, 235, 226, 0.9);
+    border-color: rgba(142, 178, 158, 0.85);
+  }
+
+  .s04-option-card:active {
+    transform: scale(0.98);
+  }
+
+  .s04-option-title {
+    font-size: 15.5px;
+    font-weight: 600;
+    color: #11281e;
+  }
+
+  .s04-option-desc {
+    display: none !important; /* Ẩn mô tả theo đúng bản vẽ media_1789878857272.jpg */
+  }
+
+  .s04-page-bottom-link {
+    margin-top: 8px;
+    padding-left: 2px;
+    transform: none;
+  }
+
+  .s04-open-inquiry-link {
+    font-size: 13.5px;
+  }
+
+  /* Phần 2: Hạng mục bàn giao dạng Pill Cards */
+  .s04-deliverables-list {
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .s04-deliverable-item {
+    height: 48px;
+    padding: 0 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(195, 205, 198, 0.65);
+    gap: 12px;
+    border-bottom: 1px solid rgba(195, 205, 198, 0.65);
+  }
+
+  .s04-deliverable-icon-box {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: rgba(220, 235, 226, 0.85);
+  }
+
+  .s04-deliverable-title {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .s04-deliverable-desc {
+    display: none !important; /* Ẩn mô tả theo đúng bản vẽ media_1789878857272.jpg */
+  }
+
+  /* Accordion dạng Pill Card trên Mobile */
+  .s04-addon-accordion {
+    border: 1px solid rgba(195, 205, 198, 0.65);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.55);
+    padding: 0 12px;
+    margin-bottom: 14px;
+  }
+
+  .s04-accordion-header {
+    height: 48px;
+    padding: 0;
+  }
+
+  .s04-addon-main-title {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .s04-addon-subtitle {
+    display: none !important;
+  }
+
+  .s04-addon-drawer {
+    padding: 4px 0 10px 34px;
+  }
+
+  /* CTA Button trên Mobile */
+  .s04-cta-area {
+    margin-top: 14px;
+  }
+
+  .s04-stage-cta-btn {
+    height: 50px;
+    border-radius: 12px;
+    font-size: 15.5px;
+    font-weight: 600;
+    background: #133825;
+    box-shadow: 0 4px 16px rgba(19, 56, 37, 0.22);
+  }
+
+  .s04-stage-cta-btn:active {
+    transform: scale(0.98);
+    background: #0d281a;
+  }
+
+  .s04-cta-disclaimer {
+    font-size: 12px;
+    color: #5d7065;
+    margin-top: 7px;
+    line-height: 1.4;
+  }
+}
+
+/* ==========================================================================
+   9. ACCESSIBILITY: REDUCED MOTION PREFERENCE
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .s04-snow-canvas {
+    display: none !important;
+  }
+
+  .s04-page,
+  .s04-option-card,
+  .s04-deliverable-item,
+  .s04-stage-cta-btn {
+    transition: none !important;
+  }
+}

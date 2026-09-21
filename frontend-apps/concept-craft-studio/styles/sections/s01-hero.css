@@ -1,0 +1,706 @@
+/**
+ * S01: HERO — XLINHX THỦY MẶC KHÚC THỦY (03-thuy-mac)
+ * Full màn hình 100vh, nối tiếp liền mạch vào Section 2.
+ * Bộ chuyển động nặng đô & độc lạ:
+ * 1. 3D Cursor / Multi-plane Parallax tương tác không gian
+ * 2. Scroll-driven Cinematic Camera & Dòng nước ngọc tuôn chảy xuống Section 2
+ * 3. Ánh sáng loang lổ tự nhiên trên mặt nước (Living Water Caustics)
+ * 4. Bụi quang học ban mai (Sunlight Dust Motes) lơ lửng trong luồng sáng
+ * 5. Ánh nắng ban mai lay động song song theo ngọn gió sớm
+ */
+
+.section-hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  min-height: clamp(680px, 100vh, 1080px);
+  display: flex;
+  align-items: flex-start;
+  overflow: hidden;
+  background-color: #E6E3DC;
+  padding-top: calc(var(--header-height) + clamp(18px, 3vh, 36px));
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   TẦNG 1: TÁC PHẨM NGHỆ THUẬT HỘI HỌA THỦY MẶC KHÚC THỦY
+   Toàn màn hình liền mạch, không lệch pha, phủ kín mép chống hở viền khi parallax.
+   ========================================================================== */
+
+.hero-art-plate {
+  position: absolute;
+  top: -24px;
+  right: -24px;
+  bottom: -24px;
+  left: -24px;
+  width: calc(100% + 48px);
+  height: calc(100% + 48px);
+  background-image: url('../../assets/scenes/s01_thuy_mac_art_desktop.webp');
+  background-size: cover;
+  background-position: right top;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 1;
+  will-change: transform;
+  transform-origin: 65% 45%;
+  transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   TẦNG 2: ÁNH SÁNG NƯỚC LOANG LỔ ÊM DỊU TRÊN MẶT NƯỚC (DAPPLED LIGHT)
+   Ánh sáng caustics lung linh tự nhiên tại chỗ, KHÔNG vẽ viền giả, KHÔNG chạy ra.
+   ========================================================================== */
+
+.hero-dappled-light {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background-image: url('../../assets/scenes/s01_jade_caustics.webp');
+  background-repeat: repeat;
+  background-size: 420px 420px;
+  mix-blend-mode: soft-light;
+  opacity: 0.25;
+  -webkit-mask-image: radial-gradient(ellipse 65% 55% at 72% 76%, black 20%, transparent 75%);
+  mask-image: radial-gradient(ellipse 65% 55% at 72% 76%, black 20%, transparent 75%);
+  animation: dappledLightBreathe 9s ease-in-out infinite alternate;
+  will-change: opacity, transform;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dappledLightBreathe {
+  0% {
+    opacity: 0.18;
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    opacity: 0.34;
+    transform: scale(1.02) translate(3px, -2px);
+  }
+  100% {
+    opacity: 0.22;
+    transform: scale(0.99) translate(-2px, 1px);
+  }
+}
+
+/* ==========================================================================
+   TẦNG 3: ÁNH NẮNG BAN MAI LAY ĐỘNG & BỤI QUANG HỌC LƠ LỬNG
+   Ray sáng tự nhiên chiếu song song từ đỉnh, lay động nhẹ theo gió sớm.
+   ========================================================================== */
+
+.hero-sunbeams-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+  will-change: transform, opacity;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-beam {
+  position: absolute;
+  top: -30%;
+  height: 160%;
+  transform-origin: top left;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 245, 0.03) 20%,
+    rgba(255, 255, 240, 0.18) 50%,
+    rgba(255, 255, 245, 0.03) 80%,
+    transparent 100%
+  );
+  filter: blur(24px);
+  will-change: opacity, transform;
+}
+
+.beam-1 {
+  left: 8%;
+  width: clamp(70px, 10vw, 130px);
+  animation: sunbeamSway1 8s ease-in-out infinite alternate;
+}
+
+.beam-2 {
+  left: 28%;
+  width: clamp(110px, 14vw, 190px);
+  animation: sunbeamSway2 9.5s ease-in-out infinite 1.2s alternate;
+}
+
+.beam-3 {
+  left: 54%;
+  width: clamp(130px, 16vw, 230px);
+  animation: sunbeamSway3 7.8s ease-in-out infinite 0.7s alternate;
+}
+
+.beam-4 {
+  left: 78%;
+  width: clamp(80px, 11vw, 160px);
+  animation: sunbeamSway1 10.5s ease-in-out infinite 2.5s alternate;
+}
+
+@keyframes sunbeamSway1 {
+  0% {
+    opacity: 0.28;
+    transform: rotate(-32deg) skewX(0deg);
+  }
+  50% {
+    opacity: 0.62;
+    transform: rotate(-30.8deg) skewX(1deg);
+  }
+  100% {
+    opacity: 0.35;
+    transform: rotate(-32.6deg) skewX(-0.8deg);
+  }
+}
+
+@keyframes sunbeamSway2 {
+  0% {
+    opacity: 0.38;
+    transform: rotate(-32deg) translateY(0);
+  }
+  45% {
+    opacity: 0.68;
+    transform: rotate(-32.8deg) translateY(6px);
+  }
+  100% {
+    opacity: 0.32;
+    transform: rotate(-31.4deg) translateY(-4px);
+  }
+}
+
+@keyframes sunbeamSway3 {
+  0% {
+    opacity: 0.30;
+    transform: rotate(-32deg) scaleX(0.96);
+  }
+  55% {
+    opacity: 0.60;
+    transform: rotate(-31.6deg) scaleX(1.04);
+  }
+  100% {
+    opacity: 0.34;
+    transform: rotate(-32.4deg) scaleX(0.98);
+  }
+}
+
+/* Hạt bụi quang học lơ lửng trong luồng sáng (Sun-Dust Motes) */
+.hero-sun-dust {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.hero-sun-dust .dust {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 248, 225, 0.85);
+  box-shadow: 0 0 6px rgba(255, 240, 190, 0.9);
+  filter: blur(0.5px);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.dust-1 {
+  top: 22%;
+  left: 36%;
+  width: 4px;
+  height: 4px;
+  animation: dustFloat 11s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.dust-2 {
+  top: 38%;
+  left: 52%;
+  width: 3px;
+  height: 3px;
+  animation: dustFloat 14s cubic-bezier(0.4, 0, 0.6, 1) infinite 2s;
+}
+
+.dust-3 {
+  top: 48%;
+  left: 44%;
+  width: 5px;
+  height: 5px;
+  animation: dustFloat 12s cubic-bezier(0.4, 0, 0.6, 1) infinite 4.5s;
+}
+
+.dust-4 {
+  top: 62%;
+  left: 68%;
+  width: 3px;
+  height: 3px;
+  animation: dustFloat 15s cubic-bezier(0.4, 0, 0.6, 1) infinite 1s;
+}
+
+.dust-5 {
+  top: 28%;
+  left: 64%;
+  width: 4px;
+  height: 4px;
+  animation: dustFloat 13s cubic-bezier(0.4, 0, 0.6, 1) infinite 6s;
+}
+
+.dust-6 {
+  top: 72%;
+  left: 58%;
+  width: 3.5px;
+  height: 3.5px;
+  animation: dustFloat 16s cubic-bezier(0.4, 0, 0.6, 1) infinite 3.5s;
+}
+
+@keyframes dustFloat {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.8);
+  }
+  20% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0.95;
+    transform: translate3d(18px, -24px, 0) scale(1.15);
+  }
+  80% {
+    opacity: 0.60;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(36px, -50px, 0) scale(0.9);
+  }
+}
+
+/* Hạt tán xạ quang học lấp lánh (Caustic Glints) tại mép sóng & gáy sách */
+.hero-caustic-glints {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.hero-caustic-glints .glint {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(220, 255, 245, 0.60) 35%,
+    rgba(180, 240, 225, 0.15) 70%,
+    transparent 100%
+  );
+  mix-blend-mode: screen;
+  filter: blur(2px);
+  will-change: opacity, transform;
+}
+
+.glint-1 {
+  top: 24%;
+  right: 21%;
+  width: 30px;
+  height: 30px;
+  animation: glintTwinkle 3.8s ease-in-out infinite alternate;
+}
+
+.glint-2 {
+  top: 52%;
+  right: 53%;
+  width: 42px;
+  height: 24px;
+  transform: rotate(-15deg);
+  animation: glintTwinkle 4.6s ease-in-out infinite 0.9s alternate;
+}
+
+.glint-3 {
+  top: 68%;
+  right: 28%;
+  width: 28px;
+  height: 28px;
+  animation: glintTwinkle 3.4s ease-in-out infinite 1.4s alternate;
+}
+
+.glint-4 {
+  top: 85%;
+  left: 29%;
+  width: 52px;
+  height: 26px;
+  transform: rotate(10deg);
+  animation: glintTwinkle 5.2s ease-in-out infinite 0.4s alternate;
+}
+
+.glint-5 {
+  top: 90%;
+  right: 23%;
+  width: 44px;
+  height: 22px;
+  animation: glintTwinkle 4.2s ease-in-out infinite 1.8s alternate;
+}
+
+@keyframes glintTwinkle {
+  0% {
+    opacity: 0.20;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.15);
+  }
+  100% {
+    opacity: 0.28;
+    transform: scale(0.92);
+  }
+}
+
+/* ==========================================================================
+   TẦNG 4: TYPOGRAPHY HTML & CTA ACTIONS (THEO VISUAL GROUND TRUTH 03-THUY-MAC)
+   Đứng vững chắc trên khoảng tường daylight trong sáng bên trái.
+   ========================================================================== */
+
+.hero-container {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding-left: clamp(32px, 5vw, 80px);
+  padding-right: clamp(32px, 5vw, 80px);
+  display: flex;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  max-width: min(560px, 42vw);
+  gap: 18px;
+  margin-top: clamp(60px, 12vh, 130px);
+  will-change: transform, opacity, filter;
+  transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Headline 2 dòng chuẩn: Ý tưởng rõ hơn. / Sản phẩm thành hình. */
+.hero-title {
+  font-size: clamp(36px, 3.8vw, 54px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  color: #0F2E28;
+  margin: 0;
+}
+
+.hero-title-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.title-word-part {
+  display: inline;
+}
+
+/* Subline: Web, AI & tự động hóa. */
+.hero-subline {
+  font-size: clamp(17px, 1.4vw, 21px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: #526B64;
+  margin: 0;
+  max-width: 480px;
+}
+
+/* CTA Actions */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-top: 10px;
+}
+
+/* Nút chính: Xem dự án → (Pill button ngọc bích đậm) */
+.btn-hero-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #0E382F;
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 14px 28px;
+  border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(14, 56, 47, 0.20);
+  transition: 
+    background-color 0.25s ease, 
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+    box-shadow 0.25s ease;
+}
+
+.btn-hero-primary:hover {
+  background-color: #08261F;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(14, 56, 47, 0.28);
+}
+
+.btn-hero-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-hero-primary .btn-arrow {
+  transition: transform 0.25s ease;
+}
+
+.btn-hero-primary:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* Nút phụ: Trao đổi ý tưởng (Text link gạch chân thanh lịch) */
+.link-hero-secondary {
+  color: #0F2E28;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: #0F2E28;
+  transition: opacity 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.link-hero-secondary:hover {
+  opacity: 0.72;
+  text-decoration-color: var(--accent-emerald);
+}
+
+.link-hero-secondary:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================================================
+   TẦNG 5: DẢI SÓNG NƯỚC CHUYỂN TIẾP LIỀN MẠCH XUỐNG SECTION 2
+   Kết nối quang học giữa mặt bàn ngọc Section 1 và sân khấu Section 2.
+   ========================================================================== */
+
+.hero-river-transition {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(243, 239, 233, 0.35) 40%,
+    rgba(237, 232, 223, 0.85) 80%,
+    #EDE8DF 100%
+  );
+  pointer-events: none;
+  z-index: 4;
+  opacity: 0.9;
+  will-change: opacity;
+  transition: opacity 0.25s ease;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY MOTION: HIỆU ỨNG CASCADE REVEAL CHẬM RÃI & MỀM MẠI
+   ========================================================================== */
+
+.hero-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(4px);
+  transition: 
+    opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+}
+
+.hero-reveal-title-1 {
+  transition-delay: 0.25s;
+}
+
+.hero-reveal-title-2 {
+  transition-delay: 0.55s;
+}
+
+.hero-reveal-subline {
+  transition-delay: 0.85s;
+}
+
+.hero-reveal-actions {
+  transition-delay: 1.15s;
+}
+
+.hero-copy.is-revealed .hero-reveal {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* ==========================================================================
+   RESPONSIVE: MOBILE DEDICATED LAYOUT (03-thuy-mac-responsive.png)
+   Bố cục dọc fluid từ 320px, chữ ở trên, artwork ở dưới, hòa chung nền ngà.
+   ========================================================================== */
+
+@media (max-width: 860px) {
+  .section-hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding-top: calc(var(--header-height) + 12px);
+    padding-bottom: 24px;
+    background-color: #F3EFE9;
+    overflow-x: hidden;
+  }
+
+  .hero-art-plate {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../assets/scenes/s01_thuy_mac_art_mobile.webp');
+    background-size: contain;
+    background-position: center bottom;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 20%);
+    transform-origin: center bottom;
+  }
+
+  .hero-dappled-light {
+    -webkit-mask-image: radial-gradient(ellipse 80% 50% at 50% 80%, black 20%, transparent 75%);
+    mask-image: radial-gradient(ellipse 80% 50% at 50% 80%, black 20%, transparent 75%);
+  }
+
+  .hero-container {
+    padding-left: clamp(20px, 6.4vw, 32px);
+    padding-right: clamp(20px, 6.4vw, 32px);
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 5;
+    align-self: flex-start;
+  }
+
+  .hero-copy {
+    max-width: 100%;
+    width: 100%;
+    gap: 12px;
+    margin-top: 0;
+  }
+
+  /* Headline trên mobile: "Ý tưởng rõ hơn." / "Sản phẩm" / "thành hình." */
+  .hero-title {
+    font-size: clamp(32px, 8.8vw, 44px);
+    line-height: 1.15;
+    letter-spacing: -0.04em;
+    color: #0F2E28;
+  }
+
+  .hero-title-line {
+    display: block;
+    white-space: normal;
+  }
+
+  .hero-title-line-2 .title-word-part {
+    display: block;
+  }
+
+  .hero-subline {
+    font-size: clamp(16px, 4.4vw, 18px);
+    line-height: 1.45;
+    color: #526B64;
+    max-width: 320px;
+    margin-top: 2px;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    width: auto;
+    margin-top: 8px;
+    margin-bottom: 24px;
+  }
+
+  .btn-hero-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    padding: 13px 26px;
+    font-size: 15px;
+    border-radius: 9999px;
+  }
+
+  .link-hero-secondary {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    font-size: 15px;
+    text-align: left;
+    padding: 0;
+  }
+
+  /* Glints định vị chính xác theo bố cục dọc mobile */
+  .glint-1 {
+    top: 41%;
+    right: 20%;
+    width: 28px;
+    height: 28px;
+  }
+
+  .glint-2 {
+    top: 61%;
+    left: 17%;
+    width: 38px;
+    height: 22px;
+  }
+
+  .glint-3 {
+    top: 71%;
+    right: 28%;
+    width: 26px;
+    height: 26px;
+  }
+
+  .glint-4 {
+    top: 86%;
+    left: 32%;
+    width: 48px;
+    height: 24px;
+  }
+
+  .glint-5 {
+    top: 92%;
+    right: 15%;
+    width: 42px;
+    height: 20px;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: PREFERS-REDUCED-MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-beam,
+  .hero-caustic-glints .glint,
+  .hero-sun-dust .dust,
+  .hero-dappled-light {
+    animation: none !important;
+  }
+
+  .hero-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+}

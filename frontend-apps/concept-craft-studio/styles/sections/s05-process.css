@@ -1,0 +1,1222 @@
+/**
+ * S05: COLLABORATION PROCESS SECTION STYLES — JADE RIVER JOURNEY
+ * 100% Pixel & Coordinate Ground Truth with media_1789861694346.jpg and media_1789869984456.png
+ * Heavy-duty cinematic scroll motion:
+ * - Misty mountains & scenic backdrop softly unfurl.
+ * - Golden river stream flows gracefully from top to bottom.
+ * - Waypoints 01 -> 02 -> 03 emerge progressively along the river.
+ * - Poetic inscriptions fade in softly from the left, rendered slow and steady.
+ * - Right steps cascade in with elegant timing.
+ */
+
+.section-process {
+  position: relative;
+  background-color: #F7F8F2;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-margin-top: 76px;
+}
+
+/* Master Stage Panoramic Frame — 100% Full Viewport / Full Screen */
+.s05-stage-frame {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  min-height: 100svh;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 0;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   SCENIC BACKDROP (Bonsai, Celadon Vase, Stone Plinth, Misty Mountains)
+   ========================================================================== */
+.s05-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.s05-backdrop-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+  display: block;
+  /* Clean initial state: pure opacity fade without blur artifacts */
+  opacity: 0;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 2.0s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.section-process.is-in-view .s05-backdrop-img {
+  opacity: 1;
+  transform: translate3d(calc(var(--s05-px, 0) * -6px), calc(var(--s05-py, 0) * -4px), 0);
+  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 140ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   GOLDEN RIVER STREAM (SVG Path & Flow Animation)
+   ========================================================================== */
+.s05-river-stream-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  transform: translate3d(calc(var(--s05-px, 0) * 4px), calc(var(--s05-py, 0) * 3px), 0);
+  transition: transform 140ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.s05-river-stream-path {
+  stroke-dasharray: 650;
+  stroke-dashoffset: 650;
+  transition: stroke-dashoffset 2.4s cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
+  will-change: stroke-dashoffset;
+}
+
+.section-process.is-in-view .s05-river-stream-path {
+  stroke-dashoffset: 0;
+}
+
+/* Living River Current: Liquid light flowing continuously down river */
+.s05-river-flow-current {
+  stroke-dasharray: 85 185;
+  stroke-dashoffset: 270;
+  opacity: 0;
+  filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.85));
+  transition: opacity 1.0s ease 0.4s;
+  pointer-events: none;
+}
+
+.section-process.is-in-view .s05-river-flow-current {
+  opacity: 0.95;
+  animation: s05RiverCurrentFlow 3.8s linear infinite;
+  animation-delay: 0.8s;
+}
+
+@keyframes s05RiverCurrentFlow {
+  0% {
+    stroke-dashoffset: 270;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.s05-stream-dot {
+  opacity: 0;
+  transform-origin: center;
+  transform: scale(0);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.section-process.is-in-view .s05-stream-dot-1 {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 1.3s;
+  animation: s05BeadGlint 3.6s ease-in-out infinite 2.2s;
+}
+
+.section-process.is-in-view .s05-stream-dot-2 {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 1.9s;
+  animation: s05BeadGlint 3.6s ease-in-out infinite 3.0s;
+}
+
+@keyframes s05BeadGlint {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 2px rgba(197, 168, 128, 0.4));
+  }
+  50% {
+    transform: scale(1.35);
+    filter: drop-shadow(0 0 7px rgba(212, 175, 55, 0.95));
+  }
+}
+
+/* Container for River Waypoints (Desktop: Absolute overlay across stage) */
+.s05-waypoints-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+  transform: translate3d(calc(var(--s05-px, 0) * 6px), calc(var(--s05-py, 0) * 4px), 0);
+  transition: transform 140ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.s05-waypoints-track .s05-waypoint {
+  pointer-events: auto;
+}
+
+/* Elements dedicated to mobile layout — hidden on desktop */
+.s05-mobile-river-line,
+.s05-wp-label,
+.s05-card-top-bar,
+.s05-step-quote,
+.s05-mobile-nav,
+.s05-mobile-badge,
+.s05-meta-ico {
+  display: none;
+}
+
+.s05-steps-wrapper {
+  width: 100%;
+}
+
+.s05-steps-flow {
+  transform: none !important;
+}
+
+.s05-waypoint {
+  position: absolute;
+  width: clamp(48px, 4.4vw, 56px);
+  height: clamp(48px, 4.4vw, 56px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%) scale(0.6);
+  background: #E4ECE7;
+  border: 1.5px solid #C5A880;
+  color: #103B32;
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 1.1vw, 1.0625rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  box-shadow: 0 4px 14px rgba(16, 59, 50, 0.12), inset 0 1px 2px rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  z-index: 4;
+  opacity: 0;
+  transition: opacity 0.8s ease,
+              transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background 240ms cubic-bezier(0.23, 1, 0.32, 1),
+              border 240ms cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 240ms cubic-bezier(0.23, 1, 0.32, 1),
+              color 240ms cubic-bezier(0.23, 1, 0.32, 1);
+  padding: 0;
+  outline: none;
+}
+
+/* Authentic Pixel-Locked Waypoint Positions */
+#s05-node-1 {
+  left: 24.25%;
+  top: 31.5%;
+}
+
+#s05-node-2 {
+  left: 20.80%;
+  top: 53.7%;
+}
+
+#s05-node-3 {
+  left: 27.12%;
+  top: 74.2%;
+}
+
+/* Reveal Timings */
+.section-process.is-in-view #s05-node-1 {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.0);
+  transition-delay: 0.7s;
+}
+
+.section-process.is-in-view #s05-node-2 {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.0);
+  transition-delay: 1.2s;
+}
+
+.section-process.is-in-view #s05-node-3 {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.0);
+  transition-delay: 1.7s;
+}
+
+/* Hover & Focus States */
+.s05-waypoint:hover {
+  transform: translate(-50%, -50%) scale(1.08) !important;
+  border-color: #D4AF37;
+  box-shadow: 0 6px 20px rgba(16, 59, 50, 0.16), 0 0 0 3px rgba(212, 175, 55, 0.28);
+}
+
+.s05-waypoint:focus-visible {
+  box-shadow: 0 0 0 4px #00634E;
+}
+
+/* Tactile Press Physics (Emil Kowalski Design Engineering: scale(0.96) on :active) */
+.s05-waypoint:active {
+  transform: translate(-50%, -50%) scale(0.96) !important;
+  transition: transform 100ms ease-out !important;
+}
+
+/* Idle Living Float for unselected milestones */
+.section-process.is-in-view .s05-waypoint:not(.is-active) {
+  animation: s05WaypointFloat 4.6s ease-in-out infinite alternate;
+}
+
+.section-process.is-in-view #s05-node-2:not(.is-active) {
+  animation-delay: -1.5s;
+}
+
+.section-process.is-in-view #s05-node-3:not(.is-active) {
+  animation-delay: -3.0s;
+}
+
+@keyframes s05WaypointFloat {
+  0% {
+    margin-top: 0;
+  }
+  100% {
+    margin-top: -3.5px;
+  }
+}
+
+.s05-waypoint.is-active {
+  background: linear-gradient(135deg, #0D3E31 0%, #155B46 100%);
+  border: 2px solid #D4AF37;
+  color: #FFFFFF;
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.25), 0 8px 24px rgba(15, 67, 53, 0.35);
+  transform: translate(-50%, -50%) scale(1.08) !important;
+}
+
+.s05-wp-num {
+  position: relative;
+  z-index: 2;
+}
+
+.s05-wp-pulse {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(212, 175, 55, 0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.s05-waypoint.is-active .s05-wp-pulse {
+  opacity: 1;
+  animation: s05-wp-pulse-anim 2.4s infinite ease-out;
+}
+
+@keyframes s05-wp-pulse-anim {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.85;
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.5);
+  }
+  50% {
+    transform: scale(1.24);
+    opacity: 0.25;
+    box-shadow: 0 0 14px 4px rgba(212, 175, 55, 0.35);
+  }
+  100% {
+    transform: scale(1.40);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   POETIC INSCRIPTION QUOTES (Fade gently from left, slow and steady)
+   ========================================================================== */
+.s05-quote {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-family: var(--font-sans);
+  font-size: clamp(0.72rem, 0.78vw, 0.84rem);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1.55;
+  color: #384A42;
+  text-transform: uppercase;
+  user-select: none;
+  pointer-events: none;
+  z-index: 3;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+  /* Hidden before reveal — NO BLUR FILTER to ensure 100% razor-sharp typography */
+  opacity: 0;
+  transform: translate3d(calc(-24px + var(--s05-px, 0) * 9px), calc(var(--s05-py, 0) * 7px), 0);
+  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Quote 1: In the upper foliage clearing to the right of bonsai leaves */
+.s05-quote-1 {
+  left: 7.5%;
+  top: 13.8%;
+}
+
+/* Quote 2: In the pocket between horizontal branch and vase neck */
+.s05-quote-2 {
+  left: 4.5%;
+  top: 46.8%;
+}
+
+/* Quote 3: Inscribed on the protruding marble stone plinth face */
+.s05-quote-3 {
+  left: 4.5%;
+  top: 80.8%;
+  color: #384A42;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.section-process.is-in-view .s05-quote-1 {
+  opacity: 1;
+  transform: translate3d(calc(var(--s05-px, 0) * 9px), calc(var(--s05-py, 0) * 7px), 0);
+  transition-delay: 1.1s;
+  animation: s05QuoteDrift 7s ease-in-out infinite alternate 2.6s;
+}
+
+.section-process.is-in-view .s05-quote-2 {
+  opacity: 1;
+  transform: translate3d(calc(var(--s05-px, 0) * 9px), calc(var(--s05-py, 0) * 7px), 0);
+  transition-delay: 1.8s;
+  animation: s05QuoteDrift 7.5s ease-in-out infinite alternate 3.3s;
+}
+
+.section-process.is-in-view .s05-quote-3 {
+  opacity: 1;
+  transform: translate3d(calc(var(--s05-px, 0) * 9px), calc(var(--s05-py, 0) * 7px), 0);
+  transition-delay: 2.5s;
+  animation: s05QuoteDrift 8s ease-in-out infinite alternate 4.0s;
+}
+
+@keyframes s05QuoteDrift {
+  0% {
+    transform: translate3d(calc(var(--s05-px, 0) * 9px), calc(var(--s05-py, 0) * 7px), 0);
+  }
+  100% {
+    transform: translate3d(calc(var(--s05-px, 0) * 9px + 1.5px), calc(var(--s05-py, 0) * 7px - 2.5px), 0);
+  }
+}
+
+.s05-quote-dash {
+  margin-top: 3px;
+  color: #55685F;
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+/* ==========================================================================
+   RIGHT CONTENT PANEL (Header & 3 Process Steps)
+   ========================================================================== */
+.s05-content-panel {
+  position: absolute;
+  left: clamp(38%, 39vw, 43%);
+  right: clamp(24px, 4.5vw, 60px);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 3;
+  max-width: 780px;
+}
+
+/* Header */
+.s05-header {
+  margin-bottom: clamp(24px, 3.5vw, 40px);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s,
+              transform 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
+}
+
+.section-process.is-in-view .s05-header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.s05-heading {
+  font-family: var(--font-sans);
+  font-size: clamp(2.1rem, 3.1vw, 3.15rem);
+  font-weight: 800;
+  color: #0E1F19;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: 0 0 10px 0;
+  white-space: nowrap;
+}
+
+.s05-subheading {
+  font-family: var(--font-sans);
+  font-size: clamp(1.0625rem, 1.25vw, 1.25rem);
+  font-weight: 400;
+  color: #52685E;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Steps List Container */
+.s05-steps-flow {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Step Row Card */
+.s05-step-card {
+  position: relative;
+  padding: clamp(16px, 2vw, 22px) 14px clamp(18px, 2.2vw, 24px) 16px;
+  border-bottom: 1px solid #E2E8E4;
+  border-radius: 12px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 220ms cubic-bezier(0.23, 1, 0.32, 1),
+              background 220ms cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 220ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.s05-step-card:hover {
+  background: rgba(235, 241, 238, 0.5);
+  transform: translateX(4px);
+}
+
+.s05-step-card:active {
+  transform: translateX(2px) scale(0.985);
+  transition: transform 90ms ease-out;
+}
+
+.s05-step-card.is-active {
+  background: rgba(235, 243, 239, 0.68);
+  box-shadow: inset 3.5px 0 0 #00634E, 0 4px 16px rgba(16, 59, 50, 0.05);
+}
+
+.section-process.is-in-view #s05-step-1 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.9s;
+}
+
+.section-process.is-in-view #s05-step-2 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 1.3s;
+}
+
+.section-process.is-in-view #s05-step-3 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 1.7s;
+}
+
+.s05-step-card:last-child {
+  border-bottom: none;
+}
+
+/* Step Header */
+.s05-step-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.s05-step-icon {
+  width: clamp(42px, 3.8vw, 48px);
+  height: clamp(42px, 3.8vw, 48px);
+  border-radius: 50%;
+  background: #EBF1EE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #103B32;
+  flex-shrink: 0;
+  transition: all 200ms ease;
+}
+
+.s05-step-card.is-active .s05-step-icon {
+  background: #E1EBE5;
+  color: #00634E;
+  box-shadow: 0 2px 8px rgba(0, 99, 78, 0.1);
+}
+
+.s05-step-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.3rem, 1.7vw, 1.55rem);
+  font-weight: 700;
+  color: #0E1F19;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 0;
+  flex-grow: 1;
+}
+
+/* Status Badge: "ĐANG THỰC HIỆN ●" */
+.s05-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #165B45;
+  user-select: none;
+}
+
+.s05-status-dot {
+  font-size: 0.625rem;
+  color: #165B45;
+  animation: s05-dot-pulse 2.2s infinite ease-in-out;
+}
+
+@keyframes s05-dot-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 0 2px rgba(22, 91, 69, 0.4));
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.35);
+    filter: drop-shadow(0 0 7px rgba(22, 91, 69, 0.85));
+  }
+}
+
+/* Action Button: "Cách góp ý +" */
+.s05-guide-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  padding: 4px 10px;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0E1F19;
+  cursor: pointer;
+  border-radius: var(--radius-pill);
+  transition: all 180ms ease;
+}
+
+.s05-guide-toggle-btn:hover {
+  background: rgba(235, 241, 238, 0.85);
+  color: #00634E;
+}
+
+.s05-guide-toggle-btn:active {
+  transform: scale(0.95);
+  transition: transform 90ms ease-out;
+}
+
+.s05-guide-plus {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #EBF1EE;
+  font-size: 1.05rem;
+  line-height: 1;
+  font-weight: 500;
+  color: #103B32;
+  transition: background 180ms ease;
+}
+
+.s05-guide-toggle-btn:hover .s05-guide-plus {
+  background: #DCE8E1;
+}
+
+/* Two-Column Metadata (Bạn / Nhận) */
+.s05-step-meta {
+  display: grid;
+  grid-template-columns: minmax(170px, 1fr) 1px minmax(210px, 1.2fr);
+  align-items: stretch;
+  gap: 20px;
+  padding-left: 64px;
+}
+
+.s05-meta-col {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.s05-meta-label {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #0E1F19;
+  line-height: 1.3;
+}
+
+.s05-meta-val {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: #52685E;
+  line-height: 1.4;
+}
+
+.s05-meta-divider {
+  width: 1px;
+  height: 100%;
+  min-height: 36px;
+  background-color: #D5DFD8;
+}
+
+/* Accordion Feedback Card (Step 2) */
+.s05-feedback-card {
+  margin-top: 14px;
+  margin-left: 64px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 320ms cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 240ms ease,
+              margin 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.s05-feedback-card.is-open {
+  max-height: 110px;
+  opacity: 1;
+  margin-top: 14px;
+}
+
+.s05-feedback-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #EBF1EE;
+  border-radius: 12px;
+  padding: 12px 18px;
+  border: 1px solid rgba(213, 230, 221, 0.6);
+  box-shadow: 0 2px 8px rgba(16, 59, 50, 0.03);
+}
+
+.s05-feedback-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #103B32;
+  flex-shrink: 0;
+}
+
+.s05-feedback-text {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #2D3E36;
+  line-height: 1.4;
+  flex-grow: 1;
+}
+
+.s05-feedback-chevron {
+  background: transparent;
+  border: none;
+  color: #52685E;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 180ms ease;
+}
+
+.s05-feedback-chevron:hover {
+  color: #0E1F19;
+  background: rgba(0, 99, 78, 0.08);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (MOBILE-NATIVE ARCHITECTURE FOR IPHONE 10/11/12 & NARROW SCREENS)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .s05-heading {
+    white-space: normal;
+  }
+}
+
+/* Mobile-only elements hidden on desktop */
+.s05-step-node,
+.s05-mobile-guide-wrap {
+  display: none !important;
+}
+
+@media (max-width: 860px) {
+  .section-process {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    padding: 48px 18px 64px 0;
+    display: block;
+    overflow: hidden;
+    background-color: #FAFBF8;
+    scroll-margin-top: 60px;
+    box-sizing: border-box;
+  }
+
+  .s05-stage-frame {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: auto;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  /* Scenic Backdrop for Mobile:
+     Loads s05-jade-river-mobile.webp with the authentic left jade strip
+     and pristine misty mountain watercolor at the bottom */
+  .s05-backdrop {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .s05-backdrop-img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    object-position: left bottom;
+  }
+
+  /* Hide desktop-only elements */
+  .s05-river-stream-svg,
+  .s05-waypoints-track,
+  .s05-quote,
+  .s05-mobile-badge,
+  .s05-subheading,
+  .s05-card-top-bar,
+  .s05-step-quote,
+  .s05-guide-toggle-btn,
+  .s05-feedback-card,
+  .s05-mobile-nav {
+    display: none !important;
+  }
+
+  /* Content Panel */
+  .s05-content-panel {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    padding: 0 16px 0 0;
+    box-sizing: border-box;
+  }
+
+  /* Header */
+  .s05-header {
+    margin-bottom: 32px;
+    padding-left: clamp(52px, 14.5vw, 64px);
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .s05-heading {
+    font-family: var(--font-sans);
+    font-size: clamp(1.85rem, 7.2vw, 2.25rem);
+    font-weight: 800;
+    color: #0E1F19;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    margin: 0;
+    max-width: 280px;
+    white-space: normal;
+  }
+
+  /* Steps Wrapper & Flow */
+  .s05-steps-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: visible;
+  }
+
+  .s05-steps-flow {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100%;
+    transform: none !important;
+    padding-left: clamp(52px, 14.5vw, 64px);
+    box-sizing: border-box;
+  }
+
+  /* Step Card (Minimalist Editorial Row - sits directly on paper/scenery) */
+  .s05-step-card {
+    position: relative;
+    width: 100%;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 0 32px 0 !important;
+    margin: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
+    cursor: pointer;
+  }
+
+  .s05-step-card:last-child {
+    padding-bottom: clamp(60px, 16vw, 110px) !important; /* Let the mountain scenery show at bottom */
+  }
+
+  /* Vertical Timeline Connector Line running down on the left */
+  /* Connecting line between Step 1 and Step 2 */
+  #s05-step-1::before {
+    content: '';
+    position: absolute;
+    left: calc(-1 * clamp(52px, 14.5vw, 64px) + clamp(26px, 7.2vw, 32px));
+    top: 36px;
+    bottom: -6px;
+    width: 1.5px;
+    background: #2D5A46;
+    z-index: 1;
+  }
+
+  /* Intermediate bead between Step 1 and Step 2 */
+  #s05-step-1::after {
+    content: '';
+    position: absolute;
+    left: calc(-1 * clamp(52px, 14.5vw, 64px) + clamp(26px, 7.2vw, 32px));
+    top: calc(50% + 18px);
+    transform: translate(-50%, -50%);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #1A5F4A;
+    border: 1.5px solid #FAFBF8;
+    box-shadow: 0 0 0 1px #2D5A46;
+    z-index: 2;
+  }
+
+  /* Connecting line between Step 2 and Step 3 */
+  #s05-step-2::before {
+    content: '';
+    position: absolute;
+    left: calc(-1 * clamp(52px, 14.5vw, 64px) + clamp(26px, 7.2vw, 32px));
+    top: 36px;
+    bottom: -6px;
+    width: 1.5px;
+    background: #2D5A46;
+    z-index: 1;
+  }
+
+  /* Intermediate bead between Step 2 and Step 3 */
+  #s05-step-2::after {
+    content: '';
+    position: absolute;
+    left: calc(-1 * clamp(52px, 14.5vw, 64px) + clamp(26px, 7.2vw, 32px));
+    top: calc(50% + 18px);
+    transform: translate(-50%, -50%);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #1A5F4A;
+    border: 1.5px solid #FAFBF8;
+    box-shadow: 0 0 0 1px #2D5A46;
+    z-index: 2;
+  }
+
+  /* Tail line for Step 3 extending into the misty mountain */
+  #s05-step-3::before {
+    content: '';
+    position: absolute;
+    left: calc(-1 * clamp(52px, 14.5vw, 64px) + clamp(26px, 7.2vw, 32px));
+    top: 36px;
+    height: 48px;
+    width: 1.5px;
+    background: #2D5A46;
+    z-index: 1;
+  }
+
+  #s05-step-3::after {
+    content: '';
+    position: absolute;
+    left: calc(-1 * clamp(52px, 14.5vw, 64px) + clamp(26px, 7.2vw, 32px));
+    top: 84px;
+    transform: translate(-50%, -50%);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #1A5F4A;
+    border: 1.5px solid #FAFBF8;
+    box-shadow: 0 0 0 1px #2D5A46;
+    z-index: 2;
+  }
+
+  /* Step Node (Circle 01, 02, 03 on timeline) */
+  .s05-step-node {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: calc(-1 * clamp(52px, 14.5vw, 64px) + clamp(26px, 7.2vw, 32px));
+    top: 0;
+    transform: translateX(-50%);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    border: 1.5px solid #2D5A46;
+    color: #0E1F19;
+    padding: 0;
+    cursor: pointer;
+    z-index: 3;
+    box-shadow: 0 2px 8px rgba(16, 59, 50, 0.08);
+    transition: all 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .s05-step-node:active {
+    transform: translateX(-50%) scale(0.92);
+  }
+
+  .s05-node-num {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  /* Active Node State (Matching Node 01 in reference image with living jewel aura) */
+  .s05-step-node.is-active {
+    background: #1A5F4A !important;
+    border-color: #D4AF37 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.4), 0 4px 14px rgba(15, 67, 53, 0.3) !important;
+    animation: s05MobileNodePulse 2.8s infinite ease-in-out;
+  }
+
+  @keyframes s05MobileNodePulse {
+    0%, 100% {
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.4), 0 4px 14px rgba(15, 67, 53, 0.3) !important;
+    }
+    50% {
+      box-shadow: 0 0 0 5px rgba(212, 175, 55, 0.7), 0 6px 20px rgba(15, 67, 53, 0.45) !important;
+    }
+  }
+
+  /* Step Header: Icon + Title */
+  .s05-step-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(14, 31, 25, 0.12);
+  }
+
+  .s05-step-icon {
+    width: auto;
+    height: auto;
+    background: transparent !important;
+    color: #0E1F19;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .s05-step-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: #0E1F19;
+    stroke-width: 2;
+  }
+
+  .s05-step-title {
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0E1F19;
+    letter-spacing: -0.015em;
+    margin: 0;
+  }
+
+  /* Step Meta Rows: Bạn & Nhận (Stacked label on top of value matching Ground Truth) */
+  .s05-step-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 6px 0 0 0;
+    margin: 0;
+  }
+
+  .s05-meta-col {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .s05-meta-label {
+    font-family: var(--font-sans);
+    font-size: 1.0rem;
+    font-weight: 700;
+    color: #0E1F19;
+    display: block;
+    line-height: 1.3;
+  }
+
+  .s05-meta-ico {
+    display: none !important;
+  }
+
+  .s05-meta-val {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: #4B5563;
+    line-height: 1.4;
+  }
+
+  .s05-meta-divider {
+    display: none !important;
+  }
+
+  /* Mobile Accordion Pill "Cách góp ý" (Step 2) */
+  .s05-mobile-guide-wrap {
+    display: block !important;
+    margin-top: 14px;
+    width: 100%;
+  }
+
+  .s05-mobile-guide-pill {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 14px;
+    background: rgba(26, 95, 74, 0.04);
+    border: 1px solid rgba(26, 95, 74, 0.18);
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    transition: background 180ms ease, border-color 180ms ease;
+    box-sizing: border-box;
+  }
+
+  .s05-mobile-guide-pill:active {
+    background: rgba(26, 95, 74, 0.08);
+  }
+
+  .s05-pill-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #0E1F19;
+  }
+
+  .s05-pill-icon {
+    stroke: #0E1F19;
+    flex-shrink: 0;
+  }
+
+  .s05-pill-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #0E1F19;
+  }
+
+  .s05-pill-chevron {
+    stroke: #0E1F19;
+    transition: transform 220ms ease;
+    flex-shrink: 0;
+  }
+
+  .s05-mobile-guide-pill[aria-expanded="true"] .s05-pill-chevron {
+    transform: rotate(180deg);
+  }
+
+  .s05-mobile-guide-drawer {
+    margin-top: 8px;
+    padding: 10px 14px;
+    background: rgba(235, 243, 238, 0.85);
+    border-radius: 8px;
+    border: 1px dashed rgba(26, 95, 74, 0.22);
+  }
+
+  .s05-mobile-guide-drawer[hidden] {
+    display: none;
+  }
+
+  .s05-guide-hint-text {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    color: #1A5F4A;
+    margin: 0;
+    font-weight: 500;
+  }
+}
+
+/* Extra Compact Devices (iPhone 10/11/12 & <=390px) */
+@media (max-width: 390px) {
+  .section-process {
+    padding-top: 40px;
+  }
+
+  .s05-heading {
+    font-size: 1.7rem;
+  }
+
+  .s05-step-title {
+    font-size: 1.15rem;
+  }
+
+  .s05-meta-label,
+  .s05-meta-val {
+    font-size: 0.875rem;
+  }
+}
+

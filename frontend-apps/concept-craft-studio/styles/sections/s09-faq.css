@@ -1,0 +1,913 @@
+/**
+ * S09: FAQ / CÂU HỎI THƯỜNG GẶP — XLINHX DAYLIGHT CRAFT STUDIO
+ * "Làm rõ trước khi bắt đầu."
+ * 
+ * 1. SÂN KHẤU ĐỒNG BỘ NGUYÊN KHỐI (Unified Daylight Stage Backdrop):
+ *    - Toàn cảnh 16:9 núi ngọc sơn thủy, dải sóng uốn lượn ngang màn hình,
+ *      sàn đá travertine bóng cây và cành lá nắng sớm komorebi.
+ * 
+ * 2. CHUYỂN ĐỘNG NẶNG ĐÔ & KHÁC BIỆT (Heavy-Duty Cinematic Motions):
+ *    - Scroll Reveal: Khi cuộn tới, kích hoạt chuỗi xuất hiện cascade đa tầng.
+ *    - 3D Spatial Parallax: Phản hồi độ sâu không gian theo chuyển động trỏ chuột.
+ *    - Quý phái & Độc lạ: Hoa văn tứ diệp xoay 45° phát sáng khi hover vào hàng tương ứng.
+ *    - Vệt sáng ngọc bích động (Dynamic Komorebi Radial Light) lướt êm theo chuột.
+ *    - Phản hồi xúc giác (Tactile Micro-Spring Physics) chuẩn Apple HIG.
+ */
+
+.section-faq {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 680px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ECEFE9;
+  scroll-margin-top: 0;
+  padding: calc(var(--header-height, 72px) + 14px) 0 24px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   1. SÂN KHẤU NỀN MASTER TOÀN CẢNH & THỊ SAI 3D (SPATIAL DEPTH)
+   ========================================================================== */
+.s08-stage-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.s08-backdrop-picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.s08-backdrop-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  display: block;
+  transform: translate3d(0, 6px, 0);
+  filter: brightness(0.98);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s ease;
+  will-change: transform;
+}
+
+.section-faq.is-in-view .s08-backdrop-img {
+  transform: translate3d(0, 0, 0);
+  filter: brightness(1);
+}
+
+/* Lớp chuyển tiếp viền trên kết nối mượt mà từ Section 7 (#person) */
+.s09-top-transition {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(246, 248, 245, 0.85) 0%, rgba(246, 248, 245, 0) 100%);
+}
+
+/* ==========================================================================
+   2. KHUNG BỐ CỤC CHÍNH
+   ========================================================================== */
+.s09-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  margin: auto 0;
+  padding: 0 clamp(20px, 3.5vw, 48px);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.s09-master-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) clamp(28px, 3vw, 48px) minmax(320px, 1.35fr);
+  align-items: center;
+  gap: 0;
+}
+
+/* ==========================================================================
+   3. CỘT TRÁI: TIÊU ĐỀ & TRIẾT LÝ (ORCHESTRATED REVEAL)
+   ========================================================================== */
+.s09-left-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-right: clamp(24px, 3.5vw, 44px);
+  will-change: transform;
+  transition: transform 180ms ease-out;
+}
+
+.s09-kicker-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.s09-kicker {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #556E63;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translate3d(0, 10px, 0);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1) 180ms, transform 600ms cubic-bezier(0.16, 1, 0.3, 1) 180ms;
+}
+
+.s09-kicker-line {
+  display: inline-block;
+  width: 38px;
+  height: 1.5px;
+  background-color: #92ACA0;
+  border-radius: 1px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1) 220ms;
+}
+
+.section-faq.is-in-view .s09-kicker {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.section-faq.is-in-view .s09-kicker-line {
+  transform: scaleX(1);
+}
+
+.s09-title {
+  font-family: var(--font-sans);
+  font-size: clamp(2.3rem, 3.4vw, 3.3rem);
+  font-weight: 700;
+  color: #0E2922;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  margin: 0 0 14px 0;
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1) 280ms, transform 700ms cubic-bezier(0.16, 1, 0.3, 1) 280ms;
+}
+
+.section-faq.is-in-view .s09-title {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.s09-subtitle {
+  font-family: var(--font-sans);
+  font-size: clamp(1.08rem, 1.35vw, 1.28rem);
+  font-weight: 600;
+  color: #3E5A4F;
+  line-height: 1.35;
+  margin: 0 0 12px 0;
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  transition: opacity 650ms cubic-bezier(0.16, 1, 0.3, 1) 360ms, transform 650ms cubic-bezier(0.16, 1, 0.3, 1) 360ms;
+}
+
+.section-faq.is-in-view .s09-subtitle {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.s09-desc {
+  font-family: var(--font-sans);
+  font-size: clamp(0.875rem, 0.98vw, 0.97rem);
+  font-weight: 400;
+  color: #546C62;
+  line-height: 1.6;
+  max-width: 44ch;
+  margin: 0 0 26px 0;
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
+  transition: opacity 650ms cubic-bezier(0.16, 1, 0.3, 1) 440ms, transform 650ms cubic-bezier(0.16, 1, 0.3, 1) 440ms;
+}
+
+.section-faq.is-in-view .s09-desc {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Khối trích dẫn triết lý: Nằm êm ái phía trên sườn núi ngọc bích */
+.s09-quote-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 4px;
+  padding-left: clamp(40px, 5.8vw, 84px);
+  cursor: default;
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1) 520ms, transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section-faq.is-in-view .s09-quote-block {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.s09-quote-block:hover {
+  transform: translate3d(0, -3px, 0);
+}
+
+.s09-quote-svg {
+  color: #92A99D;
+  margin-bottom: 8px;
+  transition: transform 320ms cubic-bezier(0.34, 1.56, 0.64, 1), color 240ms ease, filter 240ms ease;
+}
+
+.s09-quote-block:hover .s09-quote-svg {
+  color: #4C7D6B;
+  transform: scale(1.15) rotate(-3deg);
+  filter: drop-shadow(0 3px 10px rgba(60, 120, 95, 0.38));
+}
+
+.s09-quote-text {
+  font-family: var(--font-sans);
+  font-style: italic;
+  font-size: clamp(0.92rem, 1.08vw, 1.02rem);
+  font-weight: 400;
+  color: #405B50;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  transition: color 240ms ease;
+}
+
+.s09-quote-block:hover .s09-quote-text {
+  color: #1A4738;
+}
+
+.s09-quote-dash {
+  width: 0;
+  height: 1.5px;
+  background-color: #8CA79A;
+  border-radius: 1px;
+  margin-top: 10px;
+  transition: width 600ms cubic-bezier(0.16, 1, 0.3, 1) 680ms, background-color 240ms ease;
+}
+
+.section-faq.is-in-view .s09-quote-dash {
+  width: 26px;
+}
+
+.s09-quote-block:hover .s09-quote-dash {
+  width: 44px;
+  background-color: #4C7D6B;
+}
+
+/* ==========================================================================
+   4. ĐƯỜNG PHÂN CÁCH TRUNG TÂM VỚI HUY HIỆU TỨ DIỆP ĐÔNG PHƯƠNG
+   ========================================================================== */
+.s09-divider-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 380px;
+  user-select: none;
+}
+
+.s09-col-line {
+  width: 1px;
+  flex: 1;
+  background-color: #CAD8D0;
+  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1) 340ms, background-color 280ms ease;
+}
+
+.s09-col-line.top {
+  transform: scaleY(0);
+  transform-origin: bottom;
+}
+
+.s09-col-line.bottom {
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.section-faq.is-in-view .s09-col-line {
+  transform: scaleY(1);
+}
+
+/* Huy hiệu tứ diệp trung tâm: Bloom khi xuất hiện & xoay nở hoa khi hover */
+.s09-medallion {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.6) rotate(-90deg);
+  transition: opacity 600ms ease 380ms, transform 750ms cubic-bezier(0.34, 1.56, 0.64, 1) 380ms, filter 300ms ease;
+  filter: drop-shadow(0 2px 6px rgba(16, 59, 50, 0.08));
+}
+
+.section-faq.is-in-view .s09-medallion {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.s09-medallion:hover {
+  transform: scale(1.24) rotate(90deg);
+  filter: drop-shadow(0 6px 18px rgba(16, 65, 48, 0.32));
+}
+
+/* ==========================================================================
+   5. CỘT PHẢI: ACCORDION 4 CÂU HỎI (CASCADE ENTRANCE & TACTILE HOVER)
+   ========================================================================== */
+.s09-right-col {
+  display: flex;
+  flex-direction: column;
+  padding-left: clamp(20px, 3.5vw, 44px);
+  will-change: transform;
+  transition: transform 180ms ease-out;
+}
+
+/* Dải hoa văn phân cách trên & giữa các câu hỏi: ❖ ────── ❖ */
+.s09-ornament-divider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: #789689;
+  user-select: none;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1), color 240ms ease;
+}
+
+/* Stagger delay cho 5 dải hoa văn */
+.s09-ornament-divider:nth-of-type(1) { transition-delay: 340ms; }
+.s09-ornament-divider:nth-of-type(2) { transition-delay: 420ms; }
+.s09-ornament-divider:nth-of-type(3) { transition-delay: 500ms; }
+.s09-ornament-divider:nth-of-type(4) { transition-delay: 580ms; }
+.s09-ornament-divider:nth-of-type(5) { transition-delay: 660ms; }
+
+.section-faq.is-in-view .s09-ornament-divider {
+  transform: scaleX(1);
+}
+
+.s09-diamond {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform 380ms cubic-bezier(0.34, 1.56, 0.64, 1), filter 280ms ease;
+}
+
+.s09-center-flower {
+  display: none;
+}
+
+.s09-div-rule.right-rule {
+  display: none;
+}
+
+.m-break {
+  display: none;
+}
+
+.s09-div-rule {
+  flex: 1;
+  height: 1px;
+  background-color: #CAD8D0;
+  margin: 0 8px;
+  transition: background-color 280ms ease, transform 280ms ease;
+}
+
+/* HIỆU ỨNG ĐỘC LẠ: KHI HOVER VÀO HÀNG, 2 ĐẦU HOA VĂN TỨ DIỆP XOAY 45° VÀ TỎA SÁNG */
+.s09-ornament-divider.is-row-hovered .s09-diamond {
+  transform: scale(1.36) rotate(45deg);
+  filter: drop-shadow(0 0 6px rgba(45, 120, 90, 0.6));
+}
+
+.s09-ornament-divider.is-row-hovered .s09-diamond path {
+  fill: #E2EFE7;
+  stroke: #2A684F;
+}
+
+.s09-ornament-divider.is-row-hovered .s09-div-rule {
+  background-color: #88B2A0;
+  transform: scaleY(1.6);
+}
+
+/* Hàng Accordion */
+.s09-acc-row {
+  position: relative;
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translate3d(24px, 0, 0);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1), background-color 260ms ease, box-shadow 260ms ease;
+}
+
+/* Stagger delay cho 4 hàng accordion */
+.s09-acc-row:nth-of-type(1) { transition-delay: 380ms; }
+.s09-acc-row:nth-of-type(2) { transition-delay: 460ms; }
+.s09-acc-row:nth-of-type(3) { transition-delay: 540ms; }
+.s09-acc-row:nth-of-type(4) { transition-delay: 620ms; }
+
+.section-faq.is-in-view .s09-acc-row {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* VỆT SÁNG NGỌC BÍCH ĐỘNG THEO CON TRỎ CHUỘT (KOMOREBI RADIAL WASH) */
+.s09-acc-row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  pointer-events: none;
+  background: radial-gradient(circle 240px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(198, 224, 212, 0.55) 0%, rgba(224, 238, 230, 0.2) 50%, transparent 85%);
+  opacity: 0;
+  transition: opacity 280ms ease;
+  z-index: 0;
+}
+
+.s09-acc-row:hover::before {
+  opacity: 1;
+}
+
+.s09-acc-row.is-open {
+  background-color: rgba(235, 242, 237, 0.55);
+  box-shadow: 0 4px 16px rgba(16, 59, 50, 0.03);
+}
+
+.s09-acc-trigger {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 15px 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-sans);
+  color: #103B32;
+  outline: none;
+}
+
+.s09-acc-trigger:focus-visible {
+  outline: 2px solid #00634E;
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+/* Huy hiệu số tròn: Phản hồi đàn hồi chuẩn Apple Spring */
+.s09-acc-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #CAD7CF;
+  color: #12362C;
+  font-size: 0.95rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-right: 18px;
+  transition: transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1), background-color 220ms ease, box-shadow 220ms ease, color 200ms ease;
+}
+
+.s09-acc-trigger:hover .s09-acc-badge {
+  transform: translateY(-2px) scale(1.08);
+  box-shadow: 0 4px 14px rgba(18, 54, 44, 0.22);
+  color: #004D3A;
+  background-color: #BDCECE;
+}
+
+.s09-acc-trigger:active .s09-acc-badge {
+  transform: scale(0.92);
+  transition-duration: 80ms;
+}
+
+.s09-acc-row.is-open .s09-acc-badge {
+  background-color: #073224;
+  color: #FFFFFF;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(7, 50, 36, 0.35), 0 0 0 3px rgba(7, 50, 36, 0.12);
+  transform: scale(1.06);
+}
+
+/* Nhãn tiêu đề câu hỏi: Lướt nhẹ 4px khi hover */
+.s09-acc-label {
+  flex: 1;
+  font-size: clamp(1.025rem, 1.2vw, 1.175rem);
+  font-weight: 600;
+  color: #11342B;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  transition: transform 240ms cubic-bezier(0.2, 0.9, 0.3, 1), color 200ms ease;
+}
+
+.s09-acc-trigger:hover .s09-acc-label {
+  color: #005A44;
+  transform: translateX(5px);
+}
+
+/* Nút Icon đóng mở (+ / -): Xoay morphing uyển chuyển */
+.s09-acc-toggle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #12362C;
+  flex-shrink: 0;
+  margin-left: 12px;
+  transition: transform 320ms cubic-bezier(0.34, 1.56, 0.64, 1), background-color 240ms ease, color 200ms ease;
+}
+
+.s09-acc-trigger:hover .s09-acc-toggle {
+  color: #005A44;
+  background-color: rgba(160, 190, 175, 0.28);
+  transform: rotate(90deg) scale(1.1);
+}
+
+.s09-acc-row.is-open .s09-acc-toggle {
+  transform: rotate(180deg);
+}
+
+.s09-acc-row.is-open .s09-acc-trigger:hover .s09-acc-toggle {
+  transform: rotate(270deg) scale(1.1);
+}
+
+.toggle-icon {
+  display: block;
+  stroke: currentColor;
+}
+
+.toggle-icon.minus {
+  display: none;
+}
+
+.toggle-icon.plus {
+  display: block;
+}
+
+.s09-acc-row.is-open .toggle-icon.minus {
+  display: block;
+}
+
+.s09-acc-row.is-open .toggle-icon.plus {
+  display: none;
+}
+
+/* Khung trượt trả lời: Tối ưu trượt đàn hồi chuẩn 60fps */
+.s09-acc-panel {
+  position: relative;
+  z-index: 1;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 360ms cubic-bezier(0.16, 1, 0.3, 1), opacity 260ms ease;
+}
+
+.s09-acc-row.is-open .s09-acc-panel {
+  max-height: 260px;
+  opacity: 1;
+}
+
+/* Thẻ câu trả lời nền ngọc nhạt thanh thoát chuẩn ảnh */
+.s09-acc-card {
+  margin: 4px 6px 14px 6px;
+  padding: 16px 22px;
+  background-color: rgba(223, 233, 226, 0.86);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(142, 166, 155, 0.35);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(16, 59, 50, 0.04);
+  transform: translate3d(0, 6px, 0);
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.s09-acc-row.is-open .s09-acc-card {
+  transform: translate3d(0, 0, 0);
+}
+
+.s09-acc-card p {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(0.9rem, 1.05vw, 0.96rem);
+  color: #3C564C;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+/* ==========================================================================
+   6. RESPONSIVE DESIGN (TABLET & MOBILE) — ARTISTIC GROUND TRUTH
+   ========================================================================== */
+@media (max-width: 860px) {
+  .section-faq {
+    height: 100vh;
+    height: 100dvh;
+    min-height: 100dvh;
+    max-height: 100dvh;
+    padding: calc(var(--header-height, 60px) + 8px) 0 16px;
+    justify-content: flex-start;
+    overflow: hidden;
+    scroll-margin-top: 0;
+    box-sizing: border-box;
+  }
+
+  .s08-stage-backdrop {
+    opacity: 1;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .s08-backdrop-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center bottom;
+    transform: none !important;
+  }
+
+  .section-faq.is-in-view .s08-backdrop-img {
+    transform: none !important;
+  }
+
+  .s09-top-transition {
+    height: 48px;
+    background: linear-gradient(180deg, rgba(246, 248, 245, 0.75) 0%, rgba(246, 248, 245, 0) 100%);
+  }
+
+  .s09-container {
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 0 clamp(16px, 4.5vw, 24px);
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 2;
+  }
+
+  .s09-master-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* 1. CỘT TIÊU ĐỀ: TINH GIẢN NGHỆ THUẬT THEO ĐÚNG ẢNH THAM CHIẾU */
+  .s09-left-col {
+    padding-right: 0;
+    margin-bottom: clamp(10px, 1.8vh, 18px);
+    width: 100%;
+    transform: none !important;
+  }
+
+  .s09-kicker-wrap,
+  .s09-subtitle,
+  .s09-desc,
+  .s09-quote-block {
+    display: none !important;
+  }
+
+  .s09-title {
+    font-family: var(--font-sans);
+    font-size: clamp(1.75rem, 4.8vh, 2.35rem);
+    font-weight: 700;
+    color: #0E2B22;
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+    margin: 0;
+    opacity: 1;
+    transform: none;
+    text-align: left;
+  }
+
+  .s09-divider-col {
+    display: none !important;
+  }
+
+  /* 2. CỘT PHẢI: KHUNG THẺ CARD NỔI BO TRÒN */
+  .s09-right-col {
+    padding-left: 0;
+    width: 100%;
+    transform: none !important;
+  }
+
+  /* Ẩn dải viền trên cùng và dưới cùng */
+  .s09-ornament-divider.top-edge,
+  .s09-ornament-divider.bottom-edge {
+    display: none !important;
+  }
+
+  /* 3 dải phân cách giữa các thẻ: line — ✿ — line */
+  .s09-ornament-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: clamp(5px, 0.9vh, 9px) 0;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .s09-diamond {
+    display: none !important;
+  }
+
+  .s09-div-rule {
+    flex: 1;
+    height: 1px;
+    background-color: #CAD7CF;
+    margin: 0;
+    transform: none !important;
+  }
+
+  .s09-div-rule.right-rule {
+    display: block !important;
+  }
+
+  .m-break {
+    display: block;
+  }
+
+  .s09-center-flower {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+    margin: 0 10px;
+    color: #688578;
+    transform: none;
+    transition: transform 300ms ease;
+  }
+
+  .s09-center-flower svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  /* 3. THẺ ACCORDION CARD ĐỘC LẬP THEO ẢNH MẪU */
+  .s09-acc-row {
+    background-color: rgba(255, 255, 255, 0.68);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(22, 51, 40, 0.08);
+    border-radius: 14px;
+    box-shadow: 0 3px 12px rgba(14, 41, 34, 0.025);
+    margin: 0;
+    overflow: hidden;
+    transform: none !important;
+    opacity: 1 !important;
+    transition: background-color 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
+  }
+
+  .s09-acc-row.is-open {
+    background-color: rgba(255, 255, 255, 0.88);
+    border-color: rgba(22, 51, 40, 0.12);
+    box-shadow: 0 6px 20px rgba(14, 41, 34, 0.04);
+  }
+
+  .s09-acc-trigger {
+    padding: clamp(10px, 1.4vh, 14px) clamp(14px, 3.5vw, 18px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* ẨN BADGE SỐ TRÊN MOBILE (CHUẨN ẢNH THAM CHIẾU) */
+  .s09-acc-badge {
+    display: none !important;
+  }
+
+  .s09-acc-label {
+    font-size: clamp(0.92rem, 1.8vh, 1.02rem);
+    font-weight: 700;
+    color: #0E2B22;
+    line-height: 1.28;
+    letter-spacing: -0.015em;
+    padding-right: 8px;
+    transform: none !important;
+    transition: color 200ms ease;
+  }
+
+  .s09-acc-toggle {
+    width: 22px;
+    height: 22px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: #0E2B22;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transform: none;
+  }
+
+  .s09-acc-toggle .toggle-icon {
+    stroke-width: 2.6px;
+    width: 15px;
+    height: 15px;
+  }
+
+  .s09-acc-panel {
+    transition: max-height 320ms cubic-bezier(0.16, 1, 0.3, 1), opacity 240ms ease;
+  }
+
+  .s09-acc-row.is-open .s09-acc-panel {
+    max-height: 260px;
+    opacity: 1;
+  }
+
+  /* KHỐI TRẢ LỜI: MÀU NGỌC DỊU LIỀN MẠCH VỚI ĐÁY THẺ */
+  .s09-acc-card {
+    margin: 0;
+    padding: clamp(8px, 1.2vh, 12px) clamp(14px, 3.5vw, 18px) clamp(10px, 1.5vh, 15px);
+    background-color: rgba(223, 231, 225, 0.94);
+    border-radius: 0 0 14px 14px;
+    border: none;
+    border-top: 1px solid rgba(22, 51, 40, 0.05);
+    box-shadow: none;
+    backdrop-filter: none;
+    transform: none !important;
+  }
+
+  .s09-acc-card p {
+    font-size: clamp(0.84rem, 1.5vh, 0.92rem);
+    color: #3C564C;
+    line-height: 1.48;
+    font-weight: 400;
+    margin: 0;
+  }
+}
+
+@media (max-width: 380px) {
+  .s09-container {
+    padding: 0 14px;
+  }
+
+  .s09-title {
+    font-size: 1.7rem;
+  }
+
+  .s09-acc-trigger {
+    padding: 10px 14px;
+  }
+
+  .s09-acc-label {
+    font-size: 0.92rem;
+  }
+
+  .s09-acc-card {
+    padding: 8px 14px 12px;
+  }
+}
+
+/* ==========================================================================
+   7. TÔN TRỌNG THIẾT LẬP GIẢM CHUYỂN ĐỘNG (ACCESSIBILITY)
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .s08-backdrop-img,
+  .s09-kicker,
+  .s09-kicker-line,
+  .s09-title,
+  .s09-subtitle,
+  .s09-desc,
+  .s09-quote-block,
+  .s09-quote-dash,
+  .s09-col-line,
+  .s09-medallion,
+  .s09-ornament-divider,
+  .s09-acc-row,
+  .s09-acc-badge,
+  .s09-acc-label,
+  .s09-acc-toggle,
+  .s09-diamond {
+    opacity: 1 !important;
+    transform: none !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

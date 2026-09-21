@@ -1,0 +1,1589 @@
+/**
+ * S07 / S08: PERSON & MASTER STAGE STYLES — XLINHX JADE CRAFT STUDIO
+ * "Trao đổi trực tiếp với người xây sản phẩm."
+ * 100% vector typography Be Vietnam Pro, dải sóng ngọc bích 3D, đồi núi mây sương,
+ * 3 thẻ chuyển tiếp giấy washi viền ngọc xếp tầng và dock viền iPhone với băng chuyền tech stack 60fps.
+ */
+
+/* ====================================================================
+   1. SÂN KHẤU FULL MÀN HÌNH & KHÔNG GIAN BỐI CẢNH (Full-Screen Stage)
+   ==================================================================== */
+.section-person {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 640px;
+  max-height: 1080px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F6F8F5;
+  scroll-margin-top: 0;
+  padding: calc(var(--header-height, 72px) * 0.65) 0 calc(var(--header-height, 72px) * 0.35);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Sân khấu nền Master Stage với dải sóng ngọc bích, núi non thủy mặc và viên đá */
+.s07-stage-backdrop {
+  position: absolute;
+  inset: 0;
+  background-image: url('../../assets/scenes/s07-creator-stage-v6.webp');
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 0;
+  transform: translateY(var(--s07-bg-parallax, 0px));
+  will-change: transform;
+  transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Ánh sáng ban mai xiên qua gạch men trắng */
+.s07-ambient-light {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 25%, rgba(255, 255, 255, 0.6) 0%, rgba(246, 248, 245, 0.1) 75%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 2. TRỤ TRE ĐÔI & CÀNH LÁ: Tích hợp liền mạch trong master stage backdrop v6 */
+.s07-bamboo-decor,
+.s07-foliage-decor {
+  display: none !important;
+}
+
+/* ====================================================================
+   2. KHỐI CHỨA SÂN KHẤU CHÍNH (Stage Grid Layout)
+   ==================================================================== */
+.s07-stage-container {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 3vw, 40px);
+  padding-left: clamp(100px, 11vw, 160px); /* Khoảng đệm thanh thoát, chữ không đè lên 2 thân tre và thẻ nhô ra */
+  padding-right: clamp(24px, 4vw, 48px);
+  box-sizing: border-box;
+}
+
+.s07-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+  gap: clamp(24px, 3.8vw, 56px);
+  align-items: center;
+}
+
+/* ====================================================================
+   3. CỘT TRÁI: NGUYỄN XUÂN LĨNH & NỘI DUNG TRAO ĐỔI TRỰC TIẾP
+   ==================================================================== */
+.s07-left-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tên tác giả & subtitle */
+.s07-creator-header {
+  margin-bottom: clamp(6px, 1vh, 12px);
+}
+
+.s07-creator-name {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: clamp(1.65rem, 2.4vw, 2.35rem);
+  font-weight: 700;
+  color: #12281F;
+  letter-spacing: -0.03em;
+  margin: 0 0 3px 0;
+  line-height: 1.15;
+}
+
+.s07-creator-subtitle {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: clamp(0.85rem, 1vw, 0.95rem);
+  font-weight: 500;
+  color: #4A6B5D;
+  letter-spacing: 0.01em;
+}
+
+/* Tiêu đề chính đinh & đoạn dẫn */
+.s07-headline-block {
+  margin-bottom: clamp(8px, 1.4vh, 16px);
+}
+
+.s07-main-headline {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: clamp(1.85rem, 2.7vw, 2.65rem);
+  font-weight: 700;
+  color: #11241C;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  margin: 0 0 clamp(6px, 1vh, 10px) 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.s07-description {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: clamp(0.84rem, 0.95vw, 0.92rem);
+  line-height: 1.52;
+  color: #51685E;
+  max-width: 500px;
+  margin: 0;
+}
+
+/* 2 Thẻ năng lực song song */
+.s07-capabilities-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(8px, 1.2vw, 12px);
+  margin-bottom: clamp(10px, 1.6vh, 18px);
+}
+
+.s07-cap-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: clamp(8px, 1vh, 11px) clamp(10px, 1vw, 13px);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(205, 225, 215, 0.65);
+  box-shadow: 0 4px 14px rgba(22, 52, 38, 0.04);
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.s07-cap-card:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.88);
+  border-color: #B2CEBF;
+}
+
+.s07-cap-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: #DCEAE2;
+  color: #163B2D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.s07-cap-content {
+  flex: 1;
+}
+
+.s07-cap-title {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: clamp(0.78rem, 0.9vw, 0.84rem);
+  font-weight: 600;
+  color: #142E23;
+  margin: 0 0 2px 0;
+  line-height: 1.25;
+}
+
+.s07-cap-sub {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: clamp(0.7rem, 0.78vw, 0.74rem);
+  line-height: 1.35;
+  color: #577064;
+  margin: 0;
+}
+
+/* Cam kết & 2 nút hành động */
+.s07-action-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.s07-reassurance-text {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: clamp(0.92rem, 1.1vw, 1.05rem);
+  font-weight: 600;
+  color: #142E23;
+  margin: 0 0 clamp(8px, 1.3vh, 14px) 0;
+  letter-spacing: -0.01em;
+}
+
+.s07-buttons-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Nút chính: Trao đổi dự án (Đậm ngọc bích) */
+.s07-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #163B2D;
+  color: #FFFFFF;
+  border-radius: 999px;
+  padding: clamp(9px, 1.1vh, 12px) clamp(18px, 1.8vw, 24px);
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: clamp(0.85rem, 0.92vw, 0.92rem);
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(22, 59, 45, 0.22);
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms ease, box-shadow 200ms ease;
+}
+
+.s07-btn-primary:hover {
+  transform: translateY(-2px);
+  background: #1C4837;
+  box-shadow: 0 12px 30px rgba(22, 59, 45, 0.3);
+}
+
+.s07-btn-primary:active {
+  transform: scale(0.97);
+}
+
+.s07-btn-arrow {
+  transition: transform 180ms ease;
+}
+
+.s07-btn-primary:hover .s07-btn-arrow {
+  transform: translateX(3px);
+}
+
+/* Nút phụ: Xem dự án (Viền nhạt cao cấp) */
+.s07-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #162E23;
+  border: 1px solid #CFDFD6;
+  border-radius: 999px;
+  padding: clamp(9px, 1.1vh, 12px) clamp(16px, 1.6vw, 22px);
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: clamp(0.85rem, 0.92vw, 0.92rem);
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.s07-btn-secondary:hover {
+  transform: translateY(-2px);
+  background: #FFFFFF;
+  border-color: #ADC8BA;
+  box-shadow: 0 8px 20px rgba(20, 50, 36, 0.08);
+}
+
+.s07-btn-secondary:active {
+  transform: scale(0.97);
+}
+
+.s07-btn-secondary:hover .s07-btn-arrow {
+  transform: translateX(3px);
+}
+
+/* ====================================================================
+   4. CỘT PHẢI: 3 THẺ CHUYỂN TIẾP XẾP TẦNG (Washi Paper Stack)
+   ==================================================================== */
+.s07-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.4vh, 16px);
+}
+
+.s07-cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.3vh, 14px);
+  position: relative;
+  transform: translateY(var(--s07-cards-parallax, 0px));
+  will-change: transform;
+  transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1);
+  perspective: 1200px;
+}
+
+/* Thẻ đơn lẻ với offset phân tầng chuẩn mỹ cảm thủ công */
+.s07-card {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  border-radius: 18px;
+  outline: none;
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 320ms ease;
+  will-change: transform;
+}
+
+/* Keyframes nhấp nhô nhẹ nhàng lên xuống (Organic Bobbing / Floating) */
+@keyframes s07-card-float-1 {
+  0%, 100% {
+    transform: translateX(12px) translateY(0px) rotate(0deg);
+  }
+  32% {
+    transform: translateX(12px) translateY(-8px) rotate(0.4deg);
+  }
+  68% {
+    transform: translateX(12px) translateY(5px) rotate(-0.3deg);
+  }
+}
+
+@keyframes s07-card-float-2 {
+  0%, 100% {
+    transform: translateX(0px) translateY(0px) rotate(0deg);
+  }
+  38% {
+    transform: translateX(0px) translateY(9px) rotate(-0.45deg);
+  }
+  74% {
+    transform: translateX(0px) translateY(-6px) rotate(0.35deg);
+  }
+}
+
+@keyframes s07-card-float-3 {
+  0%, 100% {
+    transform: translateX(-12px) translateY(0px) rotate(0deg);
+  }
+  30% {
+    transform: translateX(-12px) translateY(-7px) rotate(0.35deg);
+  }
+  65% {
+    transform: translateX(-12px) translateY(6px) rotate(-0.35deg);
+  }
+}
+
+/* Gán animation nhấp nhô êm dịu, chu kỳ lệch pha hữu cơ */
+.s07-card-1 {
+  transform: translateX(12px);
+  animation: s07-card-float-1 5.8s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+.s07-card-2 {
+  transform: translateX(0px);
+  animation: s07-card-float-2 6.6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite 0.7s;
+}
+
+.s07-card-3 {
+  transform: translateX(-12px);
+  animation: s07-card-float-3 6.1s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite 1.4s;
+}
+
+/* Khi hover: dừng nhấp nhô, nâng độ cao 3D nổi bật */
+.s07-card:hover {
+  animation-play-state: paused;
+  z-index: 8;
+}
+
+.s07-card-1:hover {
+  transform: translateX(12px) translateY(-8px) scale(1.018);
+}
+
+.s07-card-2:hover {
+  transform: translateX(0px) translateY(-8px) scale(1.018);
+}
+
+.s07-card-3:hover {
+  transform: translateX(-12px) translateY(-8px) scale(1.018);
+}
+
+/* Lớp lót ngọc bích phía dưới tạo độ sâu 3D nhô ra ở mép trên và trái */
+.s07-card-mat {
+  position: absolute;
+  top: -7px;
+  left: -7px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, #6B8F7E 0%, #4D7362 100%);
+  border-radius: 20px;
+  z-index: 1;
+  opacity: 0.92;
+  box-shadow: 0 12px 28px rgba(18, 48, 36, 0.12);
+  transition: box-shadow 300ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms ease;
+}
+
+/* Bề mặt giấy washi ngà với họa tiết watermark sạch sẽ, hỗ trợ 3D Tilt */
+.s07-card-surface {
+  position: relative;
+  z-index: 2;
+  background: #FAFBF9;
+  border-radius: 16px;
+  padding: clamp(9px, 1.1vh, 13px) clamp(14px, 1.4vw, 18px);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8), 0 2px 8px rgba(20, 48, 36, 0.04);
+  background-repeat: no-repeat;
+  overflow: hidden;
+  transform: perspective(800px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), background-color 240ms ease, box-shadow 300ms ease;
+  will-change: transform;
+}
+
+/* Dynamic specular light sheen khi rê chuột */
+.s07-card-surface::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: radial-gradient(circle at var(--light-x, 50%) var(--light-y, 50%), rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0) 65%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 240ms ease;
+  z-index: 3;
+}
+
+.s07-card:hover .s07-card-surface::after {
+  opacity: 1;
+}
+
+/* Watermark sạch sẽ không nhiễu riêng từng thẻ */
+.s07-card-1 .s07-card-surface {
+  background-image: url('../../assets/decor/s07-card-wm-mountain-clean.webp');
+  background-position: right -15px bottom -10px;
+  background-size: 220px auto;
+}
+
+.s07-card-2 .s07-card-surface {
+  background-image: url('../../assets/decor/s07-card-wm-bamboo-clean.webp');
+  background-position: right -10px bottom -8px;
+  background-size: 190px auto;
+}
+
+.s07-card-3 .s07-card-surface {
+  background-image: url('../../assets/decor/s07-card-wm-mountain-clean.webp');
+  background-position: right -15px bottom -10px;
+  background-size: 220px auto;
+}
+
+/* Icon box vuông ngọc nhạt */
+.s07-card-icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #E1EBE5;
+  color: #163B2D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 240ms ease, background-color 200ms ease, color 200ms ease;
+  position: relative;
+  z-index: 4;
+}
+
+/* Nội dung text của thẻ */
+.s07-card-info {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  z-index: 4;
+}
+
+.s07-card-title {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: clamp(0.98rem, 1.12vw, 1.1rem);
+  font-weight: 700;
+  color: #142E23;
+  margin: 0 0 2px 0;
+  letter-spacing: -0.015em;
+}
+
+.s07-card-desc {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: clamp(0.74rem, 0.8vw, 0.8rem);
+  line-height: 1.38;
+  color: #577063;
+  margin: 0;
+}
+
+/* Nút tròn mũi tên sang phải */
+.s07-card-action {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid #D1DFD7;
+  background: #FFFFFF;
+  color: #16382B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+  position: relative;
+  z-index: 4;
+}
+
+.s07-card:hover .s07-card-mat {
+  opacity: 1;
+  box-shadow: 0 18px 40px rgba(18, 48, 36, 0.22);
+}
+
+.s07-card:hover .s07-card-icon-box {
+  transform: scale(1.05);
+  background: #D2E4DA;
+}
+
+.s07-card:hover .s07-card-action {
+  background: #163B2D;
+  color: #FFFFFF;
+  border-color: #163B2D;
+  transform: translateX(4px);
+}
+
+.s07-card:active {
+  transform: scale(0.985);
+}
+
+/* ====================================================================
+   5. THANH DOCK VIỀN IPHONE & BĂNG CHUYỀN CÔNG NGHỆ (Dynamic Island Dock)
+   ==================================================================== */
+.s07-dock-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Nút dock trigger (Pill) */
+.s07-dock-trigger {
+  width: 100%;
+  border: 1.5px solid rgba(195, 218, 206, 0.9);
+  border-radius: 999px;
+  background: rgba(248, 251, 249, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: clamp(8px, 1vh, 11px) clamp(16px, 1.4vw, 20px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(20, 48, 36, 0.07);
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+  outline: none;
+}
+
+.s07-dock-trigger:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.98);
+  border-color: #A1C4B2;
+  box-shadow: 0 12px 28px rgba(20, 48, 36, 0.12);
+}
+
+.s07-dock-trigger:active {
+  transform: scale(0.985);
+}
+
+.s07-dock-trigger-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.s07-dock-layer-icon {
+  color: #163A2C;
+  flex-shrink: 0;
+}
+
+.s07-dock-trigger-label {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: clamp(0.88rem, 0.95vw, 0.94rem);
+  font-weight: 600;
+  color: #153226;
+  letter-spacing: -0.01em;
+}
+
+.s07-dock-trigger-plus {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #153226;
+}
+
+.s07-dock-plus-svg {
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Trạng thái mở: Icon xoay 45 độ thành dấu x */
+.s07-dock-container.is-open .s07-dock-plus-svg {
+  transform: rotate(45deg);
+}
+
+/* Ngăn kéo viền iPhone xổ xuống */
+.s07-dock-drawer {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  border-radius: 22px;
+  border: 0 solid rgba(22, 58, 44, 0.25);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 20px 48px rgba(18, 44, 34, 0);
+  transform: translateY(-8px) scale(0.98);
+  transition: max-height 380ms cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 280ms ease,
+              transform 380ms cubic-bezier(0.16, 1, 0.3, 1),
+              padding 380ms ease,
+              margin-top 380ms ease,
+              box-shadow 380ms ease,
+              border-width 150ms ease;
+  padding: 0 16px;
+  margin-top: 0;
+}
+
+.s07-dock-container.is-open .s07-dock-drawer {
+  max-height: 180px;
+  opacity: 1;
+  border-width: 1.5px;
+  transform: translateY(0) scale(1);
+  padding: 12px 16px 14px;
+  margin-top: 10px;
+  box-shadow: 0 16px 40px rgba(18, 44, 34, 0.14);
+}
+
+/* Header ngăn kéo */
+.s07-drawer-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.s07-drawer-indicator {
+  width: 32px;
+  height: 3px;
+  border-radius: 999px;
+  background: #D2E0D8;
+  margin-bottom: 8px;
+}
+
+.s07-drawer-meta {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.s07-drawer-title {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 0.84375rem;
+  font-weight: 600;
+  color: #16382B;
+}
+
+.s07-drawer-badge {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #386150;
+  background: #E4EFE9;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+/* BĂNG CHUYỀN VÔ TẬN (Continuous 60fps Marquee) */
+.s07-marquee-viewport {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  padding: 6px 0;
+}
+
+.s07-marquee-track {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  animation: s07-marquee-scroll 26s linear infinite;
+  will-change: transform;
+}
+
+/* Rê chuột vào thì tạm dừng chuyển động để người dùng quan sát */
+.s07-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.s07-tech-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 15px;
+  border-radius: 999px;
+  background: #F1F6F3;
+  border: 1px solid #D2E3D9;
+  color: #163628;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+  user-select: none;
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.s07-tech-item:hover {
+  transform: translateY(-2px);
+  background: #FFFFFF;
+  border-color: #163B2D;
+  box-shadow: 0 4px 14px rgba(22, 59, 45, 0.12);
+}
+
+.s07-tech-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+@keyframes s07-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ====================================================================
+   6. DESKTOP DEFAULT: MOBILE STAGE & BOTTOM SHEET HIDDEN
+   ==================================================================== */
+.s07-mobile-stage {
+  display: none;
+}
+
+.s07-tech-sheet-backdrop {
+  display: none;
+}
+
+.s07-tech-sheet {
+  display: none;
+}
+
+/* ====================================================================
+   7. RESPONSIVE BREAKPOINTS (Tablet & Mobile)
+   ==================================================================== */
+@media (max-width: 1100px) and (min-width: 769px) {
+  .s07-stage-container {
+    padding-left: clamp(80px, 9vw, 110px);
+    padding-right: clamp(16px, 2.5vw, 24px);
+  }
+
+  .s07-grid {
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.98fr);
+    gap: clamp(16px, 2.5vw, 32px);
+  }
+
+  .s07-creator-name {
+    font-size: clamp(1.45rem, 2.2vw, 1.75rem);
+  }
+
+  .s07-main-headline {
+    font-size: clamp(1.55rem, 2.4vw, 2rem);
+  }
+
+  .s07-card-surface {
+    padding: 9px 12px;
+    gap: 10px;
+  }
+
+  .s07-card-title {
+    font-size: 0.95rem;
+  }
+
+  .s07-card-desc {
+    font-size: 0.72rem;
+  }
+
+  .s07-card-1,
+  .s07-card-2,
+  .s07-card-3 {
+    transform: none;
+  }
+
+  .s07-card-1:hover,
+  .s07-card-2:hover,
+  .s07-card-3:hover {
+    transform: translateY(-4px);
+  }
+}
+
+@media (max-height: 660px) and (min-width: 769px) {
+  .section-person {
+    height: auto;
+    min-height: 100vh;
+    padding-top: 76px;
+    padding-bottom: 40px;
+    overflow-y: auto;
+  }
+}
+
+/* ====================================================================
+   NATIVE MOBILE EXPERIENCE (iPhone X/11/12/13/14/15/16 <= 768px)
+   Tư duy & Bố cục di động riêng biệt: Pocket Identity Card, Inset Grouped,
+   và iOS Bottom Sheet Drawer. Motion chạm tức thì, siêu nhẹ.
+   ==================================================================== */
+@media (max-width: 768px) {
+  .section-person {
+    min-height: auto;
+    padding: 70px 0 80px;
+    scroll-margin-top: 60px;
+    background-color: #F5F7F4;
+  }
+
+  .s07-stage-backdrop {
+    background-position: center 30%;
+    opacity: 0.35; /* Giữ hậu cảnh dịu nhẹ để tương phản chữ đạt độ tinh tế */
+  }
+
+  .s07-stage-container {
+    padding: 0 16px;
+    max-width: 100%;
+  }
+
+  /* Ẩn hoàn toàn grid 2 cột của desktop */
+  .s07-grid {
+    display: none !important;
+  }
+
+  /* Hiện sân khấu mobile chuyên biệt */
+  .s07-mobile-stage {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* 1. POCKET IDENTITY GLASS CARD */
+  .s07-m-creator-card {
+    background: rgba(255, 255, 255, 0.84);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(200, 222, 212, 0.85);
+    border-radius: 22px;
+    padding: 18px 16px;
+    box-shadow: 0 10px 32px -4px rgba(22, 59, 45, 0.08), 0 2px 6px rgba(22, 59, 45, 0.04);
+  }
+
+  .s07-m-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .s07-m-avatar-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #163B2D 0%, #2D6A53 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(22, 59, 45, 0.25);
+    border: 2px solid #FFFFFF;
+    flex-shrink: 0;
+  }
+
+  .s07-m-monogram {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    letter-spacing: 0.04em;
+  }
+
+  .s07-m-creator-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .s07-m-creator-name {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 1.1875rem;
+    font-weight: 700;
+    color: #12281F;
+    letter-spacing: -0.02em;
+    margin: 0 0 2px;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .s07-m-creator-sub {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #517062;
+    line-height: 1.2;
+  }
+
+  .s07-m-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0, 153, 117, 0.08);
+    border: 1px solid rgba(0, 153, 117, 0.32);
+    padding: 4px 10px;
+    border-radius: 999px;
+    flex-shrink: 0;
+  }
+
+  .s07-m-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #009975;
+    box-shadow: 0 0 0 2px rgba(0, 153, 117, 0.2);
+    animation: s07-m-dot-pulse 2s infinite ease-in-out;
+  }
+
+  @keyframes s07-m-dot-pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.25); opacity: 0.7; }
+  }
+
+  .s07-m-status-rate {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #008f6b;
+    letter-spacing: 0.02em;
+  }
+
+  .s07-m-headline {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 1.3125rem;
+    font-weight: 700;
+    color: #11241C;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+    margin: 0 0 8px;
+  }
+
+  .s07-m-desc {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: #4A6357;
+    margin: 0 0 12px;
+  }
+
+  .s07-m-slogan-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: #EBF4EF;
+    border: 1px solid #CFE2D7;
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-size: 0.78125rem;
+    font-weight: 600;
+    color: #163B2D;
+    margin-bottom: 14px;
+  }
+
+  .s07-m-slogan-pill svg {
+    color: #009975;
+    flex-shrink: 0;
+  }
+
+  /* 2 Mini Capabilities Capsules */
+  .s07-m-caps-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .s07-m-cap-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(210, 227, 218, 0.85);
+    border-radius: 12px;
+    padding: 9px 8px;
+    box-shadow: 0 2px 6px rgba(22, 59, 45, 0.03);
+  }
+
+  .s07-m-cap-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: #E4EFE8;
+    color: #163B2D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .s07-m-cap-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .s07-m-cap-text strong {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.78125rem;
+    font-weight: 700;
+    color: #142E23;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .s07-m-cap-text span {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.6875rem;
+    color: #5C7669;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Thumb Action Row */
+  .s07-m-actions-row {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 8px;
+  }
+
+  .s07-m-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    background: #163B2D;
+    color: #FFFFFF;
+    border-radius: 999px;
+    height: 46px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(22, 59, 45, 0.25);
+    transition: transform 120ms ease, background-color 150ms ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .s07-m-btn-primary:active {
+    transform: scale(0.97);
+    background: #102B20;
+  }
+
+  .s07-m-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #163B2D;
+    border: 1.5px solid #BDD5C9;
+    border-radius: 999px;
+    height: 46px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 120ms ease, background-color 150ms ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .s07-m-btn-secondary:active {
+    transform: scale(0.97);
+    background: #EAF3EE;
+  }
+
+  /* 2. APPLE INSET GROUPED GATEWAY CARDS */
+  .s07-m-cards-deck {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .s07-m-deck-label {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #60796E;
+    padding-left: 8px;
+    margin-bottom: 6px;
+  }
+
+  .s07-m-deck-group {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(205, 225, 215, 0.8);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(22, 59, 45, 0.05);
+  }
+
+  .s07-m-card-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 120ms ease, transform 120ms ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .s07-m-card-row:active {
+    background: rgba(22, 59, 45, 0.07);
+    transform: scale(0.985);
+  }
+
+  .s07-m-card-icon-box {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: #E8F2EC;
+    color: #163B2D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .s07-m-card-row-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .s07-m-card-row-title {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #142E23;
+    line-height: 1.25;
+    margin-bottom: 2px;
+  }
+
+  .s07-m-card-row-sub {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.75rem;
+    color: #5D766A;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .s07-m-card-chevron {
+    color: #9FB8AD;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .s07-m-row-divider {
+    height: 1px;
+    background: rgba(215, 230, 222, 0.85);
+    margin-left: 64px;
+  }
+
+  /* 3. FLOATING PILL DOCK BUTTON */
+  .s07-m-dock-pill-wrap {
+    width: 100%;
+    margin-top: 4px;
+  }
+
+  .s07-m-dock-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, #163B2D 0%, #0F281F 100%);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 999px;
+    padding: 12px 18px;
+    box-shadow: 0 6px 20px rgba(22, 59, 45, 0.28);
+    cursor: pointer;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    transition: transform 140ms cubic-bezier(0.32, 0.72, 0, 1), box-shadow 140ms ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .s07-m-dock-trigger:active {
+    transform: scale(0.975);
+    box-shadow: 0 2px 8px rgba(22, 59, 45, 0.2);
+  }
+
+  .s07-m-dock-trigger-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .s07-m-dock-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .s07-m-dock-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    min-width: 0;
+  }
+
+  .s07-m-dock-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1.25;
+  }
+
+  .s07-m-dock-sub {
+    font-size: 0.6875rem;
+    color: #A4C6B7;
+    line-height: 1.2;
+  }
+
+  .s07-m-dock-trigger-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .s07-m-dock-badge {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: #00D19E;
+    background: rgba(0, 209, 158, 0.12);
+    border: 1px solid rgba(0, 209, 158, 0.3);
+    padding: 3px 8px;
+    border-radius: 999px;
+  }
+
+  .s07-m-dock-arrow {
+    color: #FFFFFF;
+    opacity: 0.8;
+  }
+
+  /* ====================================================================
+     S07: NATIVE IOS TECH BOTTOM SHEET MODAL (Popup Di Động)
+     ==================================================================== */
+  .s07-tech-sheet-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(12, 36, 28, 0.58);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 1050;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s cubic-bezier(0.32, 0.72, 0, 1), visibility 0.35s;
+  }
+
+  .s07-tech-sheet-backdrop.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .s07-tech-sheet {
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1060;
+    max-height: 84dvh;
+    background: #FAFBF9;
+    border-radius: 28px 28px 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 -12px 48px rgba(10, 32, 24, 0.28);
+    flex-direction: column;
+    overflow: hidden;
+    transform: translateY(105%);
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1), visibility 0.38s;
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+
+  .s07-tech-sheet.is-open {
+    transform: translateY(0);
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* Grab handle */
+  .s07-sheet-handle-wrap {
+    width: 100%;
+    padding: 10px 0 6px;
+    display: flex;
+    justify-content: center;
+    cursor: grab;
+    touch-action: pan-y;
+  }
+
+  .s07-sheet-handle-bar {
+    width: 36px;
+    height: 5px;
+    border-radius: 999px;
+    background: rgba(120, 145, 135, 0.45);
+  }
+
+  /* Sheet Header */
+  .s07-sheet-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 6px 18px 12px;
+    border-bottom: 1px solid rgba(215, 230, 222, 0.6);
+  }
+
+  .s07-sheet-kicker {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #009975;
+    margin-bottom: 2px;
+    display: block;
+  }
+
+  .s07-sheet-title {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #12281F;
+    line-height: 1.25;
+    margin: 0 0 2px;
+  }
+
+  .s07-sheet-sub {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.75rem;
+    color: #5A7467;
+    margin: 0;
+  }
+
+  .s07-sheet-close-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #E8EFEA;
+    border: none;
+    color: #163B2D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: transform 120ms ease, background-color 120ms ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .s07-sheet-close-btn:active {
+    transform: scale(0.92);
+    background: #D8E5DC;
+  }
+
+  /* Segmented Category Filters */
+  .s07-sheet-tabs {
+    display: flex;
+    gap: 6px;
+    padding: 10px 18px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    border-bottom: 1px solid rgba(225, 238, 231, 0.7);
+  }
+
+  .s07-sheet-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .s07-sheet-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    background: #EDF3EF;
+    border: 1px solid #D2E2D8;
+    color: #4A6357;
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 150ms ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .s07-sheet-tab-btn.is-active {
+    background: #163B2D;
+    border-color: #163B2D;
+    color: #FFFFFF;
+  }
+
+  /* Scrollable Body */
+  .s07-sheet-scroll-body {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 14px 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* Grid of 14 Tech Items */
+  .s07-sheet-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .s07-sheet-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #FFFFFF;
+    border: 1px solid #DFEBE3;
+    border-radius: 12px;
+    padding: 10px 12px;
+    box-shadow: 0 2px 5px rgba(22, 59, 45, 0.03);
+    transition: transform 120ms ease;
+  }
+
+  .s07-sheet-item:active {
+    transform: scale(0.975);
+  }
+
+  .s07-sheet-item-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #F1F6F3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .s07-sheet-item-icon img,
+  .s07-sheet-item-icon svg {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+
+  .s07-sheet-item-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .s07-sheet-item-info strong {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #142E23;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .s07-sheet-item-info span {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.6875rem;
+    color: #60796E;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Sheet Marquee Bar */
+  .s07-sheet-marquee-bar {
+    background: #EDF3EF;
+    border: 1px solid #D2E2D8;
+    border-radius: 12px;
+    padding: 8px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .s07-sheet-marquee-hint {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: #163B2D;
+    letter-spacing: 0.02em;
+  }
+
+  .s07-sheet-marquee-viewport {
+    overflow: hidden;
+    white-space: nowrap;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  }
+
+  .s07-sheet-marquee-track {
+    display: inline-block;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #365345;
+    animation: s07-sheet-marquee 18s linear infinite;
+  }
+
+  .s07-sheet-marquee-track span {
+    color: #142E23;
+    font-weight: 700;
+  }
+
+  @keyframes s07-sheet-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+@media (max-width: 375px) {
+  .s07-m-caps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .s07-m-actions-row {
+    grid-template-columns: 1fr;
+  }
+
+  .s07-sheet-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

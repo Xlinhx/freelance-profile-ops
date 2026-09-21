@@ -1,0 +1,19 @@
+/**
+ * XLINHX JADE BOOK JOURNEY — MASTER CSS MANIFEST
+ * Cấu trúc phân rã theo chức năng & vai trò (Anti-God File Architecture)
+ * 100% vector typography, tokens ngọc bích, và các module độc lập.
+ */
+
+@import url('styles/tokens.css');
+@import url('styles/base.css');
+@import url('styles/header-dock.css?v=35');
+@import url('styles/components/project-modal.css');
+@import url('styles/sections/s01-hero.css?v=36');
+@import url('styles/sections/s02-projects.css?v=30');
+@import url('styles/sections/s03-needs.css');
+@import url('styles/sections/s04-scope.css?v=46');
+@import url('styles/sections/s05-process.css');
+@import url('styles/sections/s06-quality.css');
+@import url('styles/sections/s08-person.css');
+@import url('styles/sections/s09-faq.css?v=15');
+@import url('styles/sections/s10-contact.css?v=15');

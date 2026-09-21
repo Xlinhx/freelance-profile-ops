@@ -1,0 +1,21 @@
+{
+  "name": "freelance-profile-ops",
+  "version": "1.0.0",
+  "description": "Portfolio (Craft Studio) & Curriculum Vitae for Xlinhx",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node tooling/serve.mjs",
+    "build": "node tooling/build.mjs",
+    "deploy": "npm run build && npx wrangler pages deploy dist --project-name xlinhx --commit-dirty=true",
+    "preview": "node tooling/serve.mjs"
+  },
+  "keywords": [
+    "portfolio",
+    "cv",
+    "craft-studio",
+    "xlinhx"
+  ],
+  "author": "Nguyen Xuan Linh (Xlinhx)",
+  "license": "UNLICENSED"
+}
