@@ -47,12 +47,13 @@
 
   function getProblemStatement(project) {
     var problemMap = {
-      fabsolution: 'Dữ liệu rải rác trong hội thoại, dễ sót việc.',
-      dealer: 'Bán sỉ và nhập hàng rời rạc, khó kiểm soát đơn và tồn kho.',
-      engpath: 'Thiếu môi trường luyện tập liên tục và phản hồi tiến độ.',
-      conhon: 'Đặc sản Cù Lao khó tiếp cận rộng rãi qua kênh số.',
-      vanhien: 'Tài liệu di sản rời rạc, khó tra cứu một cách trực quan.',
-      suky: 'Dữ liệu lịch sử phong phú nhưng thiếu phân tầng thời gian.'
+      fabsolution: 'Khách đặt món và hỏi đơn rải rác trên Zalo OA; nhân viên kiểm tra thực đơn/tồn kho thủ công và dễ sót đơn vào giờ cao điểm.',
+      dealer: 'Bán buôn qua tin nhắn/Excel dễ lệch tồn kho, khó kiểm soát công nợ đại lý và khách sỉ không chủ động xem được giá theo phân cấp.',
+      nostime: 'Thị trường đồng hồ xa xỉ đòi hỏi mỗi sản phẩm là một cá thể độc bản có kiểm định nghiêm ngặt; việc quản lý qua bảng tính dễ sai lệch tình trạng kho và giảm uy tín thương hiệu.',
+      conhon: 'Lễ hội mùa vụ đón 300–500 người truy cập đồng thời; việc ghi tịch giấy và chuyển khoản thủ công dễ thất thoát, trùng lặp và quá tải.',
+      engpath: 'Học sinh thiếu môi trường luyện Nói/Viết theo cấu trúc đề thi THPT; giáo viên mất nhiều giờ chấm bài tự luận và khó theo sát từng em.',
+      suky: 'Tiết học Lịch sử dễ khô khan, giáo viên mất nhiều thời gian soạn câu hỏi và học sinh ngại làm các bài kiểm tra trắc nghiệm truyền thống.',
+      vanhien: 'Học sinh khó cảm nhận chiều sâu tâm lý nhân vật qua câu chữ tĩnh; giáo viên thiếu công cụ tạo đề nghị luận xã hội kèm đáp án gợi ý.'
     };
     if (problemMap[project.id]) return problemMap[project.id];
     if (project.solves) {
@@ -65,19 +66,39 @@
   function getSolutionItems(project) {
     var solutionMap = {
       fabsolution: [
-        'Hộp tin hợp nhất – gom tất cả hội thoại về một nơi.',
-        'Đồng bộ Zalo – cập nhật trạng thái, đơn hàng theo thời gian thực.',
-        'AI hỗ trợ xử lý – đọc, phân loại, gợi ý và nhắc việc.'
+        'Hộp tin tập trung – Gom toàn bộ hội thoại từ Zalo OA vào một workspace điều phối thống nhất theo thời gian thực.',
+        'AI trích xuất đơn & gợi ý trả lời – Tự động nhận diện món, số lượng, địa chỉ và soạn sẵn câu trả lời chuẩn theo menu.',
+        'Tạo đơn tại chỗ – Chốt đơn, tính tiền và chuyển trạng thái chế biến trực tiếp ngay trong cửa sổ chat.'
       ],
       dealer: [
-        'Cửa hàng B2B – phân luồng sản phẩm và giá sỉ cho đại lý.',
-        'Quản trị đơn tập trung – đồng bộ trạng thái đơn và kho hàng.',
-        'Hạ tầng VPS ổn định – vận hành bền bỉ trên Docker và Nginx.'
+        'Cổng phân phối B2B – Phân quyền xem bảng giá sỉ theo cấp đại lý, cho phép đặt hàng số lượng lớn 24/7.',
+        'Kiểm soát tồn kho tự động – Khóa tồn kho khả dụng tức thì khi có đơn, ngăn chặn tình trạng đặt vượt số lượng.',
+        'Sổ nợ & Lịch sử thanh toán – Quản lý hạn mức công nợ, đối soát thanh toán và xuất file đơn hàng nhanh chóng.'
+      ],
+      nostime: [
+        'Sổ cái đồng hồ độc bản – Định danh và theo dõi trạng thái từng chiếc đồng hồ từ nhập kho, kiểm định đến khi giao khách.',
+        'Storefront chuẩn Boutique – Trải nghiệm duyệt sản phẩm sang trọng, tối ưu hình ảnh đa góc chụp và chi tiết thông số máy.',
+        'Tra cứu đơn hàng minh bạch – Hệ thống tra cứu hành trình và chứng thư bảo hành trực tuyến cho người mua.'
+      ],
+      conhon: [
+        'Xử lý đồng thời cao (CCU) – Dùng Row-level Locking trong PostgreSQL và Redis cache để chống bán vượt hạn mức tịch.',
+        'Thanh toán QR PayOS – Tự động khớp giao dịch chuyển khoản ngân hàng và xác nhận đơn trong 1–2 giây.',
+        'Truyền kết quả Realtime – Đồng bộ kết quả mở thưởng tức thì tới người chơi qua Server-Sent Events (SSE).'
       ],
       engpath: [
-        'Lộ trình cá nhân hóa – phân theo trình độ và mục tiêu học.',
-        'Tương tác trực quan – bài tập ngữ cảnh và flashcard ghi nhớ.',
-        'Theo dõi tiến độ – báo cáo chi tiết thời gian và kết quả đạt được.'
+        'AI chấm bài & Sửa lỗi chi tiết – Phân tích lỗi ngữ pháp, từ vựng và gợi ý cải thiện câu theo barem chấm điểm chuẩn.',
+        'Lộ trình bám sát SGK 10–12 – Phân chia bài học theo từng Unit với flashcard từ vựng, bài tập ngữ pháp và mini test.',
+        'Bảng theo dõi tiến độ – Thống kê điểm số, thời gian học và vùng kỹ năng còn yếu để giáo viên can thiệp kịp thời.'
+      ],
+      suky: [
+        'Vào lớp không cần tài khoản – Học sinh nhập mã PIN trên điện thoại là tham gia ngay vào phòng học trong vài giây.',
+        'Workers AI sinh câu hỏi từ tài liệu – Tải file bài học (.docx) để AI tự động trích xuất và tạo câu hỏi phân hóa 4 mức độ.',
+        '4 chế độ đấu tương tác – Tăng tốc, Thẩm phán, Câu hỏi chùm và Nhập vai lịch sử giúp giờ học sôi động và có dữ liệu đánh giá.'
+      ],
+      vanhien: [
+        'Đối thoại nhân vật văn học – AI nhập vai các nhân vật tác phẩm kinh điển để học sinh trò chuyện và tìm hiểu bối cảnh.',
+        'Sinh đề thi & Barem chuẩn – Hỗ trợ giáo viên xây dựng nhanh đề kiểm tra tự luận kèm tiêu chí chấm điểm chi tiết.',
+        'Bản đồ tác phẩm tương tác – Trực quan hóa mối liên hệ giữa các tác giả, trào lưu tư tưởng và giai đoạn lịch sử văn học.'
       ]
     };
     if (solutionMap[project.id]) return solutionMap[project.id];
@@ -85,9 +106,9 @@
       return project.architecture.slice(0, 3);
     }
     return [
-      'Giao diện tối ưu – đơn giản, nhanh và dễ sử dụng.',
-      'Kiến trúc module – mở rộng linh hoạt theo quy mô.',
-      'Tự động hóa luồng việc – giảm thiểu thao tác nhập tay.'
+      'Giao diện tối ưu – Đơn giản, nhanh và dễ sử dụng.',
+      'Kiến trúc module – Mở rộng linh hoạt theo quy mô.',
+      'Tự động hóa luồng việc – Giảm thiểu thao tác nhập tay.'
     ];
   }
 
@@ -108,30 +129,43 @@
     var map = {
       'Next.js': '/shared/icons/nextjs.svg',
       Next: '/shared/icons/nextjs.svg',
+      TypeScript: '/shared/icons/typescript.svg',
+      'Tailwind CSS': '/shared/icons/tailwind.svg',
+      Tailwind: '/shared/icons/tailwind.svg',
+      Hono: '/shared/icons/hono.svg',
+      PayOS: '/shared/icons/payos.svg',
+      Redis: '/shared/icons/redis.svg',
+      'Node.js': '/shared/icons/nodejs.svg',
+      Node: '/shared/icons/nodejs.svg',
       Vite: '/shared/icons/vite.svg',
-      'Zalo OA': '/shared/icons/zalo.svg',
-      AI: '/shared/icons/ai.svg',
-      Realtime: '/shared/icons/realtime.svg',
-      'Restaurant Ops': '/shared/icons/restaurant.svg',
-      Dashboard: '/shared/icons/dashboard.svg',
-      VPS: '/shared/icons/vps.svg',
-      'Cloudflare Pages': '/shared/icons/cloudflare.svg',
       Cloudflare: '/shared/icons/cloudflare.svg',
+      'Cloudflare Pages': '/shared/icons/cloudflare.svg',
       Docker: '/shared/icons/docker.svg',
       PostgreSQL: '/shared/icons/postgresql.svg',
-      NestJS: '/shared/icons/nodejs.svg',
-      Prisma: '/shared/icons/postgresql.svg',
-      Nginx: '/shared/icons/vps.svg'
+      'Three.js': '/shared/icons/threejs.svg',
+      NestJS: '/shared/icons/nestjs.svg'
     };
     return map[name] || '/shared/icons/react.svg';
   }
 
   function detailMarkup(project) {
-    var screen = (project.screens && project.screens.length > 0) ? project.screens[0] : {
+    var screens = (project.screens && project.screens.length > 0) ? project.screens : [{
       title: project.title,
       caption: project.summary,
       desktop: project.cover || ''
-    };
+    }];
+    var currentScreen = screens[0];
+    var showNav = screens.length > 1;
+
+    var navButtonsHtml = showNav ? (
+      '<button class="modal-nav-arrow modal-nav-prev" id="modal-prev-screen-btn" type="button" aria-label="Xem ảnh trước">' +
+        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>' +
+      '</button>' +
+      '<button class="modal-nav-arrow modal-nav-next" id="modal-next-screen-btn" type="button" aria-label="Xem ảnh kế tiếp">' +
+        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>' +
+      '</button>' +
+      '<span class="modal-screen-badge" id="modal-screen-badge">1 / ' + screens.length + '</span>'
+    ) : '';
 
     var problemText = getProblemStatement(project);
     var solutions = getSolutionItems(project);
@@ -191,17 +225,18 @@
           '<!-- CỘT TRÁI: Screenshot & Bài toán/Cách giải quyết -->' +
           '<div class="modal-left-col">' +
             '<div class="modal-screenshot-frame">' +
-              '<img src="' + screen.desktop + '" alt="' + screen.title + '" loading="eager">' +
+              navButtonsHtml +
+              '<img id="modal-active-img" src="' + currentScreen.desktop + '" alt="' + currentScreen.title + '" loading="eager">' +
             '</div>' +
             '<div class="modal-screenshot-caption-bar">' +
               '<div class="caption-info-group">' +
                 '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>' +
                 '<div class="caption-text-block">' +
-                  '<span class="caption-title">' + screen.title + '</span>' +
-                  '<p class="caption-desc">' + screen.caption + '</p>' +
+                  '<span class="caption-title" id="modal-caption-title">' + currentScreen.title + '</span>' +
+                  '<p class="caption-desc" id="modal-caption-desc">' + currentScreen.caption + '</p>' +
                 '</div>' +
               '</div>' +
-              '<button class="btn-expand-preview" data-full-img="' + screen.desktop + '" type="button">' +
+              '<button class="btn-expand-preview" id="modal-expand-btn" data-full-img="' + currentScreen.desktop + '" type="button">' +
                 '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>' +
                 '<span>Xem ảnh lớn</span>' +
               '</button>' +
@@ -225,7 +260,7 @@
             '</div>' +
           '</div>' +
 
-          '<!-- CỘT PHẢI: Vai trò, Tech Stack & Trích dẫn -->' +
+          '<!-- CỘT PHẢI: Vai trò & Tech Stack -->' +
           '<div class="modal-right-col">' +
             '<div class="role-block">' +
               '<div class="section-heading-with-icon">' +
@@ -241,14 +276,6 @@
                 '<h4>Tech Stack</h4>' +
               '</div>' +
               '<div class="tech-stack-container">' + techRowsHtml + '</div>' +
-            '</div>' +
-            '<hr class="modal-divider-rule">' +
-            '<div class="modal-quote-section">' +
-              '<svg class="quote-leaf-svg" width="24" height="28" viewBox="0 0 24 28" fill="none"><path d="M4 26C4 26 5 18 12 12M12 12C16 8 20 6 20 2C16 2 12 6 12 12ZM12 12C8 10 4 11 2 15C5 17 9 15 12 12ZM12 12C14 16 15 20 18 22C19 18 17 14 12 12Z" stroke="#009975" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
-              '<div class="quote-content">' +
-                '<p>“Những ý tưởng tốt luôn xứng đáng được lắng nghe.”</p>' +
-                '<div class="quote-author-row"><span class="quote-author">Xlinhx</span></div>' +
-              '</div>' +
             '</div>' +
           '</div>' +
         '</div>' +
@@ -296,6 +323,58 @@
   }
 
   function bindModalEvents(project, modal) {
+    var screens = (project.screens && project.screens.length > 0) ? project.screens : [{
+      title: project.title,
+      caption: project.summary,
+      desktop: project.cover || ''
+    }];
+    var currentScreenIdx = 0;
+
+    function switchScreen(newIdx) {
+      if (screens.length <= 1) return;
+      currentScreenIdx = (newIdx + screens.length) % screens.length;
+      var sc = screens[currentScreenIdx];
+
+      var img = modal.querySelector('#modal-active-img');
+      var badge = modal.querySelector('#modal-screen-badge');
+      var capTitle = modal.querySelector('#modal-caption-title');
+      var capDesc = modal.querySelector('#modal-caption-desc');
+      var expandBtn = modal.querySelector('#modal-expand-btn') || modal.querySelector('.btn-expand-preview');
+
+      if (img) {
+        img.classList.add('is-switching');
+        setTimeout(function() {
+          img.src = sc.desktop;
+          img.alt = sc.title;
+          img.onload = function() {
+            img.classList.remove('is-switching');
+          };
+          setTimeout(function() { img.classList.remove('is-switching'); }, 200);
+        }, 100);
+      }
+
+      if (badge) badge.textContent = (currentScreenIdx + 1) + ' / ' + screens.length;
+      if (capTitle) capTitle.textContent = sc.title;
+      if (capDesc) capDesc.textContent = sc.caption;
+      if (expandBtn) expandBtn.setAttribute('data-full-img', sc.desktop);
+    }
+
+    var prevBtn = modal.querySelector('#modal-prev-screen-btn');
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        switchScreen(currentScreenIdx - 1);
+      });
+    }
+
+    var nextBtn = modal.querySelector('#modal-next-screen-btn');
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        switchScreen(currentScreenIdx + 1);
+      });
+    }
+
     // Close buttons
     modal.querySelectorAll('[data-close-modal]').forEach(function(btn) {
       btn.addEventListener('click', function(e) {
@@ -307,8 +386,9 @@
     // Expand preview button
     modal.querySelectorAll('.btn-expand-preview').forEach(function(btn) {
       btn.addEventListener('click', function() {
-        var src = btn.dataset.fullImg;
-        if (src) openLightbox(src, project.title);
+        var src = btn.getAttribute('data-full-img') || btn.dataset.fullImg;
+        var activeTitle = (screens[currentScreenIdx] && screens[currentScreenIdx].title) || project.title;
+        if (src) openLightbox(src, activeTitle);
       });
     });
   }
@@ -362,7 +442,7 @@
 
     var body = document.getElementById('all-projects-content');
     if (body) {
-      var validIds = ['dealer', 'conhon', 'engpath', 'fabsolution', 'vanhien', 'suky'];
+      var validIds = ['dealer', 'conhon', 'nostime', 'engpath', 'fabsolution', 'vanhien', 'suky'];
       var activeProjects = PROJECT_CASES.filter(function(p) {
         return validIds.indexOf(p.id) !== -1;
       });
@@ -415,6 +495,26 @@
 
   // Keyboard navigation & global listeners
   document.addEventListener('keydown', function(e) {
+    var detailModal = document.getElementById('project-detail-modal');
+    var isDetailOpen = detailModal && detailModal.classList.contains('open');
+
+    if (e.key === 'ArrowLeft' && isDetailOpen) {
+      var prevBtn = detailModal.querySelector('#modal-prev-screen-btn');
+      if (prevBtn) {
+        e.preventDefault();
+        prevBtn.click();
+        return;
+      }
+    }
+    if (e.key === 'ArrowRight' && isDetailOpen) {
+      var nextBtn = detailModal.querySelector('#modal-next-screen-btn');
+      if (nextBtn) {
+        e.preventDefault();
+        nextBtn.click();
+        return;
+      }
+    }
+
     if (e.key === 'Escape' || e.keyCode === 27) {
       var lightbox = document.getElementById('image-lightbox-modal');
       if (lightbox && lightbox.classList.contains('open')) {
@@ -422,8 +522,7 @@
         setTimeout(function() { lightbox.remove(); }, 250);
         return;
       }
-      var detailModal = document.getElementById('project-detail-modal');
-      if (detailModal && detailModal.classList.contains('open')) {
+      if (isDetailOpen) {
         closeProjectDetail();
         return;
       }

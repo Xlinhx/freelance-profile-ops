@@ -35,17 +35,29 @@
 
 ## 2. Bảng Ánh Xạ Metadata Tương Đối (Projects Index)
 
+### A. 7 Dự Án Trọng Tâm Trên Portfolio (Active Showcases)
+*Toàn bộ 7 dự án này đã có đầy đủ ảnh chụp thực tế full màn hình laptop (1440×900) & responsive mobile (390×844) định dạng .webp, tech stack chuẩn chỉ và mô tả chi tiết tại Portfolio.*
+
 | # | Tên Dự Án | GitHub Repo | Phạm Vi | Tech Stack Cốt Lõi | Tóm Tắt Vai Trò / Điểm Nhấn |
 | :-: | :--- | :--- | :-: | :--- | :--- |
-| **01** | **Cờ Nhơn Folk Game** | [`Xlinhx/co-nhon-folk-game`](https://github.com/Xlinhx/co-nhon-folk-game) | Private | React, Node.js, Redis, PostgreSQL, PayOS | Web game dân gian real-time, tải 300–500 CCU, thanh toán tự động, chống duplicate webhook. |
-| **02** | **Dealer Wholesale Portal** | [`Xlinhx/dealer-portal`](https://github.com/Xlinhx/dealer-portal) | Private | Next.js, NestJS, PostgreSQL, Prisma, Docker | Cổng quản trị phân phối B2B, xử lý đơn hàng sỉ, tồn kho đa chi nhánh, đối soát công nợ. |
-| **03** | **Sinotruk Parts Catalog** | [`Xlinhx/sinotruk-parts-catalog`](https://github.com/Xlinhx/sinotruk-parts-catalog) | Public | Next.js, PostgreSQL, PLpgSQL, Tailwind | Catalog CMS hơn 500 SKU phụ tùng xe tải, cơ chế proxy cache ảnh và watermark tự động. |
-| **04** | **Payment Reconciliation Ops** | [`Xlinhx/payment-reconciliation-ops`](https://github.com/Xlinhx/payment-reconciliation-ops) | Public | Python, FastAPI, OCR, Pandas | Công cụ tự động đối soát giao dịch ngân hàng & chứng từ kế toán qua AI OCR. |
-| **05** | **Anish TOEIC Lab** | [`Xlinhx/anish-toeic-lab`](https://github.com/Xlinhx/anish-toeic-lab) | Public | Gemini API, React, TypeScript | Ứng dụng luyện thi và chấm điểm IELTS/TOEIC tự động bằng mô hình AI đa phương thức. |
-| **06** | **Sử Ký Classroom** | [`Xlinhx/su-ky-history-classroom`](https://github.com/Xlinhx/su-ky-history-classroom) | Private | React, Supabase, Tailwind, Framer Motion | Nền tảng lớp học tương tác môn Lịch sử với giao diện dòng thời gian trực quan. |
-| **07** | **Engpath Learning** | [`Xlinhx/engpath-english-learning`](https://github.com/Xlinhx/engpath-english-learning) | Private | Next.js, TypeScript, PostgreSQL | Nền tảng học từ vựng và ngữ pháp tiếng Anh theo lộ trình cá nhân hoá. |
-| **08** | **Văn Học AI Learning** | [`Xlinhx/van-hoc-ai-learning`](https://github.com/Xlinhx/van-hoc-ai-learning) | Private | React, Node.js, Gemini API | Trợ lý học tập và gợi ý phân tích tác phẩm văn học thông qua hỏi đáp AI. |
-| **09** | **Zalo AI Ecommerce** | [`Xlinhx/zaloai-ecommerce`](https://github.com/Xlinhx/zaloai-ecommerce) | Private | Zalo Mini App, Node.js, MongoDB | Giải pháp thương mại điện tử tích hợp trợ lý AI trong hệ sinh thái Zalo. |
-| **10** | **Nostime Boutique** | [`Xlinhx/nostime-watch-boutique`](https://github.com/Xlinhx/nostime-watch-boutique) | Private | Next.js, Tailwind CSS, Stripe | Website showcase và catalog đồng hồ cao cấp với giao diện thủ công số tối giản. |
-| **11** | **POS Operations** | [`Xlinhx/pos-ops`](https://github.com/Xlinhx/pos-ops) | Private | React, Node.js, SQLite/PostgreSQL | Hệ thống quản lý điểm bán hàng nhẹ gọn phục vụ cửa hàng bán lẻ và F&B nhỏ. |
-| **12** | **Agent Rules** | [`Xlinhx/agent-rules`](https://github.com/Xlinhx/agent-rules) | Public | Markdown, Agent Configs | Bộ quy chuẩn, system prompts và cấu hình vận hành dành cho AI agents. |
+| **01** | **FabSolution (Zalo AI Ecommerce)** | [`Xlinhx/zaloai-ecommerce`](https://github.com/Xlinhx/zaloai-ecommerce) | Private | React, TypeScript, Node.js, Redis, Docker, Cloudflare | Workspace AI gom hộp tin Zalo, quản lý đơn hàng, thực đơn, kịch bản chăm sóc khách tự động. |
+| **02** | **Dealer Wholesale Portal** | [`Xlinhx/dealer-portal`](https://github.com/Xlinhx/dealer-portal) | Private | Next.js, TypeScript, NestJS, PostgreSQL, Docker | Cổng quản trị phân phối B2B, xử lý đơn hàng sỉ, giỏ hàng đại lý, kho hàng, đối soát công nợ. |
+| **03** | **Nostime Boutique** | [`Xlinhx/nostime-watch-boutique`](https://github.com/Xlinhx/nostime-watch-boutique) | Private | Next.js, Tailwind CSS, TypeScript, PostgreSQL, Docker | Showcase và nền tảng phân phối đồng hồ cao cấp: quản trị sổ cái độc bản, tra cứu đơn hàng và storefront boutique sang trọng. |
+| **04** | **Cổ Nhơn Folk Game** | [`Xlinhx/co-nhon-folk-game`](https://github.com/Xlinhx/co-nhon-folk-game) | Private | React, TypeScript, Node.js, Redis, PostgreSQL, PayOS, Docker | Web game dân gian real-time, tải 300–500 CCU, thanh toán tự động, chống duplicate webhook. |
+| **05** | **EngPath English Learning** | [`Xlinhx/engpath-english-learning`](https://github.com/Xlinhx/engpath-english-learning) | Private | React, TypeScript, Hono, Cloudflare | Nền tảng học tiếng Anh THPT cá nhân hóa, AI chấm bài và theo dõi tiến độ học sinh. |
+| **06** | **Sử Ký Classroom Game** | [`Xlinhx/su-ky-history-classroom`](https://github.com/Xlinhx/su-ky-history-classroom) | Private | React, Three.js, Cloudflare | Nền tảng lớp học tương tác môn Lịch sử dạng game room, AI sinh câu hỏi và tổng hợp kết quả. |
+| **07** | **Văn Hiến Literature Learning** | [`Xlinhx/van-hoc-ai-learning`](https://github.com/Xlinhx/van-hoc-ai-learning) | Private | React, TypeScript, Cloudflare | Trợ lý học tập và gợi ý phân tích tác phẩm văn học thông qua hỏi đáp và nhập vai nhân vật AI. |
+
+---
+
+### B. Các Repository Dự Án Khác Trên GitHub (Kho Lưu Trữ / Công Cụ / Nghiên Cứu)
+*Các dự án này phục vụ tra cứu mã nguồn, học thuật, hoặc không thuộc trọng tâm hiển thị công khai trên Portfolio.*
+
+| # | Tên Dự Án | GitHub Repo | Phạm Vi | Tech Stack Cốt Lõi | Ghi Chú |
+| :-: | :--- | :--- | :-: | :--- | :--- |
+| **08** | **Sinotruk Parts Catalog** | [`Xlinhx/sinotruk-parts-catalog`](https://github.com/Xlinhx/sinotruk-parts-catalog) | Public | Next.js, PostgreSQL, Sharp, Docker | Catalog phụ tùng xe tải HOWO/SINOTRUK. |
+| **09** | **Payment Reconciliation Ops** | [`Xlinhx/payment-reconciliation-ops`](https://github.com/Xlinhx/payment-reconciliation-ops) | Public | Python, FastAPI, Gemini OCR, Firebase | Đối soát hóa đơn và sao kê ngân hàng qua OCR. |
+| **10** | **Anish TOEIC Lab** | [`Xlinhx/anish-toeic-lab`](https://github.com/Xlinhx/anish-toeic-lab) | Public | Gemini API, React, TypeScript | Chấm điểm IELTS/TOEIC tự động bằng AI. |
+| **11** | **POS Operations** | [`Xlinhx/pos-ops`](https://github.com/Xlinhx/pos-ops) | Private | React, Node.js, SQLite/PostgreSQL | Quản lý điểm bán hàng nhẹ gọn cho F&B/bán lẻ. |
+| **12** | **Agent Rules** | [`Xlinhx/agent-rules`](https://github.com/Xlinhx/agent-rules) | Public | Markdown, Agent Configs | Bộ quy chuẩn và cấu hình vận hành AI Agents. |
+

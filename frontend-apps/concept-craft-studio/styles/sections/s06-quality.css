@@ -51,7 +51,7 @@
 .s06-stage-backdrop {
   position: absolute;
   inset: 0;
-  background-image: url('../../assets/scenes/s06-responsive-stage-bg.jpg');
+  background-image: url('../../assets/scenes/s06-responsive-stage-bg.webp');
   background-size: cover;
   background-position: center bottom;
   background-repeat: no-repeat;
@@ -1068,7 +1068,7 @@
 
   /* Nền sân khấu di động: Đồi núi sương mờ + cành tùng trên đỉnh, dải sóng ngọc bích viền vàng dưới đáy */
   .section-quality .s06-stage-backdrop {
-    background-image: url('../../assets/scenes/s06-mobile-stage-bg.jpg') !important;
+    background-image: url('../../assets/scenes/s06-mobile-stage-bg.webp') !important;
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;

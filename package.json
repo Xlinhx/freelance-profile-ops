@@ -17,5 +17,8 @@
     "xlinhx"
   ],
   "author": "Nguyen Xuan Linh (Xlinhx)",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "playwright": "^1.63.0"
+  }
 }

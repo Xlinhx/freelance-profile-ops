@@ -15,7 +15,7 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s;
+  transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.32s;
 }
 
 .project-detail-modal.open {
@@ -27,9 +27,15 @@
 .modal-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(16, 59, 50, 0.45);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(16, 59, 50, 0.48);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-detail-modal.open .modal-backdrop {
+  opacity: 1;
 }
 
 .modal-surface {
@@ -45,12 +51,14 @@
   flex-direction: column;
   overflow: hidden;
   z-index: 10;
-  transform: scale(0.97) translateY(12px);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(0.94) translateY(20px);
+  opacity: 0;
+  transition: transform 0.36s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .project-detail-modal.open .modal-surface {
   transform: scale(1) translateY(0);
+  opacity: 1;
 }
 
 /* 1. Dải ruy băng ngọc bích xén xéo gắn lá cây ở góc trên-trái */
@@ -236,6 +244,7 @@
 
 /* Khung ảnh mockup lớn */
 .modal-screenshot-frame {
+  position: relative;
   width: 100%;
   aspect-ratio: 1.84 / 1;
   border-radius: 12px;
@@ -251,6 +260,75 @@
   object-fit: cover;
   object-position: top center;
   display: block;
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-screenshot-frame img.is-switching {
+  opacity: 0.25;
+  transform: scale(0.985);
+}
+
+/* Nút mũi tên chuyển ảnh 2 bên */
+.modal-nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(215, 205, 195, 0.85);
+  box-shadow: 0 4px 12px rgba(16, 59, 50, 0.12);
+  color: #103B32;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
+  opacity: 0.85;
+}
+
+.modal-nav-arrow:hover {
+  opacity: 1;
+  background: #009975;
+  color: #FFFFFF;
+  border-color: #009975;
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 6px 16px rgba(0, 153, 117, 0.3);
+}
+
+.modal-nav-arrow:active {
+  transform: translateY(-50%) scale(0.96);
+}
+
+.modal-nav-prev {
+  left: 12px;
+}
+
+.modal-nav-next {
+  right: 12px;
+}
+
+/* Huy hiệu số thứ tự ảnh */
+.modal-screen-badge {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  background: rgba(16, 59, 50, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 4;
 }
 
 /* Thanh caption ảnh screenshot */
