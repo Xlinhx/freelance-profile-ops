@@ -226,7 +226,9 @@
           '<div class="modal-left-col">' +
             '<div class="modal-screenshot-frame">' +
               navButtonsHtml +
-              '<img id="modal-active-img" src="' + currentScreen.desktop + '" alt="' + currentScreen.title + '" loading="eager">' +
+              '<div class="modal-screenshot-viewport" id="modal-screenshot-viewport">' +
+                '<img id="modal-active-img" src="' + currentScreen.desktop + '" alt="' + currentScreen.title + '" loading="eager">' +
+              '</div>' +
             '</div>' +
             '<div class="modal-screenshot-caption-bar">' +
               '<div class="caption-info-group">' +
@@ -336,21 +338,29 @@
       var sc = screens[currentScreenIdx];
 
       var img = modal.querySelector('#modal-active-img');
+      var viewport = modal.querySelector('#modal-screenshot-viewport');
       var badge = modal.querySelector('#modal-screen-badge');
       var capTitle = modal.querySelector('#modal-caption-title');
       var capDesc = modal.querySelector('#modal-caption-desc');
       var expandBtn = modal.querySelector('#modal-expand-btn') || modal.querySelector('.btn-expand-preview');
 
+      if (viewport) {
+        viewport.scrollTop = 0;
+      }
+
       if (img) {
         img.classList.add('is-switching');
         setTimeout(function() {
-          img.src = sc.desktop;
-          img.alt = sc.title;
           img.onload = function() {
             img.classList.remove('is-switching');
           };
-          setTimeout(function() { img.classList.remove('is-switching'); }, 200);
-        }, 100);
+          img.src = sc.desktop;
+          img.alt = sc.title;
+          if (img.complete) {
+            img.classList.remove('is-switching');
+          }
+          setTimeout(function() { img.classList.remove('is-switching'); }, 180);
+        }, 60);
       }
 
       if (badge) badge.textContent = (currentScreenIdx + 1) + ' / ' + screens.length;
